@@ -34,8 +34,9 @@ public class Lista {
     public boolean isPrivata() {
         return Privata;
     }
-
     public void setPrivata(boolean privata) {
         Privata = privata;
     }
+
+
 }
