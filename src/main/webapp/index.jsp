@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MovieClub - Benvenuto</title>
+    <title>MovieClub-Benvenuto</title>
 </head>
 <body>
 <h1><%= "Hello World!" %>
