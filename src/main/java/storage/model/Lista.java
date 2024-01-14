@@ -1,4 +1,5 @@
 package storage.model;
 
-public class ciao {
+public class Lista {
+
 }
