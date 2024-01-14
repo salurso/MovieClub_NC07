@@ -39,6 +39,7 @@ FOREIGN KEY (ID_Film) references Film (ID)
 CREATE TABLE Lista(
 ID int PRIMARY KEY,
 Nome varchar(30) NOT NULL,
+Visibilita boolean NOT NULL,
 Descrizione varchar(100),
 Immagine varchar(50),
 Email_Persona varchar(50) NOT NULL,
