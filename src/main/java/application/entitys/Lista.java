@@ -1,4 +1,4 @@
-package application.entity;
+package application.entitys;
 
 public class Lista {
     private String name;
