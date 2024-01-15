@@ -25,6 +25,9 @@ public class Film {
         this.trailer = trailer;
     }
 
+    public Film() {
+    }
+
     public int getId() {
         return id;
     }
