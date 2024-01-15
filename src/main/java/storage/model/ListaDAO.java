@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ListaDAO {
 
-    public ArrayList<Lista> doRetrieveAll(){
+    public static ArrayList<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM Lista");
             ResultSet rs = ps.executeQuery();
