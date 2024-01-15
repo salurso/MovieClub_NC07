@@ -1,0 +1,32 @@
+section{
+    padding: 20px;
+    width: 100%;
+}
+
+section ul{
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+section ul li{
+    list-style: none;
+    padding: 8px 20px;
+    margin: 5px;
+    letter-spacing: 1px;
+    cursor: pointer;
+    background: #ffffff;
+    border: 2px solid #ffa31a;
+}
+
+section ul li.active{
+    background: #ffa31a;
+    color: #ffffff;
+}
+
+.list:hover{
+    background-color: #ffa31a;
+    color: #ffffff;
+}

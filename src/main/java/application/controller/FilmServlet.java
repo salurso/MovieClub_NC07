@@ -13,10 +13,13 @@ import java.util.ArrayList;
 public class FilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        FilmDAO pDAO = new FilmDAO();
+        FilmDAO fDAO = new FilmDAO();
         ArrayList<Film> films = new ArrayList<Film>();
-        films = (ArrayList<Film>) pDAO.doRetrieveAll();
+        films = (ArrayList<Film>) fDAO.doRetrieveAll();
         request.setAttribute("films", films);
+        ArrayList<String> generi = new ArrayList<>();
+        generi = fDAO.cercaGeneri();
+        request.setAttribute("generi", generi);
         RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
         ds.forward(request, response);
     }
