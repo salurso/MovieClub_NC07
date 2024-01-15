@@ -1,4 +1,4 @@
 package storage.service;
 
-public class ciao {
+public class ListaService {
 }
