@@ -32,6 +32,34 @@
 </nav>
 
 <h1> CREA LISTA </h1>
+<div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Nome</label>
+    </div>
+    <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+        <label for="floatingTextarea2">Descrizione</label>
+    </div>
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" id="inputGroupFile02">
+        <label class="input-group-text" for="inputGroupFile02">Upload</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Pubblica
+        </label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+        <label class="form-check-label" for="flexRadioDefault1">
+            Privata
+        </label>
+    </div>
+
+    <button type="button" class="btn btn-outline-warning">CREA LISTA</button></div>
+
 
 
 
