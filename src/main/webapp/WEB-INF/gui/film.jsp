@@ -80,7 +80,7 @@
                         <p class="card-text">Genere: <%f.getGenere();%></p>
                         <p class="card-text">Regista: <%f.getRegista();%></p>
                         <p class="card-text">Durata: <%f.getDurata();%></p>
-                        <a href="#" class="btn btn-primary">Dettagli</a>
+                        <a href="FilmServlet?id=<%=f.getId()%>" class="btn btn-primary">Dettagli</a>
                         <a href="#" class="btn btn-primary">Lista +</a>
                     </div>
                 </div>
@@ -99,7 +99,7 @@
                         <p class="card-text">Genere: Fantasy</p>
                         <p class="card-text">Regista: Gino</p>
                         <p class="card-text">Durata: 2:30</p>
-                        <a href="#" class="btn btn-primary">Dettagli</a>
+                        <a href="FilmServlet?id=1" class="btn btn-primary">Dettagli</a>
                         <a href="#" class="btn btn-primary">Lista +</a>
                     </div>
                 </div>
