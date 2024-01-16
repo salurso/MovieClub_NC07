@@ -7,5 +7,7 @@
 </head>
 <body>
     <h1> Ciao, Mondo! </h1>
+<a href="MainServlet">VISUALIZZA FILM</a>
+<a href="ListaServlet">VISUALIZZA LISTE</a>
 </body>
 </html>

@@ -1,17 +1,12 @@
 package application.entity;
 
 public class Lista {
+    private int id;
+
     private String nome;
     private String descrizione;
     private String immagine;
     private boolean privata;
-
-    public Lista(String nome, String descrizione, String immagine, boolean privata) {
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.immagine = immagine;
-        this.privata = privata;
-    }
 
     public String getNome() {
         return nome;
@@ -19,6 +14,13 @@ public class Lista {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+     public int getId() {
+            return id;
+        }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getDescrizione() {
