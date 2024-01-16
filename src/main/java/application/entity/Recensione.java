@@ -8,14 +8,14 @@ public class Recensione {
     private int valutazione;
     private String descrizione;
     private Date data;
-    private String emailPersona;
+    private String Email_Persona;
     private int ID_Film;
 
-    public Recensione(int valutazione, String descrizione, Date data, String emailPersona, int ID_Film) {
+    public Recensione(int valutazione, String descrizione, Date data, String Email_Persona, int ID_Film) {
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.data = data;
-        this.emailPersona = emailPersona;
+        this.Email_Persona = Email_Persona;
         this.ID_Film = ID_Film;
     }
 
@@ -46,12 +46,12 @@ public class Recensione {
         this.data = data;
     }
 
-    public String getEmailPersona() {
-        return emailPersona;
+    public String getEmail_Persona() {
+        return Email_Persona;
     }
 
-    public void setEmailPersona(String emailPersona) {
-        this.emailPersona = emailPersona;
+    public void setEmail_Persona(String email_Persona) {
+        Email_Persona = email_Persona;
     }
 
     public int getID_Film() {
@@ -68,7 +68,7 @@ public class Recensione {
                 "valutazione=" + valutazione +
                 ", descrizione='" + descrizione + '\'' +
                 ", data=" + data +
-                ", emailPersona='" + emailPersona + '\'' +
+                ", emailPersona='" + Email_Persona + '\'' +
                 ", ID_Film=" + ID_Film +
                 '}';
     }
