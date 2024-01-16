@@ -9,14 +9,14 @@ public class Recensione {
     private String descrizione;
     private Date data;
     private String emailPersona;
-    private int idFilm;
+    private int ID_Film;
 
-    public Recensione(int valutazione, String descrizione, Date data, String emailPersona, int idFilm) {
+    public Recensione(int valutazione, String descrizione, Date data, String emailPersona, int ID_Film) {
         this.valutazione = valutazione;
         this.descrizione = descrizione;
         this.data = data;
         this.emailPersona = emailPersona;
-        this.idFilm = idFilm;
+        this.ID_Film = ID_Film;
     }
 
     public Recensione(){
@@ -54,12 +54,12 @@ public class Recensione {
         this.emailPersona = emailPersona;
     }
 
-    public int getIdFilm() {
-        return idFilm;
+    public int getID_Film() {
+        return ID_Film;
     }
 
-    public void setIdFilm(int idFilm) {
-        this.idFilm = idFilm;
+    public void setID_Film(int ID_Film) {
+        this.ID_Film = ID_Film;
     }
 
     @Override
@@ -69,7 +69,7 @@ public class Recensione {
                 ", descrizione='" + descrizione + '\'' +
                 ", data=" + data +
                 ", emailPersona='" + emailPersona + '\'' +
-                ", idFilm=" + idFilm +
+                ", ID_Film=" + ID_Film +
                 '}';
     }
 }
