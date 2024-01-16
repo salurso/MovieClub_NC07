@@ -53,28 +53,16 @@ body{
     background-position:center center; /*Fa si che l'immagine sia sempre al centro del button*/
 }
 
-.item#add_product{
+.item#add_film{
     background-image: url('../../images/addProduct.png');
 }
 
-.item#manage_product{
+.item#manage_films{
     background-image: url('../../images/manageProduct.png');
 }
 
-.item#add_category{
-    background-image: url('../../images/addCategory.png');
-}
-
-.item#manage_category{
-    background-image: url('../../images/manageCategory.png');
-}
-
-.item#orders{
-    background-image: url('../../images/orders.png');
-}
-
 .item#users{
-    background-image: url('../../images/users.png');
+    background-image: url('../../images/utenti.png');
 }
 
 .item .item-text {

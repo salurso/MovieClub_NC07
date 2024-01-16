@@ -17,15 +17,15 @@ FOREIGN KEY (ID_Watchlist) references Watchlist (ID)
 );
 
 CREATE TABLE Film(
-ID int PRIMARY KEY,
-Titolo varchar(50) NOT NULL,
-Descrizione varchar(200) NOT NULL,
+ID int PRIMARY KEY auto_increment,
+Titolo varchar(60) NOT NULL,
+Descrizione varchar(220) NOT NULL,
 DataUscita date,
-Regista varchar(30),
-Durata timestamp, 
-Genere varchar(25) NOT NULL,
-Copertina varchar(50), 
-Trailer varchar(200)
+Regista varchar(60),
+Durata time, 
+Genere varchar(15) NOT NULL,
+Copertina varchar(150), 
+Trailer varchar(100)
 );
 
 CREATE TABLE Contiene(
