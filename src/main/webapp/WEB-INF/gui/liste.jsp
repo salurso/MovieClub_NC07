@@ -29,24 +29,22 @@
   <%
     for(Lista l : lists){
   %>
-
-  <div class="col">
-    <div class="card h-100">
-      <a href="#" class="btn btn-primary">+</a>
-      <img src="..." class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">Nome: <%l.getNome();%></h5>
-        <p class="card-text">Descrizione: <%l.getDescrizione();%></p>
-        <p class="card-text">Immagine: <%l.getImmagine();%></p>
+<div class="grid-container">
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h5 class="card-title"><%=l.getNome()%> #<%=l.getId()%></h5>
+      <p class="card-text"><%=l.getDescrizione()%></p>
 
 
-      </div>
+      <a href="ListaServlet?action=film" class="card-link">Apri Lista</a>
     </div>
   </div>
+</div>
 
   <%
     }
   %>
+
 
 </div>
 

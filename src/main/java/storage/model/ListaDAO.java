@@ -5,21 +5,25 @@ import application.entity.Lista;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ListaDAO {
 
-    public static ArrayList<Lista> doRetrieveAll(){
+    public List<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista");
+
+            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, visibilita FROM Lista");
             ResultSet rs = ps.executeQuery();
+
             ArrayList<Lista> lists = new ArrayList<>();
+
             while (rs.next()){
                 Lista l = new Lista();
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
+                l.setVisibilita(rs.getBoolean(5));
 
                 lists.add(l);
             }
@@ -31,7 +35,7 @@ public class ListaDAO {
 
     public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, visibilita FROM Lista WHERE id = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
@@ -40,7 +44,7 @@ public class ListaDAO {
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
+                l.setVisibilita(rs.getBoolean(5));
             }
             return l;
         } catch (SQLException e) {
@@ -50,11 +54,11 @@ public class ListaDAO {
 
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, visibilita = ? WHERE id = ?");
             ps.setString(1, l.getNome());
             ps.setString(2, l.getDescrizione());
             ps.setString(3, l.getImmagine());
-            ps.setBoolean(4, l.isPrivata());
+            ps.setBoolean(4, l.isVisibilita());
             ps.setInt(5, l.getId());
 
             return ps.executeUpdate();
