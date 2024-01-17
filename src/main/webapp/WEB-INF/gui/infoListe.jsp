@@ -25,15 +25,33 @@
   </form>
 </div>
 <% } else { %>
-<% for (Film f: films){ %>
+<h1 align="center"> Lista: <%= l.getNome()%> </h1>
 <div>
-  <p>Nome film: <%=f.getTitolo()%></p>
-  <p>Regista: <%=f.getRegista()%></p>
-  <p>Durata: <%=f.getDurata()%></p>
-  <p>Copertina: <%=f.getCopertina()%></p>
-  <p>Genere: <%=f.getGenere()%></p>
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Titolo</th>
+      <th scope="col">Regista</th>
+      <th scope="col">Durata</th>
+      <th scope="col">Copertina</th>
+      <th scope="col">Genere</th>
+      <th scope="col">Azioni</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% for (Film f: films){ %>
+    <tr>
+      <td><%=f.getTitolo()%></td>
+      <td><%=f.getRegista()%></td>
+      <td><%=f.getDurata()%></td>
+      <td><%=f.getCopertina()%></td>
+      <td><%=f.getGenere()%></td>
+      <td><button type="button" class="btn btn-outline-danger">Rimuovi</button></td>
+    </tr>
+    <% } %>
+    </tbody>
+  </table>
 </div>
-<% } %>
 <% } %>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

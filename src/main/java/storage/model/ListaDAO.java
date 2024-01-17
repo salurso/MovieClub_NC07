@@ -32,7 +32,7 @@ public class ListaDAO {
 
     public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
@@ -72,7 +72,7 @@ public class ListaDAO {
     }
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE ID = ?");
             ps.setString(1, l.getNome());
             ps.setString(2, l.getDescrizione());
             ps.setString(3, l.getImmagine());
@@ -85,16 +85,48 @@ public class ListaDAO {
         }
     }
 
-    public int doDeleteList(int id) { //ELIMINA LISTA DAL NOME
-        try (Connection connection = ConPool.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("DELETE FROM Lista WHERE id = ?");
-            ps.setInt(1, id);
+    public int doInsert(Lista l) throws IOException {
+        try (Connection con = ConPool.getConnection()) {
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (nome, descrizione, immagine, privata) VALUES (?, ?, ?, ?)");
+            ps.setString(1, l.getNome());
+            ps.setString(2, l.getDescrizione());
+            ps.setString(3, l.getImmagine());
+            ps.setBoolean(4, l.isPrivata());
 
             return ps.executeUpdate();
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }
     }
+
+    public int doDeleteList(int id) {
+        try (Connection connection = ConPool.getConnection()) {
+            connection.setAutoCommit(false);
+
+            try {
+                PreparedStatement psInclude = connection.prepareStatement("DELETE FROM include WHERE ID_Lista = ?");
+                psInclude.setInt(1, id);
+                psInclude.executeUpdate();
+
+                PreparedStatement psLista = connection.prepareStatement("DELETE FROM Lista WHERE ID = ?");
+                psLista.setInt(1, id);
+                int rowsAffected = psLista.executeUpdate();
+
+                connection.commit();
+
+                return rowsAffected;
+            } catch (SQLException e) {
+                connection.rollback();
+                throw new RuntimeException(e);
+            } finally {
+                connection.setAutoCommit(true);
+            }
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
+
 
     public int doDeleteFilmList(int idLista, int idFilm) { //ELIMINA FILM DALLA LISTA
         try (Connection connection = ConPool.getConnection()){
