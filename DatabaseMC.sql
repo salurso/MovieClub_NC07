@@ -10,6 +10,7 @@ ID int PRIMARY KEY
 CREATE TABLE Persona(
 Email varchar(50) PRIMARY KEY,
 Password VARCHAR(30) NOT NULL,
+Genere varchar(15),
 Nome varchar(30) NOT NULL,
 Cognome varchar(30) NOT NULL,
 Admin boolean NOT NULL,
