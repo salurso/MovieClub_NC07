@@ -3,18 +3,13 @@ CREATE DATABASE persistenzaMC;
 USE persistenzaMC;
 
 
-CREATE TABLE Watchlist(
-ID int PRIMARY KEY
-);
-
 CREATE TABLE Persona(
-Email varchar(50) PRIMARY KEY,
-Password VARCHAR(30) NOT NULL,
+ID int PRIMARY KEY auto_increment,
+Email varchar(50) UNIQUE NOT NULL,
+Password VARCHAR(44) NOT NULL,
 Nome varchar(30) NOT NULL,
 Cognome varchar(30) NOT NULL,
-Admin boolean NOT NULL,
-ID_Watchlist int NOT NULL,
-FOREIGN KEY (ID_Watchlist) references Watchlist (ID)
+Admin boolean NOT NULL
 );
 
 CREATE TABLE Film(
@@ -29,11 +24,11 @@ Copertina varchar(150),
 Trailer varchar(100)
 );
 
-CREATE TABLE Contiene(
-ID_Watchlist int,
+CREATE TABLE watchlist(
+ID_Persona int,
 ID_Film int,
-PRIMARY KEY (ID_Watchlist, ID_Film),
-FOREIGN KEY (ID_Watchlist) references Watchlist (ID),
+PRIMARY KEY (ID_Persona, ID_Film),
+FOREIGN KEY (ID_Persona) references Persona (ID),
 FOREIGN KEY (ID_Film) references Film (ID)
 );
 

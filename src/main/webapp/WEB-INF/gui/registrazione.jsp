@@ -15,7 +15,7 @@
 
 <div class="wrapper_reg">
     <h1>Registrati </h1>
-    <form action="process_registration" method="post">
+    <form action="RegistrazioneServlet" method="post">
         <input type="email" placeholder="E-mail" name="email" id="email" required>
         <input type="text" placeholder="Name" name="name" id = "name" required>
         <input type="text" placeholder="Surname" name="surname" id = "surname" required>
