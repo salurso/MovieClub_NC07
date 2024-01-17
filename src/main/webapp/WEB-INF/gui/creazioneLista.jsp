@@ -31,35 +31,34 @@
 <body>
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+<h1>Crea Lista</h1>
 
-<h1> CREA LISTA </h1>
-
-
-    <form action="ModificaListaServlet?action=creazione" enctype="multipart/form-data" method="POST">
-    <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Nome</label>
+<form action="ListaServlet?action=crea" enctype="multipart/form-data" method="POST">
+    <div class="mb-3">
+        <label for="nome" class="form-label">Nome</label>
+        <input type="text" class="form-control" id="nome" name="nome" required>
     </div>
-    <div class="form-floating">
-        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Descrizione</label>
+    <div class="mb-3">
+        <label for="descrizione" class="form-label">Descrizione</label>
+        <textarea class="form-control" id="descrizione" name="descrizione" rows="3" required></textarea>
     </div>
-        <input type="file" id="immagine" name="immagine" value="inserisci immagine">
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-        <label class="form-check-label" for="flexRadioDefault1">
-            Pubblica
-        </label>
+    <div class="mb-3">
+        <label for="immagine" class="form-label">Immagine</label>
+        <input type="file" class="form-control" id="immagine" name="immagine" required>
     </div>
-    <div class="form-check">
-        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-        <label class="form-check-label" for="flexRadioDefault1">
-            Privata
-        </label>
+    <div class="mb-3">
+        <label class="form-check-label">Visibilità:</label>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="visibilita" id="pubblica" value="Pubblica" checked>
+            <label class="form-check-label" for="pubblica">Pubblica</label>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="visibilita" id="privata" value="Privata">
+            <label class="form-check-label" for="privata">Privata</label>
+        </div>
     </div>
 
-    <input type="submit" class="btn btn-outline-warning" value="CREA LISTA" onclick="return(validateInsert())">
-
+    <button type="submit" class="btn btn-outline-warning">Crea Lista</button>
 </form>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>

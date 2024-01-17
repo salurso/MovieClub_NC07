@@ -5,7 +5,6 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import storage.model.ListaDAO;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -67,6 +66,10 @@ public class ModificaListaServlet extends HttpServlet {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write(result);
+
+
+
+
 //        } else if (action.equals("creazione")) {
 //            String nome = request.getParameter("nome");
 //            String descrizione = request.getParameter("descrizione");
@@ -122,8 +125,24 @@ public class ModificaListaServlet extends HttpServlet {
 //                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
 //                requestDispatcher.forward(request, response);
 //            }
+        } else if (action.equals("rimuoviFilm")) {
+            int idLista = Integer.parseInt(request.getParameter("idLista"));
+            int idFilm = Integer.parseInt(request.getParameter("idFilm"));
+            String result;
+
+            int rowsAffected = lDAO.doDeleteFilmList(idLista, idFilm);
+            if (rowsAffected == 0) {
+                result = "Il film non era presente nella lista o si è verificato un problema durante la rimozione.";
+            } else {
+                result = "Il film è stato rimosso con successo dalla lista!";
+            }
+
+            // Restituisci la risposta come JSON
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
         }
-    }
+        }
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

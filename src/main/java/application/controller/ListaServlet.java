@@ -38,21 +38,19 @@ public class ListaServlet extends HttpServlet {
                 request.setAttribute("films", films);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/infoListe.jsp");
                 ds.forward(request, response);
-            } else if (action.equals("crea")) {
-                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
-                ds.forward(request, response);
-            } else if (action.equals("gestisci")) {
-                int id = Integer.parseInt(request.getParameter("id"));
-                Lista lists = lDAO.doRetrieveById(id);
+                } else if (action.equals("gestisci")) {
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    Lista lists = lDAO.doRetrieveById(id);
 
-                request.setAttribute("lists", lists);
-                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/gestioneLista.jsp");
-                ds.forward(request, response);
+                    request.setAttribute("lists", lists);
+                    RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/gestioneLista.jsp");
+                    ds.forward(request, response);
+                } else if(action.equals("crea")){
+                    RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
+                    ds.forward(request, response);
             }
-
             }
-
-    }
+        }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
