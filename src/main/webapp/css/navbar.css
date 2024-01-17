@@ -1,0 +1,32 @@
+#navbar{
+    --bs-navbar-color: #ffffff;
+    --bs-navbar-hover-color: #808080;
+    --bs-navbar-brand-color: #ffa31a;
+    --bs-navbar-brand-hover-color: #EF6D16;
+}
+
+#text-areaPersonale{
+    color: white;
+}
+
+#text-areaPersonale:hover{
+    color: #808080;
+}
+
+.btn-primary{
+    --bs-btn-bg: #ffa31a;
+    --bs-btn-border-color: black;
+    --bs-btn-hover-bg: #EF6D16;
+    --bs-btn-hover-color: black;
+    --bs-btn-hover-border-color: black;
+    --bs-btn-active-bg: #EF6D16;
+    --bs-btn-active-border-color: black;
+    --bs-btn-color: black;
+    --bs-btn-active-color: black;
+    margin-left: 20px;
+}
+
+.navbar-toggler{
+   background-color: white;
+}
+

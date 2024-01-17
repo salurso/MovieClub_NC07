@@ -1,5 +1,6 @@
 package application.entity;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Film {
@@ -8,25 +9,10 @@ public class Film {
     private String descrizione;
     private Date dataUscita;
     private String regista;
-    private double durata;
+    private Time durata;
     private String genere;
     private String copertina;
     private String trailer;
-
-    public Film(int id, String titolo, String descrizione, Date dataUscita, String regista, double durata, String genere, String copertina, String trailer) {
-        this.id = id;
-        this.titolo = titolo;
-        this.descrizione = descrizione;
-        this.dataUscita = dataUscita;
-        this.regista = regista;
-        this.durata = durata;
-        this.genere = genere;
-        this.copertina = copertina;
-        this.trailer = trailer;
-    }
-
-    public Film() {
-    }
 
     public int getId() {
         return id;
@@ -48,7 +34,7 @@ public class Film {
         return regista;
     }
 
-    public double getDurata() {
+    public Time getDurata() {
         return durata;
     }
 
@@ -84,7 +70,7 @@ public class Film {
         this.regista = regista;
     }
 
-    public void setDurata(double durata) {
+    public void setDurata(Time durata) {
         this.durata = durata;
     }
 

@@ -36,7 +36,8 @@
       <p class="card-text"><%=l.getDescrizione()%></p>
 
 
-      <a href="ListaServlet?action=film" class="card-link">Apri Lista</a>
+<%--      <a href="ListaServlet?action=info" class="card-link">Apri Lista</a>--%>
+      <a href="ListaServlet?action=info&id=<%=l.getId()%>" class="card-link">Apri Lista</a>
     </div>
   </div>
 </div>

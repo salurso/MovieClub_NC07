@@ -9,7 +9,6 @@ ID int PRIMARY KEY
 
 CREATE TABLE Persona(
 Email varchar(50) PRIMARY KEY,
-Password VARCHAR(30) NOT NULL,
 Nome varchar(30) NOT NULL,
 Cognome varchar(30) NOT NULL,
 Admin boolean NOT NULL,
@@ -23,9 +22,9 @@ Titolo varchar(60) NOT NULL,
 Descrizione varchar(220) NOT NULL,
 DataUscita date,
 Regista varchar(60),
-Durata time, 
+Durata time,
 Genere varchar(15) NOT NULL,
-Copertina varchar(150), 
+Copertina varchar(150),
 Trailer varchar(100)
 );
 
@@ -40,7 +39,7 @@ FOREIGN KEY (ID_Film) references Film (ID)
 CREATE TABLE Lista(
 ID int PRIMARY KEY,
 Nome varchar(30) NOT NULL,
-Visibilita boolean NOT NULL,
+Privata boolean NOT NULL,
 Descrizione varchar(100),
 Immagine varchar(50),
 Email_Persona varchar(50) NOT NULL,
@@ -65,6 +64,3 @@ PRIMARY KEY (Email_Persona, ID_Film),
 FOREIGN KEY (Email_Persona) references Persona (Email),
 FOREIGN KEY (ID_Film) references Film (ID)
 );
-
-
-

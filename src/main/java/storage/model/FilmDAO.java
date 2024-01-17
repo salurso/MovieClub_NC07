@@ -15,7 +15,7 @@ public class FilmDAO {
 
         try (Connection con = ConPool.getConnection()) {
 
-            PreparedStatement ps = con.prepareStatement("select id, titolo, regista, durata, copertina, genere from Film");
+            PreparedStatement ps = con.prepareStatement("select ID, Titolo, Regista, Durata, Copertina, Genere from Film");
             ResultSet rs = ps.executeQuery();
             ArrayList<Film> films = new ArrayList<>();
 
@@ -24,7 +24,7 @@ public class FilmDAO {
                 f.setId(rs.getInt(1));
                 f.setTitolo(rs.getString(2));
                 f.setRegista(rs.getString(3));
-                f.setDurata(rs.getDouble(5));
+                f.setDurata(rs.getTime(4));
                 f.setCopertina(rs.getString(5));
                 f.setGenere(rs.getString(6));
 
@@ -65,7 +65,7 @@ public class FilmDAO {
                 f.setId(rs.getInt(1));
                 f.setTitolo(rs.getString(2));
                 f.setRegista(rs.getString(3));
-                f.setDurata(rs.getDouble(3));
+                f.setDurata(rs.getTime(3));
                 f.setCopertina(rs.getString(4));
                 f.setGenere(rs.getString(5));
             }

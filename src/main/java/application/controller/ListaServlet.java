@@ -21,22 +21,31 @@ public class ListaServlet extends HttpServlet {
 
         if (action != null) {
             if (action.equals("lista")) {
-
+                // Blocco per gestire l'azione "lista"
                 ListaDAO lDAO = new ListaDAO();
-                ArrayList<Lista> lists = new ArrayList<Lista>();
-                lists = (ArrayList<Lista>) lDAO.doRetrieveAll();
+                ArrayList<Lista> lists = (ArrayList<Lista>) lDAO.doRetrieveAll();
                 request.setAttribute("lists", lists);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
                 ds.forward(request, response);
-            }
-        }
+            } else if (action.equals("info")) {
+                // Blocco per gestire l'azione "info"
                 int id = Integer.parseInt(request.getParameter("id"));
                 ListaDAO lDAO = new ListaDAO();
-                Lista lists = lDAO.doRetrieveById(id);
-                request.setAttribute("lists", lists);
+                Lista list = lDAO.doRetrieveById(id);
+
+                // Ottieni la lista di film associati a questa lista
+                ArrayList<Film> films = lDAO.getFilmsInList(id);
+
+                request.setAttribute("lists", list);
+                request.setAttribute("films", films);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/infoListe.jsp");
                 ds.forward(request, response);
+            } else if (action.equals("crea")) {
+                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
+                ds.forward(request, response);
+            }
         }
+    }
 
 
 

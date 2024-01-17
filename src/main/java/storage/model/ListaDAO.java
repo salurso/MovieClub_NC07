@@ -1,29 +1,26 @@
 package storage.model;
 
+import application.entity.Film;
 import application.entity.Lista;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class ListaDAO {
 
-    public List<Lista> doRetrieveAll(){
+    public static ArrayList<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
-
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, visibilita FROM Lista");
+            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista");
             ResultSet rs = ps.executeQuery();
-
             ArrayList<Lista> lists = new ArrayList<>();
-
             while (rs.next()){
                 Lista l = new Lista();
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
-                l.setVisibilita(rs.getBoolean(5));
+                l.setPrivata(rs.getBoolean(5));
 
                 lists.add(l);
             }
@@ -35,7 +32,7 @@ public class ListaDAO {
 
     public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, visibilita FROM Lista WHERE id = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista WHERE id = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
@@ -44,21 +41,42 @@ public class ListaDAO {
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
-                l.setVisibilita(rs.getBoolean(5));
+                l.setPrivata(rs.getBoolean(5));
             }
             return l;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<Film> getFilmsInList(int idLista) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT f.* FROM Film f JOIN Include i ON f.id = i.ID_Film WHERE i.ID_Lista = ?");
+            ps.setInt(1, idLista);
+            ResultSet rs = ps.executeQuery();
 
+            ArrayList<Film> films = new ArrayList<>();
+            while (rs.next()) {
+                Film f = new Film();
+                f.setId(rs.getInt("id"));
+                f.setTitolo(rs.getString("titolo"));
+                f.setRegista(rs.getString("regista"));
+                f.setDurata(rs.getTime("durata"));
+                f.setCopertina(rs.getString("copertina"));
+                f.setGenere(rs.getString("genere"));
+                films.add(f);
+            }
+            return films;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, visibilita = ? WHERE id = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE id = ?");
             ps.setString(1, l.getNome());
             ps.setString(2, l.getDescrizione());
             ps.setString(3, l.getImmagine());
-            ps.setBoolean(4, l.isVisibilita());
+            ps.setBoolean(4, l.isPrivata());
             ps.setInt(5, l.getId());
 
             return ps.executeUpdate();

@@ -6,16 +6,7 @@ public class Lista {
     private String nome;
     private String descrizione;
     private String immagine;
-    private boolean visibilita;
-
-
-    public boolean isVisibilita() {
-        return visibilita;
-    }
-
-    public void setVisibilita(boolean visibilita) {
-        this.visibilita = visibilita;
-    }
+    private boolean privata;
 
     public String getNome() {
         return nome;
@@ -48,4 +39,11 @@ public class Lista {
         this.immagine = immagine;
     }
 
+    public boolean isPrivata() {
+        return privata;
+    }
+
+    public void setPrivata(boolean privata) {
+        this.privata = privata;
+    }
 }
