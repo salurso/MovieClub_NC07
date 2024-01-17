@@ -13,7 +13,7 @@
 
     <a href="MainServlet?action=film">VISUALIZZA FILM</a><br>
     <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a><br>
-    <a href="RegistrazioneServlet">VISUALIZZA REGISTRAZIONE</a><br>
+    <a href="MainServlet?action=registrazione">VISUALIZZA REGISTRAZIONE</a><br>
     <a href="ListaServlet?action=crea">CREA LISTE</a>
 
 </body>
