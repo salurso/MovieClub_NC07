@@ -34,7 +34,7 @@
                 </li>
             </ul>
             <a class="nav-link" href="MainServlet?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
-            <button type="button" class="btn btn-primary" href="MainServlet?action=login">ACCEDI</button>
+            <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>
         </div>
     </div>
 </nav>
