@@ -24,7 +24,7 @@ Descrizione varchar(220) NOT NULL,
 DataUscita date,
 Regista varchar(60),
 Durata time, 
-Genere varchar(15) NOT NULL,
+Genere varchar(80) NOT NULL,
 Copertina varchar(150), 
 Trailer varchar(100)
 );
