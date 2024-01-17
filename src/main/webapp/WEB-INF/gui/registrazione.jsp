@@ -23,7 +23,7 @@
         <button class="btn_reg"  type="submit">Registrati</button>
 
         <div class="user">
-            Sei gia' registrato? <a href="login"> Login </a>
+            Sei gia' registrato? <a href="gui/login"> Login </a>
         </div>
     </form>
 </div>
