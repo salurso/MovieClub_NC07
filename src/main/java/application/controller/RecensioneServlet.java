@@ -8,8 +8,6 @@ import java.io.IOException;
 
 @WebServlet(name = "RecensioneServlet", value = "/RecensioneServlet")
 public class RecensioneServlet extends HttpServlet{
-
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/recensione.jsp");
