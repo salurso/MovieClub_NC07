@@ -10,6 +10,10 @@
     <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
     <h1> Ciao, Mondo! </h1>
-<a href="ListaServlet">VISUALIZZA LISTE</a>
+
+    <a href="MainServlet?action=film">VISUALIZZA FILM</a>
+    <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a>
+    <a href="RegistrazioneServlet">VISUALIZZA REGISTRAZIONE</a>
+
 </body>
 </html>
