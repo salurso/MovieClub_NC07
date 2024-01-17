@@ -24,6 +24,8 @@
     --bs-btn-color: black;
     --bs-btn-active-color: black;
     margin-left: 20px;
+    margin-right: 5px;
+    margin-top: 5px;
 }
 
 .navbar-toggler{

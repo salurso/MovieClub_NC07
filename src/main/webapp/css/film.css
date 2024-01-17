@@ -1,32 +1,65 @@
-section{
-    padding: 20px;
-    width: 100%;
+/*section{*/
+/*    padding: 20px;*/
+/*    width: 100%;*/
+/*}*/
+
+/*section ul{*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    margin-bottom: 10px;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
+
+/*section ul li{*/
+/*    list-style: none;*/
+/*    padding: 8px 20px;*/
+/*    margin: 5px;*/
+/*    letter-spacing: 1px;*/
+/*    cursor: pointer;*/
+/*    background: #ffffff;*/
+/*    border: 2px solid #ffa31a;*/
+/*}*/
+
+/*section ul li.active{*/
+/*    background: #ffa31a;*/
+/*    color: #ffffff;*/
+/*}*/
+
+/*.list:hover{*/
+/*    background-color: #ffa31a;*/
+/*    color: #ffffff;*/
+/*}*/
+
+.body{
+    background: #35332f;
 }
 
-section ul{
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-    align-items: center;
-    justify-content: center;
+#filtri-genre{
+    width: 90%;
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
 }
 
-section ul li{
-    list-style: none;
-    padding: 8px 20px;
-    margin: 5px;
-    letter-spacing: 1px;
-    cursor: pointer;
-    background: #ffffff;
-    border: 2px solid #ffa31a;
+.genre-filter{
+    margin-left: 30px;
+    margin-right: 3px;
 }
 
-section ul li.active{
-    background: #ffa31a;
-    color: #ffffff;
+#container-film{
+    margin: 50px;
 }
 
-.list:hover{
-    background-color: #ffa31a;
-    color: #ffffff;
+.row-cols-1>* {
+    width: 50%;
 }
+
+#div-filtri{
+    margin-left: 5%;
+    margin-top: 5%;
+    background: #808080;
+    margin-right: 5%;
+    border-radius: 10px;
+    padding: 10px;
+}
+
