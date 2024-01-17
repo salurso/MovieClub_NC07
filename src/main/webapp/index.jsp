@@ -6,9 +6,15 @@
     <title> Hello World </title>
 </head>
 <body>
+
+    <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+
     <h1> Ciao, Mondo! </h1>
-<a href="MainServlet">VISUALIZZA FILM</a>
-<a href="ListaServlet">VISUALIZZA LISTE</a>
-<a href="RegistrazioneServlet">VISUALIZZA REGISTRAZIONE</a>
+
+    <a href="MainServlet?action=film">VISUALIZZA FILM</a><br>
+    <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a><br>
+    <a href="RegistrazioneServlet">VISUALIZZA REGISTRAZIONE</a><br>
+    <a href="ListaServlet?action=crea">CREA LISTE</a>
+
 </body>
 </html>

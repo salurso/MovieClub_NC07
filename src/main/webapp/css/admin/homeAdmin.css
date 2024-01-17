@@ -9,7 +9,7 @@ html::-webkit-scrollbar{
 }
 
 html::-webkit-scrollbar-track{
-    background: #E4E0BB;
+    background: #ffffff;
 }
 
 html::-webkit-scrollbar-thumb{
@@ -18,7 +18,7 @@ html::-webkit-scrollbar-thumb{
 }
 
 body{
-    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../../images/sfondologin.jpeg");
+    background: #808080;
 }
 
 .container{
@@ -32,7 +32,7 @@ body{
 
 .item{
     position: relative;
-    background: #C8934F;
+    background: #ffa31a;
     flex-basis: 30%; /*larghezza singolo elemento*/
     padding: 20px;
     margin: 10px 0 50px 0;
@@ -47,18 +47,18 @@ body{
 }
 
 .item:hover {
-    background: #AE7349;
+    background: #EF6D16;
     background-size: 205px;
     background-repeat:no-repeat; /*Fa si che l'immagine non venga ripetuta se la grandezza del button è maggiore dell'immagine*/
     background-position:center center; /*Fa si che l'immagine sia sempre al centro del button*/
 }
 
 .item#add_film{
-    background-image: url('../../images/addProduct.png');
+    background-image: url('../../images/aggiungi_film.png');
 }
 
 .item#manage_films{
-    background-image: url('../../images/manageProduct.png');
+    background-image: url('../../images/gestisci_film.png');
 }
 
 .item#users{
@@ -79,22 +79,22 @@ body{
     width: 100%;
 }
 
-.alert {
-    width:300px;
-    padding: 1rem 1rem;
-    margin:20px auto;
-    background-color: white;
-    color: #38271E;
-    border-radius: 10px;
-    border: 2px solid #A06028;
-    text-align:center;
-    font-weight: bold;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-}
+/*.alert {*/
+/*    width:300px;*/
+/*    padding: 1rem 1rem;*/
+/*    margin:20px auto;*/
+/*    background-color: white;*/
+/*    color: #38271E;*/
+/*    border-radius: 10px;*/
+/*    border: 2px solid #A06028;*/
+/*    text-align:center;*/
+/*    font-weight: bold;*/
+/*    box-shadow: 0 20px 35px rgba(0,0,0,0.1);*/
+/*}*/
 
 .closebtn {
     margin-left: 15px;
-    color: #38271E;
+    color: #292929;
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -104,7 +104,7 @@ body{
 }
 
 .closebtn:hover {
-    color: #A06028;
+    color: #EF6D16;
 }
 
 @media (max-width: 767px) {

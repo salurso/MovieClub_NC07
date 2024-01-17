@@ -34,7 +34,7 @@
         <button class="item" id="add_film" value=" " onclick="location.href='MainServletAdmin?action=aggiungi_film'">
             <span class="item-text"></span>
         </button>
-        <button class="item" id="manage_films" value=" " onclick="location.href='MainServletAdmin?action=gestione_film'">
+        <button class="item" id="manage_films" value=" " onclick="location.href='MainServletAdmin?action=gestisci_film'">
             <span class="item-text"></span>
         </button>
         <button class="item" id="users" value=" " onclick="location.href='MainServletAdmin?action=utenti'">
