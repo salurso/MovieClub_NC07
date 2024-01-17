@@ -35,7 +35,7 @@ public class RecensioneDAO {
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
             ps.setDate(3, javaToSqlDate(r.getData()));
-            ps.setString(4, r.getEmail_Persona());
+            ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getID_Film());
 
             if(ps.executeUpdate() != 1){
@@ -54,7 +54,7 @@ public class RecensioneDAO {
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
             ps.setDate(3, javaToSqlDate(r.getData()));
-            ps.setString(4, r.getEmail_Persona());
+            ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getID_Film());
 
             if(ps.executeUpdate() != 1){
@@ -72,18 +72,18 @@ public class RecensioneDAO {
 
             //Cancella la recensione dal database
             PreparedStatement pt = con.prepareStatement("UPDATE Recensione SET Valutazione = NULL AND Descrizione = NULL AND Data = NULL WHERE Email_Persona = ? AND ID_Film = ?");
-            pt.setString(1, r.getEmail_Persona());
+            pt.setString(1, r.getEmailPersona());
             pt.setInt(2, r.getID_Film());
             pt.executeUpdate();
 
             //cancelliamo il collegamento Recensione - Utente
             PreparedStatement ps = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ?");
-            ps.setString(1, r.getEmail_Persona());
+            ps.setString(1, r.getEmailPersona());
             ps.executeUpdate();
 
             //cancelliamo il collegamento Recensione - Film
             PreparedStatement pr = con.prepareStatement("DELETE FROM Recensione WHERE ID_Film = ?");
-            pr.setString(1, r.getEmail_Persona());
+            pr.setString(1, r.getEmailPersona());
             pr.executeUpdate();
 
         }catch(SQLException e){
@@ -115,7 +115,7 @@ public class RecensioneDAO {
         r.setValutazione(rs.getInt("Valutazione"));
         r.setDescrizione(rs.getString("Descrizione"));
         r.setData(sqlToJavaDate(rs.getDate("Data")));
-        r.setEmail_Persona(rs.getString("Email_Persona"));
+        r.setEmailPersona(rs.getString("Email_Persona"));
         r.setID_Film(rs.getInt("ID_Film"));
 
         return r;
