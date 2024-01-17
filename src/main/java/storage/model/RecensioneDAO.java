@@ -93,6 +93,7 @@ public class RecensioneDAO {
 
     //Cerca la Recensione effettuata dall'Utente (Email_Persona) su quel determinato film(ID_Film)
     //Fa anche da check per controllare che quella recensione è già presente
+    //Check+Search
     public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film){
         Recensione r = null;
         try(Connection con = ConPool.getConnection()){
