@@ -71,12 +71,12 @@ public class RecensioneDAO {
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
-            PreparedStatement pt = con.prepareStatement("UPDATE Recensione SET Valutazione = NULL AND Descrizione = NULL AND Data = NULL WHERE Email_Persona = ? AND ID_Film = ?");
+            PreparedStatement pt = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
             pt.setString(1, r.getEmailPersona());
             pt.setInt(2, r.getIdFilm());
             pt.executeUpdate();
 
-            //cancelliamo il collegamento Recensione - Utente
+            /*cancelliamo il collegamento Recensione - Utente
             PreparedStatement ps = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ?");
             ps.setString(1, r.getEmailPersona());
             ps.executeUpdate();
@@ -84,7 +84,7 @@ public class RecensioneDAO {
             //cancelliamo il collegamento Recensione - Film
             PreparedStatement pr = con.prepareStatement("DELETE FROM Recensione WHERE ID_Film = ?");
             pr.setString(1, r.getEmailPersona());
-            pr.executeUpdate();
+            pr.executeUpdate();*/
 
         }catch(SQLException e){
             throw new RuntimeException("Errore durante la rimozione della Recensione", e);
