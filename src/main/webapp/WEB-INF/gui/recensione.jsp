@@ -15,9 +15,9 @@
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
     <div id="formRecensione">
-        <form action="RegistrazioneServlet" method="post">
+        <form action="RecensioneServlet" method="post">
             <input type="number" id="valutazione" name="valutazione" required>
-            <input type="text" placeholder="Commenta qui..." name="descrizione" id="descrizione" required>
+            <textarea name="descrizione" id="descrizione" placeholder="Commenta qui..." required></textarea>
             <button class="btn_invia"  type="submit">Invia</button>
 
         </form>
