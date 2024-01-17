@@ -6,8 +6,10 @@
     <title> Hello World </title>
 </head>
 <body>
+
+    <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+
     <h1> Ciao, Mondo! </h1>
-<a href="MainServlet">VISUALIZZA FILM</a>
 <a href="ListaServlet">VISUALIZZA LISTE</a>
 </body>
 </html>

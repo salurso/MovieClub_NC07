@@ -47,6 +47,7 @@
 
 </head>
 <body>
+    <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
     <%
         ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
