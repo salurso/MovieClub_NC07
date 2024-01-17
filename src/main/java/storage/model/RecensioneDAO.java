@@ -36,7 +36,7 @@ public class RecensioneDAO {
             ps.setString(2, r.getDescrizione());
             ps.setDate(3, javaToSqlDate(r.getData()));
             ps.setString(4, r.getEmailPersona());
-            ps.setInt(5, r.getID_Film());
+            ps.setInt(5, r.getIdFilm());
 
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("Errore definizione recensione");
@@ -55,7 +55,7 @@ public class RecensioneDAO {
             ps.setString(2, r.getDescrizione());
             ps.setDate(3, javaToSqlDate(r.getData()));
             ps.setString(4, r.getEmailPersona());
-            ps.setInt(5, r.getID_Film());
+            ps.setInt(5, r.getIdFilm());
 
             if(ps.executeUpdate() != 1){
                 throw new RuntimeException("Errore nella modifica della Recensione");
@@ -71,12 +71,12 @@ public class RecensioneDAO {
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
-            PreparedStatement pt = con.prepareStatement("UPDATE Recensione SET Valutazione = NULL AND Descrizione = NULL AND Data = NULL WHERE Email_Persona = ? AND ID_Film = ?");
+            PreparedStatement pt = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
             pt.setString(1, r.getEmailPersona());
-            pt.setInt(2, r.getID_Film());
+            pt.setInt(2, r.getIdFilm());
             pt.executeUpdate();
 
-            //cancelliamo il collegamento Recensione - Utente
+            /*cancelliamo il collegamento Recensione - Utente
             PreparedStatement ps = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ?");
             ps.setString(1, r.getEmailPersona());
             ps.executeUpdate();
@@ -84,7 +84,7 @@ public class RecensioneDAO {
             //cancelliamo il collegamento Recensione - Film
             PreparedStatement pr = con.prepareStatement("DELETE FROM Recensione WHERE ID_Film = ?");
             pr.setString(1, r.getEmailPersona());
-            pr.executeUpdate();
+            pr.executeUpdate();*/
 
         }catch(SQLException e){
             throw new RuntimeException("Errore durante la rimozione della Recensione", e);
@@ -117,7 +117,7 @@ public class RecensioneDAO {
         r.setDescrizione(rs.getString("Descrizione"));
         r.setData(sqlToJavaDate(rs.getDate("Data")));
         r.setEmailPersona(rs.getString("Email_Persona"));
-        r.setID_Film(rs.getInt("ID_Film"));
+        r.setIdFilm(rs.getInt("ID_Film"));
 
         return r;
     }
