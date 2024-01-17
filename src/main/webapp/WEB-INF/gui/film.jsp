@@ -22,7 +22,7 @@
         $(document).ready(function(){
             $('.list').click(function(){
                 const value = $(this).attr('data-filter');
-                if(value == 'Tutti'){
+                if(value == 'tutti'){
                     $('.product-container').show('1000');
                     $('.title').show('1000');
                 }
@@ -42,7 +42,6 @@
         })
 
 
-
     </script>
 
 </head>
@@ -57,30 +56,38 @@
 
         <section>
             <ul>
-                <li class="list active" data-filter="Tutti">Tutti</li>
-<%--                <%for(String g = generi){%>--%>
-<%--                <li class="list" data-filter="<%=g.toString()%>"><%=g.toString()%></li>--%>
-<%--                <%}%>--%>
-                <li class="list" data-filter="genere1">genere1</li>
-                <li class="list" data-filter="genere2">genere2</li>
+                <li class="list active" data-filter="tutti">Tutti</li>
+                <%
+                    for(int i=0; i<generi.size(); i++){
+                %>
+                <li class="list" data-filter="<%=generi.get(i)%>"><%=generi.get(i)%></li>
+                <%}%>
             </ul>
         </section>
+
+
+        <%
+            for(String g : generi){
+        %>
+        <h3 class="title" align="center"><%=g%></h3>
 
         <div class="row row-cols-1 row-cols-md-4 g-4">
 
             <%
                 for(Film f : films){
+                    if(f.getGenere().equals(g)){
+
             %>
 
             <div class="col">
                 <div class="card h-100">
                     <a href="#" class="btn btn-primary">+</a>
-                    <img src="..." class="card-img-top" alt="...">
+                    <img src="<%=f.getCopertina()%>" class="card-img-top" alt="immagine non disponibile">
                     <div class="card-body">
-                        <h5 class="card-title"><%f.getTitolo();%></h5>
-                        <p class="card-text">Genere: <%f.getGenere();%></p>
-                        <p class="card-text">Regista: <%f.getRegista();%></p>
-                        <p class="card-text">Durata: <%f.getDurata();%></p>
+                        <h5 class="card-title"><%=f.getTitolo()%></h5>
+                        <p class="card-text">Genere: <%=f.getGenere()%></p>
+                        <p class="card-text">Regista: <%=f.getRegista()%></p>
+                        <p class="card-text">Durata: <%=f.getDurata()%></p>
                         <a href="FilmServlet?id=<%=f.getId()%>" class="btn btn-primary">Dettagli</a>
                         <a href="#" class="btn btn-primary">Lista +</a>
                     </div>
@@ -88,40 +95,13 @@
             </div>
 
             <%
+                    }
                 }
             %>
-
-            <div class="col">
-                <div class="card h-100">
-                    <a href="#" class="btn btn-primary">+</a>
-                    <img src="images/TheAvengers.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">The Avengers</h5>
-                        <p class="card-text">Genere: Fantasy</p>
-                        <p class="card-text">Regista: Gino</p>
-                        <p class="card-text">Durata: 2:30</p>
-                        <a href="FilmServlet?id=1" class="btn btn-primary">Dettagli</a>
-                        <a href="#" class="btn btn-primary">Lista +</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card h-100">
-                    <a href="#" class="btn btn-primary">+</a>
-                    <img src="images/TheAvengers.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">The Avengers</h5>
-                        <p class="card-text">Genere: Fantasy</p>
-                        <p class="card-text">Regista: Gino</p>
-                        <p class="card-text">Durata: 2:30</p>
-                        <a href="#" class="btn btn-primary">Dettagli</a>
-                        <a href="#" class="btn btn-primary">Lista +</a>
-                    </div>
-                </div>
-            </div>
-
         </div>
+        <%
+            }
+        %>
 
     </div>
 </body>

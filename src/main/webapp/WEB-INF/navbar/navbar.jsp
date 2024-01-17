@@ -24,16 +24,16 @@
         <div class="collapse navbar-collapse" id="navbarText">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0" id="text-ul">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="MainServletAdmin?action=film">Film</a>
+                    <a class="nav-link" aria-current="page" href="MainServlet?action=film">Film</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MainServletAdmin?action=consigliati">Consigliati</a>
+                    <a class="nav-link" href="MainServlet?action=consigliati">Consigliati</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MainServletAdmin?action=contatti">Contatti</a>
+                    <a class="nav-link" href="MainServlet?action=contatti">Contatti</a>
                 </li>
             </ul>
-            <a class="nav-link" href="MainServletAdmin?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
+            <a class="nav-link" href="MainServlet?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
             <button type="button" class="btn btn-primary">ACCEDI</button>
         </div>
     </div>
