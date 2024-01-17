@@ -1,4 +1,5 @@
-<%@ page import="java.util.Random" %><%--
+<%@ page import="java.util.Random" %>
+<%@ page import="application.entity.Persona" %><%--
   Created by IntelliJ IDEA.
   User: andre
   Date: 16/01/2024
@@ -34,7 +35,12 @@
                 </li>
             </ul>
             <a class="nav-link" href="MainServlet?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
-            <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>
+            <%if(request.getSession().getAttribute("Persona") == null) {%>
+                <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>
+            <%} else {
+                Persona p = (Persona) request.getSession().getAttribute("Persona");%>
+                <a class="nav-link" href="MainServlet?action=areaPersonale"><button type="button" class="btn btn-primary">Ciao, <%=p.getNome()%></button></a>
+           <%}%>
         </div>
     </div>
 </nav>

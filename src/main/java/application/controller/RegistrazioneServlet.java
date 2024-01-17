@@ -19,28 +19,24 @@ public class RegistrazioneServlet extends HttpServlet {
         String cognome = request.getParameter("surname");
         String password = request.getParameter("password");
 
-        if(!AutenticazioneService.isValidRegistration(email, password, nome, cognome)){
-            request.setAttribute("LoginFail", "Parametri errati");
-            RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
-            rs.forward(request, response);
-            return;
-        }
-
         try {
             Persona p = AutenticazioneService.doRegistrationService(nome, cognome, email, password);
             if(p == null) {
-                request.setAttribute("LoginFail", "Email già esistente!");
+                request.setAttribute("LoginFail", "Errore registrazione");
                 RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
                 rs.forward(request, response);
                 return;
             }
             request.setAttribute("LoginSuccess", "Registrazione effetuata");
-            RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/login.jsp");
+            request.getSession().setAttribute("Persona", p);
+            RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/index.jsp");
             rs.forward(request, response);
 
 
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            request.setAttribute("LoginFail", "Errore generico");
+            RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
+            rs.forward(request, response);
         }
 
 

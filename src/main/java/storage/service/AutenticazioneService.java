@@ -14,6 +14,10 @@ public class AutenticazioneService {
             return null;
         }
 
+        if(!isValidRegistration(email, passward, nome, cognome)) {
+            return null;
+        }
+
         Persona p = new Persona(nome, cognome, email, passward);
         PersonaDAO.doRegistration(p);
         return p;
