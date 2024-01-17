@@ -39,7 +39,7 @@ public class RecensioneDAO {
             ps.setInt(5, r.getID_Film());
 
             if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore definizione prodotto");
+                throw new RuntimeException("Errore definizione recensione");
             }
 
         }catch(SQLException e){
@@ -71,7 +71,7 @@ public class RecensioneDAO {
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
-            PreparedStatement pt = con.prepareStatement("UPDATE Recensione SET Valutazione = NULL AND Descrizione = NULL  WHERE Email_Persona = ? AND ID_Film = ?");
+            PreparedStatement pt = con.prepareStatement("UPDATE Recensione SET Valutazione = NULL AND Descrizione = NULL AND Data = NULL WHERE Email_Persona = ? AND ID_Film = ?");
             pt.setString(1, r.getEmail_Persona());
             pt.setInt(2, r.getID_Film());
             pt.executeUpdate();
