@@ -1,4 +1,4 @@
-<%--
+<%@ page import="java.util.Random" %><%--
   Created by IntelliJ IDEA.
   User: Vittorio
   Date: 17/01/2024
@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Registazione</title>
-    <link rel="stylesheet" type="text/css" href="./css/login.css">
+    <link rel="stylesheet" type="text/css" href="./css/login.css?v=<%=new Random().nextInt()%>">
 </head>
 <body>
 
