@@ -26,6 +26,10 @@ public class MainServlet extends HttpServlet {
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/login.jsp");
             ds.forward(request, response);
         }
+        if(action.equals("registrazione")){
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/registrazione.jsp");
+            ds.forward(request, response);
+        }
         if(action.equals("contatti")){
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/contatti.jsp");
             ds.forward(request, response);
