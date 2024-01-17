@@ -1,5 +1,6 @@
 package storage.model;
 
+import application.entity.Film;
 import application.entity.Lista;
 
 import java.io.IOException;
@@ -47,7 +48,28 @@ public class ListaDAO {
             throw new RuntimeException(e);
         }
     }
+    public ArrayList<Film> getFilmsInList(int idLista) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT f.* FROM Film f JOIN Include i ON f.id = i.ID_Film WHERE i.ID_Lista = ?");
+            ps.setInt(1, idLista);
+            ResultSet rs = ps.executeQuery();
 
+            ArrayList<Film> films = new ArrayList<>();
+            while (rs.next()) {
+                Film f = new Film();
+                f.setId(rs.getInt("id"));
+                f.setTitolo(rs.getString("titolo"));
+                f.setRegista(rs.getString("regista"));
+                f.setDurata(rs.getTime("durata"));
+                f.setCopertina(rs.getString("copertina"));
+                f.setGenere(rs.getString("genere"));
+                films.add(f);
+            }
+            return films;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE id = ?");
