@@ -1,6 +1,7 @@
 <%@ page import="application.entity.Film" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.Random" %><%--
+<%@ page import="java.util.Random" %>
+<%@ page import="application.entity.Lista" %><%--
   Created by IntelliJ IDEA.
   User: Costantino
   Date: 15/01/2024
@@ -64,7 +65,8 @@
 
     <%
         ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
-        ArrayList<String> generi = (ArrayList<String>) request.getAttribute("generi");
+        ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
+
     %>
     <div>
         <div>
@@ -112,7 +114,27 @@
                         <p class="card-text">Regista: <%=f.getRegista()%></p>
                         <p class="card-text">Durata: <%=f.getDurata()%></p>
                         <a href="FilmServlet?id=<%=f.getId()%>" class="btn btn-primary">Dettagli</a>
-                        <a href="#" class="btn btn-primary">Lista +</a>
+
+                        <!-- Aggiungi un film alla lista -->
+                        <form action="ListaServlet" method="POST">
+                            <input type="hidden" name="action" value="aggiungiFilm">
+                            <input type="hidden" name="idFilm" value="<%= f.getId() %>">
+
+                            <!-- tendina per vedere le liste -->
+                            <select name="idLista" class="btn btn-primary">
+                                <option value="" disabled selected>Seleziona Lista</option>
+                                <%
+                                    for(Lista l : lists){
+                                %>
+                                <option value="<%= l.getId() %>"><%= l.getNome() %></option>
+                                <%
+                                    }
+                                %>
+                            </select>
+
+                            <button type="submit" class="btn btn-primary">Lista +</button>
+                        </form>
+
                     </div>
                 </div>
             </div>

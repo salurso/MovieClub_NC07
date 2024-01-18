@@ -61,7 +61,7 @@ public class ListaServlet extends HttpServlet {
                 ArrayList<Lista> lists = lDAO.doRetrieveAll();
                 request.setAttribute("lists", lists);
 
-                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/filmLista.jsp");
+                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
                 ds.forward(request, response);
 
             } else if (action.equals("aggiungiFilm")) {

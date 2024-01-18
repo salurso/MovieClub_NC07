@@ -1,10 +1,12 @@
 package application.controller;
 
 import application.entity.Film;
+import application.entity.Lista;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import storage.model.FilmDAO;
+import storage.model.ListaDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -39,9 +41,13 @@ public class MainServlet extends HttpServlet {
             ArrayList<Film> films = new ArrayList<Film>();
             films = (ArrayList<Film>) fDAO.doRetrieveAll();
             request.setAttribute("films", films);
-            ArrayList<String> generi = new ArrayList<>();
-            generi = fDAO.cercaGeneri();
-            request.setAttribute("generi", generi);
+//            ArrayList<String> generi = new ArrayList<>();
+//            generi = fDAO.cercaGeneri();
+//            request.setAttribute("generi", generi);
+            // Ottieni la lista delle liste
+            ListaDAO lDAO = new ListaDAO();
+            ArrayList<Lista> lists = lDAO.doRetrieveAll();
+            request.setAttribute("lists", lists);
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
             ds.forward(request, response);
         }
