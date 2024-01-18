@@ -23,7 +23,7 @@ public class AggiungiFilmServlet extends HttpServlet {
         String regista = request.getParameter("regista");
         String copertina = request.getParameter("copertina");
         String trailer = request.getParameter("trailer");
-        String genere = request.getParameter("genere");
+        String genere = request.getParameter("generi");
         Date data = Date.valueOf(request.getParameter("data"));
         String durata = request.getParameter("durata");
         String descrizione = request.getParameter("descrizione");
@@ -38,13 +38,16 @@ public class AggiungiFilmServlet extends HttpServlet {
         f.setDurata(Time.valueOf(durata));
         f.setDescrizione(descrizione);
 
-        String result = "";
+//        ValidateFilmService vFilm = new ValidateFilmService();
+//        vFilm.validateFilm(f);
+
+        String result = null;
         FilmDAO fDAO = new FilmDAO();
         try{
             fDAO.doInsert(f);
             result = "Film inserito!";
         }catch (Exception e){
-            result = "Film già presente!";
+            result = "Film non inserito!";
             request.setAttribute("result", result);
 
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
@@ -59,7 +62,7 @@ public class AggiungiFilmServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("HomeServletAdministrator?action=homeAdmin");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServletAdmin?action=homeAdmin");
         requestDispatcher.forward(request, response);
     }
 }
