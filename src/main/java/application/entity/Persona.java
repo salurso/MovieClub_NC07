@@ -17,6 +17,9 @@ public class Persona {
     private boolean admin;
     private Set<Film> watchlist;
 
+    public Persona() {
+    }
+
     public Persona(String nome, String cognome, String email, String password) {
         this.nome = nome;
         this.cognome = cognome;
