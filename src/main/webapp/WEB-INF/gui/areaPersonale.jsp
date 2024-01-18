@@ -16,13 +16,13 @@
 <body>
 
     <div class="container">
-        <button class="item" id="datiPersona" value=" " onclick="location.href='MainServletAdmin?action=datiPersona'">
+        <button class="item" id="datiPersona" value=" " onclick="location.href='MainServlet?action=datiPersona'">
             <span class="item-text"></span>
         </button>
-        <button class="item" id="creaLista" value=" " onclick="location.href='MainServletAdmin?action=creazioneLista'">
+        <button class="item" id="creaLista" value=" " onclick="location.href='MainServlet?action=creazioneLista'">
             <span class="item-text"></span>
         </button>
-        <button class="item" id="watchlist" value=" " onclick="location.href='MainServletAdmin?action='">
+        <button class="item" id="watchlist" value=" " onclick="location.href='MainServlet?action='">
             <span class="item-text"></span>
         </button>
     </div>

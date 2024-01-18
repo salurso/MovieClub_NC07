@@ -45,6 +45,11 @@ public class MainServlet extends HttpServlet {
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
             ds.forward(request, response);
         }
+
+        if(action.equals("datiPersona")){
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/datiPersona.jsp");
+            ds.forward(request, response);
+        }
         if(action.equals("film")){
             FilmDAO fDAO = new FilmDAO();
             ArrayList<Film> films = new ArrayList<Film>();
