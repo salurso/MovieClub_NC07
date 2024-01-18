@@ -35,11 +35,12 @@ public class AutenticazioneService {
     }
 
     public static boolean isValidString(String input) {
-        String stringRegex = "^[a-zA-Z]+$";
+        String stringRegex = "^[a-zA-Z]*$";
         return Pattern.matches(stringRegex, input);
     }
 
     public static boolean isValidRegistration(String email, String password, String nome, String cognome) {
         return isValidEmail(email) && isValidPassword(password) && isValidString(nome) && isValidString(cognome);
     }
+
 }
