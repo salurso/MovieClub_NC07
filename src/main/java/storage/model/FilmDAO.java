@@ -2,10 +2,8 @@ package storage.model;
 
 import application.entity.Film;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,6 +68,27 @@ public class FilmDAO {
                 f.setGenere(rs.getString(5));
             }
             return f;
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
+
+    public int doInsert(Film f) throws IOException {
+
+        int result;
+        try (Connection con = ConPool.getConnection()) {
+
+            PreparedStatement ps = con.prepareStatement("INSERT INTO film (Titolo, Regista, Genere, Copertina, Trailer, DataUscita, Durata, Descrizione) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            ps.setString(1, f.getTitolo());
+            ps.setString(2, f.getRegista());
+            ps.setString(3, f.getGenere());
+            ps.setString(4, f.getCopertina());
+            ps.setString(5, f.getTrailer());
+            ps.setDate(6, (Date) f.getDataUscita());
+            ps.setTime(7, f.getDurata());
+            ps.setString(8, f.getDescrizione());
+
+            return result = ps.executeUpdate();
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }

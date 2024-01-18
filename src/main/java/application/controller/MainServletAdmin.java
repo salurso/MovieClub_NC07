@@ -19,7 +19,7 @@ public class MainServletAdmin extends HttpServlet {
             ds.forward(request, response);
         }
         if(action.equals("aggiungi_film")){
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/administrator/addCategory.jsp");
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/aggiungiFilm.jsp");
             ds.forward(request, response);
         }
         if(action.equals("gestisci_film")){

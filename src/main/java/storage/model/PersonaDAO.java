@@ -8,12 +8,13 @@ public class PersonaDAO {
 
     public static void doRegistration(Persona p) throws SQLException {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO utente (email, password, nome, cognome) VALUES (?,?,?,?)",
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Persona (email, password, nome, cognome, Admin) VALUES (?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, p.getEmail());
             ps.setString(2, p.getPassword());
             ps.setString(3, p.getNome());
             ps.setString(4, p.getCognome());
+            ps.setBoolean(5, p.isAdmin());
 
             if (ps.executeUpdate() != 1)
                 throw new RuntimeException("Errore nel definire l'utente");

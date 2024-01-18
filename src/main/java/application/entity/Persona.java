@@ -21,7 +21,7 @@ public class Persona {
         this.nome = nome;
         this.cognome = cognome;
         this.email = email;
-        this.password = password;
+        setPassword(password);
         this.admin = false;
         watchlist = new HashSet<>();
     }

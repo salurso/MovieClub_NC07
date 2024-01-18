@@ -15,26 +15,27 @@ public class RegistrazioneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String email = request.getParameter("email");
-        String nome = request.getParameter("name");
-        String cognome = request.getParameter("surname");
+        String nome = request.getParameter("nome");
+        String cognome = request.getParameter("cognome");
         String password = request.getParameter("password");
 
         try {
             Persona p = AutenticazioneService.doRegistrationService(nome, cognome, email, password);
             if(p == null) {
-                request.setAttribute("LoginFail", "Errore registrazione");
+                request.setAttribute("LoginFail", "Errore parametri");
                 RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
                 rs.forward(request, response);
                 return;
             }
             request.setAttribute("LoginSuccess", "Registrazione effetuata");
             request.getSession().setAttribute("Persona", p);
-            RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/index.jsp");
+            RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
             rs.forward(request, response);
 
 
         } catch (SQLException e) {
-            request.setAttribute("LoginFail", "Errore generico");
+            e.printStackTrace();
+            request.setAttribute("LoginFail", "Errore generico, riprova");
             RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
             rs.forward(request, response);
         }
