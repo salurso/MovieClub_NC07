@@ -3,6 +3,7 @@ package storage.model;
 import application.entity.Recensione;
 import storage.service.RecensioneService;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,9 @@ public class RecensioneDAO {
     }
 
     //AggiungiRecensione
-    public static void doSave(Recensione r){
+    public static void doSave(Recensione r) throws IOException {
         try(Connection con = ConPool.getConnection()){
+
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Data, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
@@ -39,16 +41,15 @@ public class RecensioneDAO {
             ps.setInt(5, r.getIdFilm());
 
             if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore definizione recensione");
+                throw new RuntimeException("Errore nella definizione recensione");
             }
-
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
     }
 
     //ModificaRecensione
-    public static void doUpdate(Recensione r){
+    public int doUpdate(Recensione r){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, Data = ? WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setInt(1, r.getValutazione());
@@ -57,9 +58,7 @@ public class RecensioneDAO {
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
-            if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore nella modifica della Recensione");
-            }
+            return ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -92,8 +91,6 @@ public class RecensioneDAO {
     }
 
     //Cerca la Recensione effettuata dall'Utente (Email_Persona) su quel determinato film(ID_Film)
-    //Fa anche da check per controllare che quella recensione è già presente
-    //Check+Search
     public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film){
         Recensione r = null;
         try(Connection con = ConPool.getConnection()){
@@ -109,6 +106,23 @@ public class RecensioneDAO {
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
+    }
+
+    //check duplicato
+    public static Recensione checkDuplicate(String Email_Persona, int ID_Film){
+        Recensione r = null;
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
+            ps.setString(1, Email_Persona);
+            ps.setInt(2, ID_Film);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                r = parseRecensione(rs);
+            }
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+        return r;
     }
 
     public static Recensione parseRecensione(ResultSet rs) throws SQLException {

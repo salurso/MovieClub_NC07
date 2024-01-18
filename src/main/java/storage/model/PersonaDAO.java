@@ -35,5 +35,36 @@ public class PersonaDAO {
         }
         return false;
     }
+    public static Persona doLogin(String email, String password) throws SQLException {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT * FROM Persona WHERE email = ? AND password = SHA1(?)";
+            try (PreparedStatement ps = con.prepareStatement(query)) {
+                ps.setString(1, email);
+                ps.setString(2, password);
+                try (ResultSet rs = ps.executeQuery()) {
+                    if (rs.next()) {
+                        return parsePersona(rs);
+                    } else {
+                        return null;
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    public static Persona parsePersona(ResultSet rs) throws SQLException {
+        Persona p = new Persona();
+        p.setEmail(rs.getString("email"));
+        p.setPassword(rs.getString("password"));
+        p.setNome(rs.getString("nome"));
+        p.setCognome(rs.getString("cognome"));
+        p.setAdmin(rs.getBoolean("Admin"));
+        return p;
+    }
+
+
+
 
 }

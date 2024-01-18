@@ -12,14 +12,17 @@
     <link rel="stylesheet" type="text/css" href="./css/recensione.css?v=<%=new Random().nextInt()%>">
 </head>
 <body>
+
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
-    <div id="formRecensione">
-        <form action="RecensioneServlet" method="post">
-            <input type="number" id="valutazione" name="valutazione" required>
-            <textarea name="descrizione" id="descrizione" placeholder="Commenta qui..." required></textarea>
-            <button class="btn_invia"  type="submit">Invia</button>
+<h1>Recensione del Film<h1>
 
+    <div class="formRecensione">
+        <form action="AggiungiRecensioneServlet" method="POST">
+            <input type="number" id="valutazione" name="valutazione" required>
+            <textarea name="descrizione" id="descrizione" placeholder="Commenta qui..."></textarea>
+
+            <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return(validateInsert())">
         </form>
     </div>
 

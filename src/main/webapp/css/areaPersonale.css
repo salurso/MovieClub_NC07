@@ -23,8 +23,8 @@ body{
 
 .container{
     padding: 1rem;
-    display: flex; /*allinea gli elementi uno di fianco all'altro*/
-    flex-wrap: wrap; /*se ho un elemento in più va daccapo*/
+    display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
     z-index: 1;
@@ -33,12 +33,12 @@ body{
 .item{
     position: relative;
     background: #ffa31a;
-    flex-basis: 30%; /*larghezza singolo elemento*/
+    flex-basis: 30%;
     padding: 20px;
     margin: 10px 0 50px 0;
     background-size: 200px;
-    background-repeat:no-repeat; /*Fa si che l'immagine non venga ripetuta se la grandezza del button è maggiore dell'immagine*/
-    background-position:center center; /*Fa si che l'immagine sia sempre al centro del button*/
+    background-repeat:no-repeat;
+    background-position:center center;
     width: 200px;
     height: 300px;
     -moz-border-radius: 8px;
@@ -49,20 +49,20 @@ body{
 .item:hover {
     background: #EF6D16;
     background-size: 205px;
-    background-repeat:no-repeat; /*Fa si che l'immagine non venga ripetuta se la grandezza del button è maggiore dell'immagine*/
-    background-position:center center; /*Fa si che l'immagine sia sempre al centro del button*/
+    background-repeat:no-repeat;
+    background-position:center center;
 }
 
-.item#add_film{
-    background-image: url('../../images/aggiungi_film.png');
+.item#datiPersona{
+    background-image: url('../images/profilo.png');
 }
 
-.item#manage_films{
-    background-image: url('../../images/gestisci_film.png');
+.item#creaLista{
+    background-image: url('../images/creaLista.png');
 }
 
-.item#users{
-    background-image: url('../../images/utenti.png');
+.item#watchlist{
+    background-image: url('../images/watchlist.png');
 }
 
 .item .item-text {
@@ -79,22 +79,11 @@ body{
     width: 100%;
 }
 
-.alert {
-    width:300px;
-    padding: 1rem 1rem;
-    margin:20px auto;
-    background-color: white;
-    color: #38271E;
-    border-radius: 10px;
-    border: 2px solid #A06028;
-    text-align:center;
-    font-weight: bold;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-}
+
 
 .closebtn {
     margin-left: 15px;
-    color: #38271E;
+    color: #292929;
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -104,7 +93,7 @@ body{
 }
 
 .closebtn:hover {
-    color: #A06028;
+    color: #EF6D16;
 }
 
 @media (max-width: 767px) {
@@ -120,6 +109,3 @@ body{
         max-width: 100%;
     }
 }
-
-
-
