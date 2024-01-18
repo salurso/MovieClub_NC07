@@ -11,7 +11,7 @@ public class ListaDAO {
 
     public static ArrayList<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista");
             ResultSet rs = ps.executeQuery();
             ArrayList<Lista> lists = new ArrayList<>();
             while (rs.next()){
@@ -32,7 +32,7 @@ public class ListaDAO {
 
     public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT id, nome, descrizione, immagine, privata FROM Lista WHERE ID = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
@@ -72,7 +72,7 @@ public class ListaDAO {
     }
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET nome = ?, descrizione = ?, immagine = ?, privata = ? WHERE ID = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET Nome = ?, Descrizione = ?, Immagine = ?, Privata = ? WHERE ID = ?");
             ps.setString(1, l.getNome());
             ps.setString(2, l.getDescrizione());
             ps.setString(3, l.getImmagine());
@@ -85,20 +85,22 @@ public class ListaDAO {
         }
     }
 
-    public int doInsert(Lista l) throws IOException {
-        try (Connection con = ConPool.getConnection()) {
+   public int doInsert(Lista l)throws IOException{
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (nome, descrizione, immagine, privata) VALUES (?, ?, ?, ?)");
-            ps.setString(1, l.getNome());
-            ps.setString(2, l.getDescrizione());
-            ps.setString(3, l.getImmagine());
-            ps.setBoolean(4, l.isPrivata());
+       try (Connection con = ConPool.getConnection()) {
 
-            return ps.executeUpdate();
-        } catch (SQLException s) {
-            throw new RuntimeException(s);
-        }
-    }
+           PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (Nome, Descrizione, Immagine, Privata) VALUES (?,?,?,?)");
+           ps.setString(1, l.getNome());
+           ps.setString(2, l.getDescrizione());
+           ps.setString(3, l.getImmagine());
+           ps.setBoolean(4, l.isPrivata());
+
+           return ps.executeUpdate();
+       } catch (SQLException s) {
+           throw new RuntimeException(s);
+       }
+   }
+
 
     public int doDeleteList(int id) {
         try (Connection connection = ConPool.getConnection()) {
@@ -149,6 +151,22 @@ public class ListaDAO {
             ps.setInt(2, idFilm);
 
             return ps.executeUpdate();
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
+ public int doRetrieveFilmIntoList(int idLista, int idFilm) { //FILM GIA' PRESENTE  IN LISTA
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM Include WHERE id_lista = ? AND id_film = ?");
+            ps.setInt(1, idLista);
+            ps.setInt(2, idFilm);
+
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return 1; //film già presente
+            } else {
+                return 0; //film non presente
+            }
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }

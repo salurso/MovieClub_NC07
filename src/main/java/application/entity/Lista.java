@@ -15,8 +15,7 @@ public class Lista {
     public void setNome(String nome) {
         this.nome = nome;
     }
-     public int getId() {
-            return id;
+     public int getId() { return id;
         }
 
     public void setId(int id) {
@@ -45,5 +44,16 @@ public class Lista {
 
     public void setPrivata(boolean privata) {
         this.privata = privata;
+    }
+
+    @Override
+    public String toString() {
+        return "Lista{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", descrizione='" + descrizione + '\'' +
+                ", immagine='" + immagine + '\'' +
+                ", privata=" + privata +
+                '}';
     }
 }

@@ -14,8 +14,9 @@
     <a href="MainServlet?action=film">VISUALIZZA FILM</a><br>
     <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a><br>
     <a href="MainServlet?action=registrazione">VISUALIZZA REGISTRAZIONE</a><br>
-    <a href="ListaServlet?action=crea">CREA LISTE</a>
+    <a href="ListaServlet?action=creazione">CREA LISTE</a>
     <a href="RecensioneServlet?action=recensione">INSERISCI UNA RECENSIONE</a>
+    <a href="ListaServlet?action=aggiuntaFilm">INSERISCI FILM IN LISTA</a>
 
 </body>
 </html>

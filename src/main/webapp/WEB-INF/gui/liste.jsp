@@ -32,7 +32,7 @@
 
   <% ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
     if(lists==null || lists.isEmpty()) { %>
-  <form action="ListaServlet?action=crea" method="POST">
+  <form action="ListaServlet?action=creazione" method="POST">
   <div class="alert alert-info" role="alert">
     Nessuna lista presente al momento.
     <input type="submit" value="CREA LISTA">
