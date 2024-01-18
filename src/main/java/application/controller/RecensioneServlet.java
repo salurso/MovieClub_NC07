@@ -1,28 +1,33 @@
 package application.controller;
 
-import application.entity.Film;
-import application.entity.Recensione;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-import storage.model.FilmDAO;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import storage.model.RecensioneDAO;
 
 import java.io.IOException;
 
-import jakarta.servlet.annotation.WebServlet;
-
 @WebServlet(name = "RecensioneServlet", value = "/RecensioneServlet")
-public class RecensioneServlet extends HttpServlet{
+public class RecensioneServlet extends HttpServlet {
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        RecensioneDAO rDAO = new RecensioneDAO();
 
+        if(action != null){
+            if(action.equals("aggrecensione")){
+                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/aggiungiRecensione.jsp");
+                ds.forward(request, response);
+            }
+        }
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doPost(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
     }
-
 }

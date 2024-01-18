@@ -8,18 +8,20 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Recensione del Film</title>
+    <title>Recensione</title>
     <link rel="stylesheet" type="text/css" href="./css/recensione.css?v=<%=new Random().nextInt()%>">
 </head>
 <body>
+
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
-    <div id="formRecensione">
-        <form action="RecensioneServlet" method="post">
-            <input type="number" id="valutazione" name="valutazione" required>
-            <textarea name="descrizione" id="descrizione" placeholder="Commenta qui..." required></textarea>
-            <button class="btn_invia"  type="submit">Invia</button>
+<h3>Recensione del Film<h3>
 
+    <div id="formRecensione">
+        <form action="AggiungiRecensioneServlet" method="POST">
+            <input type="number" id="valutazione" name="valutazione" required>
+            <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="500"></textarea>
+            <button class="btn_invia" type="submit">Invia</button>
         </form>
     </div>
 
