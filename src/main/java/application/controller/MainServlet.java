@@ -28,12 +28,26 @@ public class MainServlet extends HttpServlet {
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/login.jsp");
             ds.forward(request, response);
         }
+        if(action.equals("logout")){
+            request.getSession().invalidate();
+            RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
+            rs.forward(request, response);
+        }
         if(action.equals("registrazione")){
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/registrazione.jsp");
             ds.forward(request, response);
         }
         if(action.equals("contatti")){
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/contatti.jsp");
+            ds.forward(request, response);
+        }
+        if(action.equals("creazioneLista")){
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
+            ds.forward(request, response);
+        }
+
+        if(action.equals("datiPersona")){
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/datiPersona.jsp");
             ds.forward(request, response);
         }
         if(action.equals("film")){

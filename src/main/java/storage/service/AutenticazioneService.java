@@ -8,20 +8,28 @@ import java.util.regex.Pattern;
 
 public class AutenticazioneService {
 
-    public static Persona doRegistrationService(String nome, String cognome, String email, String passward) throws SQLException {
+    public static Persona doRegistrationService(String nome, String cognome, String email, String password) throws SQLException {
 
         if(PersonaDAO.checkEmailDuplicate(email)){
             return null;
         }
 
-        if(!isValidRegistration(email, passward, nome, cognome)) {
+        if(!isValidRegistration(email, password, nome, cognome)) {
             return null;
         }
 
-        Persona p = new Persona(nome, cognome, email, passward);
+        Persona p = new Persona(nome, cognome, email, password);
         PersonaDAO.doRegistration(p);
         return p;
 
+    }
+
+    public static Persona doLoginService(String email, String password) throws SQLException {
+        if(!isValidLogin(email, password)) {
+            return null;
+        }
+        Persona p;
+        return p = PersonaDAO.doLogin(email, password);
     }
 
     public static boolean isValidEmail(String email) {
@@ -42,5 +50,13 @@ public class AutenticazioneService {
     public static boolean isValidRegistration(String email, String password, String nome, String cognome) {
         return isValidEmail(email) && isValidPassword(password) && isValidString(nome) && isValidString(cognome);
     }
+
+    public static boolean isValidLogin(String email, String password) {
+        return isValidEmail(email) && isValidPassword(password);
+    }
+
+
+
+
 
 }

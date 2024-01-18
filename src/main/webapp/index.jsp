@@ -15,6 +15,6 @@
     <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a><br>
     <a href="MainServlet?action=registrazione">VISUALIZZA REGISTRAZIONE</a><br>
     <a href="ListaServlet?action=creazione">CREA LISTE</a>
-    <a href="RecensioneServlet?action=recensione">INSERISCI UNA RECENSIONE</a>
+    <a href="RecensioneServlet?action=aggrecensione">INSERISCI UNA RECENSIONE</a>
 </body>
 </html>

@@ -3,6 +3,7 @@ package storage.model;
 import application.entity.Recensione;
 import storage.service.RecensioneService;
 
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +30,7 @@ public class RecensioneDAO {
     }
 
     //AggiungiRecensione
-    public static void doSave(Recensione r){
+    public int doSave(Recensione r) throws IOException {
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Data, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, r.getValutazione());
@@ -38,17 +39,14 @@ public class RecensioneDAO {
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
-            if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore definizione recensione");
-            }
-
+            return ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
     }
 
     //ModificaRecensione
-    public static void doUpdate(Recensione r){
+    public int doUpdate(Recensione r){
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, Data = ? WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setInt(1, r.getValutazione());
@@ -57,9 +55,7 @@ public class RecensioneDAO {
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
-            if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore nella modifica della Recensione");
-            }
+            return ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
