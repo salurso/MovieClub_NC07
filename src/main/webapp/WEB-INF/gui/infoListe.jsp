@@ -10,7 +10,7 @@
   <title>Informazioni Lista: <%= l.getNome()%></title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="./css/liste.css?v=<%=new Random().nextInt()%>"/>
+  <link rel="stylesheet" type="text/css" href="./css/infoListe.css?v=<%=new Random().nextInt()%>"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>
     function removeFilm(filmId) {
@@ -56,7 +56,7 @@
 </div>
 <% } else { %>
 <h1 align="center"> Lista: <%= l.getNome()%> </h1>
-<div>
+<div class="container">
   <table class="table">
     <thead>
     <tr>

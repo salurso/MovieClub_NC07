@@ -1,0 +1,61 @@
+/* Add your custom styles here */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #1b1b1b;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: .5px solid #1b1b1b;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffa31a;
+}
+
+.table th.title {
+    color: #1b1b1b;
+}
+
+.table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.remove-form {
+    display: inline-block;
+    margin: 0;
+}

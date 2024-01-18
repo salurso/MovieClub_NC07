@@ -7,14 +7,20 @@
 </head>
 <body>
 
-    <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
-
+<%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+    <div class="centered-alert">
+            <% if(request.getAttribute("result")!=null){ %>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <%=request.getAttribute("result")%>
+        </div>
+            <% } %>
     <h1> Ciao, Mondo! </h1>
 
     <a href="MainServlet?action=film">VISUALIZZA FILM</a><br>
     <a href="ListaServlet?action=lista">VISUALIZZA LISTE</a><br>
     <a href="MainServlet?action=registrazione">VISUALIZZA REGISTRAZIONE</a><br>
-    <a href="ListaServlet?action=creazione">CREA LISTE</a>
-    <a href="RecensioneServlet?action=recensione">INSERISCI UNA RECENSIONE</a>
+    <a href="ListaServlet?action=creazione">CREA LISTE</a><br>
+    <a href="RecensioneServlet?action=recensione">INSERISCI UNA RECENSIONE</a><br>
 </body>
 </html>
