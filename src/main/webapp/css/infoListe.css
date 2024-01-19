@@ -1,0 +1,118 @@
+/* Add your custom styles here */
+.body{
+    background: #35332f;
+    font-family: 'Arial', sans-serif;
+}
+
+h1 {
+    color: #ffa31a;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.container {
+    width: 50%;
+    margin: 20px auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.table th, .table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: .5px solid #1b1b1b;
+    color: white;
+}
+
+.table th {
+    background-color: #007bff;
+    color: #ffa31a;
+}
+
+.table th.title {
+    color: #1b1b1b;
+}
+
+/*.table tbody tr:hover {*/
+/*    background-color: #f5f5f5;*/
+/*}*/
+
+.btn {
+    cursor: pointer;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.remove-form {
+    display: inline-block;
+    margin: 0;
+}
+
+.containervuoto{
+    margin: 5rem 15rem 0 15rem;
+    /*width: 50%;*/
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Imposta la direzione del flusso su colonna */
+    align-items: center;
+    justify-content: center;
+}
+
+.containervuoto:hover {
+    background-color: #f5f5f5;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+button {
+    transition: background-color 0.3s ease;
+    background-color: #ffa31a;
+    color: #1b1b1b;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+button:hover {
+    background-color: #1b1b1b;
+    color: white;
+}
+
+form {
+    margin-top: 20px;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 650px) {
+    .containervuoto {
+        margin: 2rem 10px;
+    }
+}
+
+@media (max-width: 280px) {
+    .containervuoto {
+        margin: 1rem 5px;
+    }
+}

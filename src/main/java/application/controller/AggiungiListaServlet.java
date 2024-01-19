@@ -19,6 +19,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(name = "AggiungiListaServlet", value = "/AggiungiListaServlet")
@@ -26,10 +27,13 @@ public class AggiungiListaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ListaDAO lDAO = new ListaDAO();
+        ArrayList<Lista> lists = lDAO.doRetrieveAll();
+        request.setAttribute("lists", lists);
+
         String Nome = request.getParameter("Nome");
         String Descrizione = request.getParameter("Descrizione");
         boolean Privata = Boolean.parseBoolean(request.getParameter("Privata"));
-
 
         Lista l = new Lista();
         l.setNome(Nome);
@@ -37,7 +41,7 @@ public class AggiungiListaServlet extends HttpServlet {
         l.setPrivata(Privata);
 
         String result = "";
-        ListaDAO lDAO = new ListaDAO();
+//        ListaDAO lDAO = new ListaDAO();
         try{
             lDAO.doInsert(l);
             result = "Lista inserita!";
@@ -46,12 +50,14 @@ public class AggiungiListaServlet extends HttpServlet {
         }
         request.setAttribute("result", result);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
+
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListaServlet?action=lista");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServlet?action=homePage");
         requestDispatcher.forward(request, response);
     }
 }
