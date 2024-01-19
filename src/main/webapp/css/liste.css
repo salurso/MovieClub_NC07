@@ -21,6 +21,8 @@ h1 {
 .card {
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    position: relative;
 }
 
 .grid-container {
@@ -65,25 +67,50 @@ input[type="submit"]:hover {
 }
 
 .card-title.private {
-    color: #dc3545;
+    color: #ffa31a;
+}
+
+.card-links {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
 }
 
 .card-link-apri{
     color: #ffa31a;
     text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+.card-link-gestisci {
+    color: #292929;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
 }
 
-.card-link-gestisci{
-    color: #808080;
-    text-decoration: none
-}
 .card-link-apri:hover{
     color: #ffa31a;
     text-decoration: none;
-}
 
-.card-link-gestisci:hover{
-    color: #808080;
+}
+.card-link-gestisci:hover {
+    color: #292929;
     text-decoration: none;
 }
 
+/* Positioning "Apri Lista" and "Gestisci Lista" */
+.card-links {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color as needed */
+    padding: 10px;
+}
