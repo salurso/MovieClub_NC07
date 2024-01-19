@@ -1,5 +1,88 @@
+/* Add your custom styles here */
+
+body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
 .centered-alert {
+    margin-top: 20px;
+}
+
+h1 {
+    color: #1b1b1b;
+}
+
+.alert {
+    margin-top: 20px;
+}
+
+.card {
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.grid-container {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
+
+.row {
+    margin-top: 20px;
+}
+
+/* Optional: Add hover effect for the cards */
+.card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Optional: Style the "CREA LISTA" button */
+.alert-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #d1ecf1;
+}
+
+input[type="submit"] {
+    background-color: #1b1b1b;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+input[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+.card-title {
+    color: #1b1b1b;
+}
+
+.card-title.private {
+    color: #dc3545;
+}
+
+.card-link-apri{
+    color: #ffa31a;
+    text-decoration: none;
+}
+
+.card-link-gestisci{
+    color: #808080;
+    text-decoration: none
+}
+.card-link-apri:hover{
+    color: #ffa31a;
+    text-decoration: none;
+}
+
+.card-link-gestisci:hover{
+    color: #808080;
+    text-decoration: none;
+}
+

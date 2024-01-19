@@ -19,9 +19,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
-
-<h1 align="center">Le mie liste</h1>
-
 <div class="centered-alert">
   <% if(request.getAttribute("result")!=null){ %>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -30,34 +27,39 @@
   </div>
   <% } %>
 
+<h1 align="center">Le mie liste</h1>
+
   <% ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
     if(lists==null || lists.isEmpty()) { %>
   <form action="ListaServlet?action=creazione" method="POST">
-  <div class="alert alert-info" role="alert">
-    Nessuna lista presente al momento.
-    <input type="submit" value="CREA LISTA">
-  </div>
+    <div class="alert alert-info" role="alert">
+      Nessuna lista presente al momento.
+      <input type="submit" value="CREA LISTA">
+    </div>
   </form>
   <% } else { %>
 </div>
 
 <div class="row row-cols-1 row-cols-md-4 g-4">
   <%
-    for(Lista l : lists){
+    for (Lista l : lists) {
+      String textColorClass = l.isPrivata() ? "private" : "public";
   %>
   <div class="grid-container">
     <div class="card" style="width: 18rem;">
       <div class="card-body">
-        <h5 class="card-title"><%=l.getNome()%> #<%=l.getId()%></h5>
-        <p class="card-text"><%=l.getDescrizione()%></p>
-        <a href="ListaServlet?action=info&id=<%=l.getId()%>" class="card-link">Apri Lista</a>
-        <a href="ListaServlet?action=gestisci&id=<%=l.getId()%>" class="card-link">Gestisci Lista</a>
+        <h5 class="card-title <%= textColorClass %>"><%= l.getNome() %> #<%= l.getId() %> - <%= l.isPrivata() ? "Privata" : "Pubblica" %></h5>
+        <p class="card-text"><%= l.getDescrizione() %></p>
+        <a href="ListaServlet?action=info&id=<%= l.getId() %>" class="card-link-apri">Apri Lista</a>
+        <a href="ListaServlet?action=gestisci&id=<%= l.getId() %>" class="card-link-gestisci">Gestisci Lista</a>
       </div>
     </div>
   </div>
-
   <%
-      }
+    }
+  %>
+</div>
+  <%
     }
   %>
 </div>
