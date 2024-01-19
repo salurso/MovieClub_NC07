@@ -39,7 +39,7 @@
     }
   </script>
 </head>
-<body>
+<body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
 <%
@@ -47,9 +47,9 @@
 %>
 
 <% if (films.isEmpty()) { %>
-<div>
+<div class="containervuoto">
   <p>La lista non contiene film.</p>
-  <form action="" method="POST">
+  <form action="MainServlet?action=film" method="POST" class="form_vuoto">
     <input type="hidden" name="idLista" value="<%= l.getId() %>">
     <button type="submit">Aggiungi Film</button>
   </form>

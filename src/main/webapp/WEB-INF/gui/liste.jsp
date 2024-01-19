@@ -19,9 +19,6 @@
 </head>
 <body>
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
-
-<h1 align="center">Le mie liste</h1>
-
 <div class="centered-alert">
   <% if(request.getAttribute("result")!=null){ %>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -29,6 +26,8 @@
     <%=request.getAttribute("result")%>
   </div>
   <% } %>
+
+<h1 align="center">Le mie liste</h1>
 
   <% ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
     if(lists==null || lists.isEmpty()) { %>
