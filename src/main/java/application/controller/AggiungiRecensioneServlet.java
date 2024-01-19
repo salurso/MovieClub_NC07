@@ -6,6 +6,7 @@ import jakarta.servlet.http.*;
 import storage.model.RecensioneDAO;
 
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Date;
 
 import jakarta.servlet.annotation.WebServlet;
@@ -20,7 +21,8 @@ public class AggiungiRecensioneServlet extends HttpServlet{
 
        int valutazione = Integer.parseInt(request.getParameter("Valutazione"));
        String descrizione = request.getParameter("Descrizione");
-       Date data = request.getParameter("Data");
+//       Date data = request.getParameter("Data");
+       Date data = Calendar.getInstance().getTime();
        String emailPersona = request.getParameter("Email_persona");
        int idFilm = Integer.parseInt(request.getParameter("ID_Film"));
 
