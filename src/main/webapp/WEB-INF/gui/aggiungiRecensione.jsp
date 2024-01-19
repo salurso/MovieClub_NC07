@@ -21,7 +21,7 @@
 
 <div class="formRecensione">
     <form action="AggiungiRecensioneServlet" enctype="multipart/form-data" method="POST">
-        <input type="number" id="Valutazione" name="Valutazione" required>
+        <input type="number" id="Valutazione" name="Valutazione" required min="1" max="5">
         <textarea name="Descrizione" id="Descrizione" placeholder="Commenta qui..."></textarea>
 
         <!-- Campo data automatico -->
