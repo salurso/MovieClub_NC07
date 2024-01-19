@@ -25,6 +25,12 @@ public class ListaServlet extends HttpServlet {
                 request.setAttribute("lists", lists);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
                 ds.forward(request, response);
+            } else if (action.equals("pubblica")) {
+                // Blocco per gestire l'azione "lista"
+//                ArrayList<Lista> lists = lDAO.getPublicLists();
+//                request.setAttribute("lists", lists);
+                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/listePubbliche.jsp");
+                ds.forward(request, response);
 
             } else if (action.equals("info")) {
                 // Blocco per gestire l'azione "info"

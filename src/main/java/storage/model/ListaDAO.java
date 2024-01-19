@@ -173,6 +173,27 @@ public class ListaDAO {
         }
     }
 
+    public ArrayList<Lista> getPublicLists() {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE Privata = false");
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<Lista> publicLists = new ArrayList<>();
+            while (rs.next()) {
+                Lista l = new Lista();
+                l.setId(rs.getInt(1));
+                l.setNome(rs.getString(2));
+                l.setDescrizione(rs.getString(3));
+                l.setImmagine(rs.getString(4));
+                l.setPrivata(rs.getBoolean(5));
+                publicLists.add(l);
+            }
+            return publicLists;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
 }
 

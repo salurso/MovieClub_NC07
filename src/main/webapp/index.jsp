@@ -22,5 +22,6 @@
     <a href="MainServlet?action=registrazione">VISUALIZZA REGISTRAZIONE</a><br>
     <a href="ListaServlet?action=creazione">CREA LISTE</a><br>
     <a href="RecensioneServlet?action=recensione">INSERISCI UNA RECENSIONE</a><br>
+    <a href="ListaServlet?action=pubblica">TUTTE LE LISTE PUBBLICHE</a><br>
 </body>
 </html>

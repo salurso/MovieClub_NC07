@@ -7,6 +7,7 @@ public class Lista {
     private String descrizione;
     private String immagine;
     private boolean privata;
+    private String Email_Persona;
 
     public String getNome() {
         return nome;
@@ -44,6 +45,14 @@ public class Lista {
 
     public void setPrivata(boolean privata) {
         this.privata = privata;
+    }
+
+    public String getEmail_Persona() {
+        return Email_Persona;
+    }
+
+    public void setEmail_Persona(String email_Persona) {
+        Email_Persona = email_Persona;
     }
 
     @Override
