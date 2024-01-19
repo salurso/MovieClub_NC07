@@ -1,4 +1,6 @@
-<%@ page import="java.util.Random" %><%--
+<%@ page import="java.util.Random" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Date" %><%--
   Created by IntelliJ IDEA.
   User: gaetanovitofaraco
   Date: 17/01/24
@@ -15,16 +17,31 @@
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
-<h1>Recensione del Film<h1>
+<h1>Recensione del Film</h1>
 
-    <div class="formRecensione">
-        <form action="AggiungiRecensioneServlet" method="POST">
-            <input type="number" id="valutazione" name="valutazione" required>
-            <textarea name="descrizione" id="descrizione" placeholder="Commenta qui..."></textarea>
+<div class="formRecensione">
+    <form action="AggiungiRecensioneServlet" enctype="multipart/form-data" method="POST">
+        <input type="number" id="Valutazione" name="Valutazione" required>
+        <textarea name="Descrizione" id="Descrizione" placeholder="Commenta qui..."></textarea>
 
-            <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return(validateInsert())">
-        </form>
-    </div>
+        <!-- Campo data automatico -->
+        <input type="hidden" name="Data" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>">
+
+        <!-- Campi Email_persona e ID_Film nascosti -->
+        <input type="hidden" name="Email_persona" value="<%= request.getParameter("Email_persona") %>">
+        <input type="hidden" name="ID_Film" value="<%= request.getParameter("ID_Film") %>">
+
+        <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return validateInsert()">
+    </form>
+</div>
+
+<script>
+    function validateInsert() {
+        // Aggiungi eventuali controlli di validazione del modulo se necessario
+        return true;
+    }
+</script>
 
 </body>
 </html>
+

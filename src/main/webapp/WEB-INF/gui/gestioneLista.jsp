@@ -55,7 +55,7 @@
 <div class="update_list">
   <form action="ModificaListaServlet"  method="POST">
 
-    <h3 class="add_prod_title">Modifica Lista</h3>
+    <h3 class="add_film_title">Modifica Lista</h3>
 
     <label for="id">id: </label>
     <input id="id" name="id" type="text" value="<%=l.getId()%>" readonly>

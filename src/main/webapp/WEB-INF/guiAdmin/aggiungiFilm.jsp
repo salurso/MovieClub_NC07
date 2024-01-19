@@ -58,32 +58,31 @@
                 <label for="trailer">Link trailer: </label>
                 <input type="text" id="trailer" name="trailer">
 
-                <label for="generi">Genere: </label>
-                <select id="generi" name="generi" required>
-                    <option value="Inserisci genere" disabled selected>Inserisci genere</option>
-                    <option value="Documentary">Documentary</option>
-                    <option value="Biography">Biography</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Music">Music</option>
-                    <option value="Horror">Horror</option>
-                    <option value="Sci-Fi">Sci-Fi</option>
-                    <option value="Crime">Crime</option>
-                    <option value="Mystery">Mystery</option>
-                    <option value="Romance">Romance</option>
-                    <option value="Thriller">Thriller</option>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Comedy">Comedy</option>
-                    <option value="Action">Action</option>
-                    <option value="Sport">Sport</option>
-                    <option value="Fantasy">Fantasy</option>
-                    <option value="History">History</option>
-                    <option value="Family">Family</option>
-                    <option value="Animation">Animation</option>
-                    <option value="War">War</option>
-                    <option value="Western">Western</option>
-                    <option value="Musical">Musical</option>
-                </select>
-
+                <label>Generi: </label>
+                <div id="filtri-genre">
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Documentary">Documentary</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Biography">Biography</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Drama">Drama</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Music">Music</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Horror">Horror</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Sci-Fi">Sci-Fi</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Crime">Crime</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Mystery">Mystery</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Romance">Romance</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Thriller">Thriller</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Adventure">Adventure</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Comedy">Comedy</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Action">Action</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Sport">Sport</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Fantasy">Fantasy</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="History">History</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Family">Family</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Animation">Animation</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="War">War</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Western">Western</label>
+                    <label><input name="generi" type="checkbox" class="genre-filter" value="Musical">Musical</label>
+                </div>
+                <br>
                 <label for="data"> Data uscita: </label>
                 <input type="date" name="data" id="data" required>
 

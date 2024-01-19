@@ -57,9 +57,6 @@ public class MainServlet extends HttpServlet {
             ArrayList<Film> films = new ArrayList<Film>();
             films = (ArrayList<Film>) fDAO.doRetrieveAll();
             request.setAttribute("films", films);
-//            ArrayList<String> generi = new ArrayList<>();
-//            generi = fDAO.cercaGeneri();
-//            request.setAttribute("generi", generi);
             // Ottieni la lista delle liste
             ListaDAO lDAO = new ListaDAO();
             ArrayList<Lista> lists = lDAO.doRetrieveAll();
