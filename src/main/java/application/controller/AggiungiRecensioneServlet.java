@@ -10,11 +10,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import storage.model.RecensioneDAO;
 import java.io.IOException;
 import java.sql.Date;
-import java.sql.Time;
 
-import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+
 
 @WebServlet(name = "AggiungiRecensioneServlet", value = "/AggiungiRecensioneServlet")
 public class AggiungiRecensioneServlet extends HttpServlet {
@@ -27,6 +24,7 @@ public class AggiungiRecensioneServlet extends HttpServlet {
         String Email_Persona = request.getParameter("Email_persona");
         String ID_Film = request.getParameter("ID_Film");
 
+
         Recensione r = new Recensione();
         r.setValutazione(Integer.parseInt(Valutazione));
         r.setDescrizione(Descrizione);
@@ -35,6 +33,7 @@ public class AggiungiRecensioneServlet extends HttpServlet {
         r.setIdFilm(Integer.parseInt(ID_Film));
 
         String result = "";
+
         RecensioneDAO rDA0 = new RecensioneDAO();
 
         try{
