@@ -1,35 +1,61 @@
 /* Add your custom styles here */
 
-body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;
+.body {
+    background-color: #292929;
 }
 
 .update_list {
+    background-color: #ffffff;
     margin: 20px auto;
     max-width: 600px;
-    padding: 20px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.add_prod_title {
+.modify_list_title {
     color: #ffa31a;
     text-align: center;
+    font-weight: bold;
 }
 
 form {
     margin-top: 20px;
 }
 
-label, input {
+label,
+input {
     display: block;
     margin-top: 10px;
 }
 
+/* Style for text inputs */
+input[type="text"],
 input[type="file"] {
-    margin-top: 10px;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+}
+
+input[type="text"]:hover,
+input[type="file"]:hover {
+    border: 1px solid #1b1b1b;/* Add border when hovering */
+    transition: 0.3s ease;
+}
+
+
+
+/* Style for ID input box */
+#id-input {
+    background-color: #ddd; /* Adjust the color as needed */
+}
+
+input[type="file"] {
+    cursor: pointer;
 }
 
 .btnadd {
@@ -45,6 +71,13 @@ input[type="file"] {
     transition: background-color 0.3s ease-in-out;
 }
 
+/* Common styles for buttons */
+.btn:hover {
+    transform: translateY(-3px);
+    transition: 0.3s ease;
+
+}
+
 .btn-warning {
     background-color: #ffc107;
     color: #000;
@@ -53,6 +86,7 @@ input[type="file"] {
 
 .btn-warning:hover {
     background-color: #ffca2b;
+    transition: 0.3s ease;
 }
 
 .btn-danger {
@@ -63,4 +97,6 @@ input[type="file"] {
 
 .btn-danger:hover {
     background-color: #bd2130;
+    transition: 0.3s ease;
+
 }

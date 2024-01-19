@@ -34,7 +34,7 @@
         }
     </script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 

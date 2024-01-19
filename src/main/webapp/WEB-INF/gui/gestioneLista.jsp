@@ -48,16 +48,16 @@
 
   </script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
 <div class="update_list">
   <form action="ModificaListaServlet"  method="POST">
 
-    <h3 class="add_film_title">Modifica Lista</h3>
+    <h3 class="modify_list_title">Modifica Lista</h3>
 
-    <label for="id">id: </label>
+    <label for="id">Numero Lista: </label>
     <input id="id" name="id" type="text" value="<%=l.getId()%>" readonly>
 
     <label for="nome"> Nome: </label>

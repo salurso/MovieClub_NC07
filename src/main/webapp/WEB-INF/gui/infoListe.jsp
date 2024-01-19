@@ -51,7 +51,7 @@
   <p>La lista non contiene film.</p>
   <form action="MainServlet?action=film" method="POST" class="form_vuoto">
     <input type="hidden" name="idLista" value="<%= l.getId() %>">
-    <button type="submit">Aggiungi Film</button>
+    <button class="add_film" type="submit">Aggiungi Film</button>
   </form>
 </div>
 <% } else { %>

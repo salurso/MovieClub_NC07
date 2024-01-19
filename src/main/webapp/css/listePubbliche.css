@@ -8,7 +8,7 @@
     margin-top: 20px;
 }
 
-h1 {
+.title_pubblica{
     font-weight: bold;
     color: #ffa31a;
     padding-bottom: 2rem;
@@ -19,6 +19,7 @@ h1 {
 }
 
 .card {
+    transition: 0.3s ease-in-out;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -69,21 +70,16 @@ input[type="submit"]:hover {
 }
 
 .card-link-apri{
+    transition: 0.3s ease;
     color: #ffa31a;
     text-decoration: none;
 }
 
-.card-link-gestisci{
-    color: #808080;
-    text-decoration: none
-}
 .card-link-apri:hover{
-    color: #ffa31a;
+    transition: 0.3s ease;
+    color: #1b1b1b;
     text-decoration: none;
 }
 
-.card-link-gestisci:hover{
-    color: #808080;
-    text-decoration: none;
-}
+
 

@@ -1,0 +1,107 @@
+/* Add your custom styles here */
+
+.body {
+    background-color: #292929;
+}
+
+.container-info {
+    margin-top: 20px;
+}
+
+.add_product {
+    max-width: 600px; /* Limit the width of the container */
+    margin: 20px auto; /* Center the container */
+    background-color: #ffffff;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.add_product h3 {
+    color: #ffa31a;
+    text-align: center;
+    font-weight: bold;
+}
+
+.add_product label,
+.add_product input,
+.add_product textarea,
+.add_product select {
+    display: block;
+    margin-top: 10px;
+}
+
+.add_product input[type="text"]:hover,
+.add_product input[type="file"]:hover,
+.add_product textarea:hover {
+    border: 1px solid #1b1b1b; /* Add border when hovering */
+    transition: 0.3s ease;
+}
+
+.add_product input[type="text"],
+.add_product input[type="file"] {
+    width: calc(100% - 20px); /* Adjusted for padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    transition: 0.3s ease;
+}
+
+.add_product textarea {
+    width: calc(100% - 20px); /* Adjusted for padding */
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-top: 5px;
+    box-sizing: border-box;
+    resize: none; /* Disable resizing */
+}
+
+.add_product .form-check {
+    margin-top: 10px;
+}
+
+/* Improved styling for radio buttons */
+.form-check-input {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    border-radius: 50%; /* Make it round */
+    border: 2px solid #1b1b1b;
+}
+
+.form-check-label {
+    font-size: 16px;
+    color: #1b1b1b;
+}
+
+.btn_add {
+    background-color: #ffa31a;
+    color: #292929;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.btn_add:hover {
+    background-color: #EF6D16;
+    color: #ffffff;
+    transition: 0.3s ease;
+}
+
+@media only screen and (max-width: 650px) {
+    .add_product {
+        width: 80%; /* Adjusted for smaller screens */
+    }
+
+    .add_product input[type="text"],
+    .add_product input[type="file"],
+    .add_product textarea {
+        width: 100%; /* Full width on smaller screens */
+    }
+}
