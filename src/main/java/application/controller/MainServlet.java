@@ -2,11 +2,13 @@ package application.controller;
 
 import application.entity.Film;
 import application.entity.Lista;
+import application.entity.Persona;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import storage.model.FilmDAO;
 import storage.model.ListaDAO;
+import storage.model.PersonaDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,8 +20,8 @@ public class MainServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 //        HttpSession session = request.getSession();
-//        UtenteDAO uDAO = new UtenteDAO();
-//        Utente utente = UtenteDAO.doRetrieveByEmailPassword(request.getParameter("email"), request.getParameter("password"));
+//        PersonaDAO pDAO = new PersonaDAO();
+//        Persona persona = PersonaDAO.doRetrieveByEmailPassword(request.getParameter("email"), request.getParameter("password"));
         if(action.equals("homePage")){
             RequestDispatcher ds = request.getRequestDispatcher("index.jsp");
             ds.forward(request, response);

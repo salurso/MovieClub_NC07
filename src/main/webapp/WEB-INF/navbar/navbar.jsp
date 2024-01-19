@@ -19,6 +19,7 @@
     <link rel="stylesheet" type="text/css" href="./css/navbar.css?v=<%=new Random().nextInt()%>"/>
 </head>
 <body>
+<% Persona persona = (Persona) session.getAttribute("Persona"); %>
 
 <nav class="navbar navbar-expand-lg bg-dark" id="navbar">
     <div class="container-fluid">
@@ -38,14 +39,13 @@
                     <a class="nav-link" href="MainServlet?action=contatti">Contatti</a>
                 </li>
             </ul>
-            <%if(request.getSession().getAttribute("Persona") == null) {%>
+            <%if(persona == null) {%>
                 <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>
-            <%} else {
-                Persona p = (Persona) request.getSession().getAttribute("Persona");%>
+            <%} else { %>
             <a class="nav-link" href="MainServlet?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
             <div class="nav-item dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Ciao, <%= p.getNome() %>
+                    Ciao, <%= persona.getNome() %>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <form action="MainServlet?action=logout" method="post">

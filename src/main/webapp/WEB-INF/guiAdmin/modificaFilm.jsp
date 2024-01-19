@@ -13,11 +13,46 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/admin/modificaFilm.css?v=<%=new Random().nextInt()%>"/>
-    <script src="./js/film.js"></script>
     <%
         Film f = (Film) request.getAttribute("film");
     %>
     <title><%=f.getTitolo()%></title>
+    <script>
+<%--        function validateUpdate() {--%>
+<%--            var nameRGX=/^[a-zA-Z' ']*$/;--%>
+<%--            var name=document.getElementById('name').value;--%>
+<%--            if((nameRGX.test(name))==false){--%>
+<%--                alert("Nome non valido!");--%>
+<%--                return false;--%>
+<%--            }--%>
+
+<%--            var price=document.getElementById('price').value;--%>
+<%--            var priceRGX=/^[0-9'.']*$/;--%>
+<%--            if(priceRGX.test(price)==false){--%>
+<%--                alert("Errore nella definizione del prezzo");--%>
+<%--                return false;--%>
+<%--            }--%>
+
+<%--            return true;--%>
+<%--        }--%>
+
+        function confirmDelete(id){
+            if(confirm("Sei sicuro di voler eliminare il film??")){
+                var xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function (){
+                    if(xhr.readyState == 4 && xhr.status == 200){
+                        alert(xhr.responseText)
+                        window.location.href="MainServletAdmin?action=homeAdmin";
+                    }
+                };
+                xhr.open("POST", "AggiornaFilmServlet?action=ELIMINA&id=" + id, true);
+                xhr.send();
+            }else{
+                alert("eliminazione annullata");
+
+            }
+        }
+    </script>
 </head>
 <body>
 <%@ include file="/WEB-INF/navbar/navbarAdmin.jsp" %>
@@ -31,17 +66,42 @@
         <input id="id" name="id" type="text" value="<%=f.getId()%>" readonly>
 
         <label for="titolo"> Titolo: </label>
-        <input type="text" name="titolo" id="titolo" maxlength="60" value="<%=f.getTitolo()%>"required>
+        <input type="text" name="titolo" id="titolo" maxlength="50" value="<%=f.getTitolo()%>"required>
 
         <label for="regista"> Regista: </label>
-        <input type="text" name="regista" id="regista" maxlength="60" value="<%=f.getRegista()%>" required>
+        <input type="text" name="regista" id="regista" value="<%=f.getRegista()%>" required>
 
         <label for="image">Link copertina: </label>
-        <input type="text" id="image" name="copertina" maxlength="150" value="<%=f.getCopertina()%>">
+        <input type="text" id="image" name="copertina" value="<%=f.getCopertina()%>">
 
         <label for="trailer">Link trailer: </label>
-        <input type="text" id="trailer" name="trailer" maxlength="100" value="<%=f.getTrailer()%>">
+        <input type="text" id="trailer" name="trailer" value="<%=f.getTrailer()%>">
 
+
+<%--        <select id="generi" name="generi">--%>
+<%--            <option value="<%=f.getGenere()%>" selected><%=f.getGenere()%></option>--%>
+<%--            <option value="Documentary">Documentary</option>--%>
+<%--            <option value="Biography">Biography</option>--%>
+<%--            <option value="Drama">Drama</option>--%>
+<%--            <option value="Music">Music</option>--%>
+<%--            <option value="Horror">Horror</option>--%>
+<%--            <option value="Sci-Fi">Sci-Fi</option>--%>
+<%--            <option value="Crime">Crime</option>--%>
+<%--            <option value="Mystery">Mystery</option>--%>
+<%--            <option value="Romance">Romance</option>--%>
+<%--            <option value="Thriller">Thriller</option>--%>
+<%--            <option value="Adventure">Adventure</option>--%>
+<%--            <option value="Comedy">Comedy</option>--%>
+<%--            <option value="Action">Action</option>--%>
+<%--            <option value="Sport">Sport</option>--%>
+<%--            <option value="Fantasy">Fantasy</option>--%>
+<%--            <option value="History">History</option>--%>
+<%--            <option value="Family">Family</option>--%>
+<%--            <option value="Animation">Animation</option>--%>
+<%--            <option value="War">War</option>--%>
+<%--            <option value="Western">Western</option>--%>
+<%--            <option value="Musical">Musical</option>--%>
+<%--        </select>--%>
         <label>Generi: </label>
         <div id="filtri-genre">
             <label><input name="generi" type="checkbox" class="genre-filter" value="Documentary" <%= (f.getGenere().contains("Documentary") ? "checked" : "") %>>Documentary</label>
@@ -71,13 +131,14 @@
         <input type="date" name="data" id="data" value="<%=f.getDataUscita()%>" required>
 
         <label for="durata"> Durata: </label>
-        <input type="text" name="durata" id="durata" placeholder="00:00:00" value="<%=f.getDurata()%>">
+        <input type="text" name="durata" id="durata" placeholder="00:00:00" value="<%=f.getDurata()%>" required>
 
         <label for="descrizione">Descrizione: </label>
-        <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="220" required><%=f.getDescrizione()%></textarea>
+        <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="500"><%=f.getDescrizione()%></textarea>
 
         <div class="btnadd">
-            <input class="btn_update" type="submit" name="action" value="AGGIORNA" onclick="return(validateInsert())">
+            <input class="btn_update" type="submit" name="action" value="AGGIORNA" >
+<%--            onclick="return(validateUpdate())"--%>
         </div>
     </form>
     <input class="btn_delete" type="submit" name="action" value="ELIMINA" onclick="return(confirmDelete(<%=f.getId()%>))">

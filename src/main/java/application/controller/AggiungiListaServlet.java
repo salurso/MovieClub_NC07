@@ -41,7 +41,6 @@ public class AggiungiListaServlet extends HttpServlet {
         l.setPrivata(Privata);
 
         String result = "";
-//        ListaDAO lDAO = new ListaDAO();
         try{
             lDAO.doInsert(l);
             result = "Lista inserita!";

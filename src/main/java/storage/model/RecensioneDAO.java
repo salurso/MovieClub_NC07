@@ -30,19 +30,18 @@ public class RecensioneDAO {
     }
 
     //AggiungiRecensione
-    public static void doSave(Recensione r) throws IOException {
+    public static int doSave(Recensione r) throws IOException {
+        int result;
         try(Connection con = ConPool.getConnection()){
 
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Data, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Data, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
-            ps.setDate(3, javaToSqlDate(r.getData()));
+            ps.setDate(3, (Date) (r.getData()));
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
-            if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore nella definizione recensione");
-            }
+           return result = ps.executeUpdate();
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
@@ -117,7 +116,11 @@ public class RecensioneDAO {
             ps.setInt(2, ID_Film);
             ResultSet rs = ps.executeQuery();
             if(rs.next()){
-                r = parseRecensione(rs);
+                r.setValutazione(rs.getInt("Valutazione"));
+                r.setDescrizione(rs.getString("Descrizione"));
+                r.setData(rs.getDate("Data"));
+                r.setEmailPersona(rs.getString("Email_Persona"));
+                r.setIdFilm(rs.getInt("ID_Film"));
             }
         }catch(SQLException e){
             throw new RuntimeException(e);
