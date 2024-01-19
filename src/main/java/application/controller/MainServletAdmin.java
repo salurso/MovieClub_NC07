@@ -27,9 +27,6 @@ public class MainServletAdmin extends HttpServlet {
             ArrayList<Film> films = new ArrayList<Film>();
             films = (ArrayList<Film>) fDAO.doRetrieveAll();
             request.setAttribute("films", films);
-            ArrayList<String> generi = new ArrayList<>();
-            generi = fDAO.cercaGeneri();
-            request.setAttribute("generi", generi);
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/gestisciFilm.jsp");
             ds.forward(request, response);
         }

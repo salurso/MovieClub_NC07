@@ -19,24 +19,26 @@ import java.sql.Time;
 public class AggiungiFilmServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String titolo = request.getParameter("titolo");
-        String regista = request.getParameter("regista");
-        String copertina = request.getParameter("copertina");
-        String trailer = request.getParameter("trailer");
-        String genere = request.getParameter("generi");
-        Date data = Date.valueOf(request.getParameter("data"));
-        String durata = request.getParameter("durata");
-        String descrizione = request.getParameter("descrizione");
 
         Film f = new Film();
-        f.setTitolo(titolo);
-        f.setRegista(regista);
-        f.setCopertina(copertina);
-        f.setTrailer(trailer);
-        f.setGenere(genere);
-        f.setDataUscita(data);
-        f.setDurata(Time.valueOf(durata));
-        f.setDescrizione(descrizione);
+        f.setTitolo(request.getParameter("titolo"));
+        f.setRegista(request.getParameter("regista"));
+        f.setCopertina(request.getParameter("copertina"));
+        f.setTrailer(request.getParameter("trailer"));
+        f.setDataUscita(Date.valueOf(request.getParameter("data")));
+        f.setDurata(Time.valueOf(request.getParameter("durata")));
+        f.setDescrizione(request.getParameter("descrizione"));
+
+        // Ottieni i valori delle checkbox dalla richiesta
+        String[] generiSelezionati = request.getParameterValues("generi");
+
+        // Verifica se almeno una checkbox è stata selezionata
+        if (generiSelezionati != null && generiSelezionati.length > 0) {
+            // Concatena i valori in una stringa separata da virgole
+            String generiConcatenati = String.join(", ", generiSelezionati);
+
+            f.setGenere(generiConcatenati);
+        }
 
 //        ValidateFilmService vFilm = new ValidateFilmService();
 //        vFilm.validateFilm(f);

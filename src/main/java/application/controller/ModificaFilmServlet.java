@@ -7,18 +7,17 @@ import jakarta.servlet.annotation.*;
 import storage.model.FilmDAO;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-@WebServlet(name = "FilmServlet", value = "/FilmServlet")
-public class FilmServlet extends HttpServlet {
+@WebServlet(name = "ModificaFilmServlet", value = "/ModificaFilmServlet")
+public class ModificaFilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        FilmDAO pDAO = new FilmDAO();
-        Film p = pDAO.doRetrieveById(id);
-        request.setAttribute("product", p);
+        FilmDAO fDAO = new FilmDAO();
+        Film f = fDAO.doRetrieveById(id);
+        request.setAttribute("film", f);
 
-        RequestDispatcher ds = request.getRequestDispatcher("./WEB-INF/gui/infoFilm.jsp");
+        RequestDispatcher ds = request.getRequestDispatcher("./WEB-INF/guiAdmin/modificaFilm.jsp");
         ds.forward(request, response);
     }
 
