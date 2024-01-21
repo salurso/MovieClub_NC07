@@ -16,11 +16,9 @@
 <h1 align="center" class="title_pubblica"> Liste Pubbliche</h1>
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <%
-        // Ottieni tutte le liste pubbliche
         ListaDAO listaDAO = new ListaDAO();
         ArrayList<Lista> listePubbliche = listaDAO.getPublicLists();
 
-        // Itera attraverso le liste pubbliche e visualizzale
         for (Lista lista : listePubbliche) {
     %>
 

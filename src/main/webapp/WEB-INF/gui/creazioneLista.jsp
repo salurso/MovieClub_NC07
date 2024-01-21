@@ -6,33 +6,8 @@
     <title>Crea Lista</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/creazioneLista.css?v=<%=new Random().nextInt()%>"/>
-    <script>
-        function validateInsert() {
-            var nome = document.getElementById('Nome').value.trim();
-            var nomeError = document.getElementById('nome-error');
+    <script src="./js/creazioneLista.js"></script>
 
-            if (nome === "" || nome.length > 30) {
-                nomeError.innerHTML = "Il nome deve essere non vuoto e lungo al massimo 30 caratteri.";
-                return false;
-            } else {
-                nomeError.innerHTML = "";  // Cancella il messaggio di errore se il campo è valido
-            }
-
-            var descrizione = document.getElementById('Descrizione').value;
-            if (descrizione.length > 100) {
-                alert("Lunghezza descrizione non valida!");
-                return false;
-            }
-
-            var immagine = document.getElementById('Immagine').value;
-            if (immagine.length > 50) {
-                alert("Lunghezza immagine non valida!");
-                return false;
-            }
-
-            return true;
-        }
-    </script>
 </head>
 <body class="body">
 

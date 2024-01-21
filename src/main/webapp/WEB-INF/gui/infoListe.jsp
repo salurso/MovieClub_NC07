@@ -12,32 +12,8 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <link rel="stylesheet" type="text/css" href="./css/infoListe.css?v=<%=new Random().nextInt()%>"/>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script>
-    function removeFilm(filmId) {
-      var formId = "removeForm_" + filmId;
-      var form = document.getElementById(formId);
+  <script src="./js/infoListe.js"></script>
 
-      var formData = new FormData(form);
-      var xhr = new XMLHttpRequest();
-
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-          if (xhr.status === 200) {
-            // Aggiungi un avviso qui quando la rimozione ha successo
-            alert("Film rimosso con successo!");
-            // Puoi gestire ulteriori azioni o semplicemente ricaricare la pagina
-            window.location.reload();
-          } else {
-            alert("Errore durante la rimozione del film");
-          }
-        }
-      };
-
-      xhr.open("POST", form.action, true);
-      xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-      xhr.send(new URLSearchParams(formData));
-    }
-  </script>
 </head>
 <body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
