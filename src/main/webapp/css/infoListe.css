@@ -1,0 +1,77 @@
+/* Add your custom styles here */
+
+.body {
+    background-color: #292929;
+    color: #212529;
+}
+
+.containervuoto {
+    font-weight: bold;
+    color: #ffa31a;
+    text-align: center;
+    margin-top: 50px;
+}
+
+.add_film{
+    background-color: #ffa31a;
+    color: #292929;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.add_film:hover {
+    font-size: 1.1em;
+    background-color: #EF6D16;
+    color: #ffffff;
+    transition: font-size 0.3s ease;
+}
+
+h1{
+    color: #ffa31a;
+}
+.container {
+    margin-top: 20px;
+}
+
+.table th{
+    color: #ffa31a;
+    text-align: center;
+}
+.table td {
+    color: #ffffff;
+    text-align: center;
+}
+
+.table td:hover{
+    transition: font-size 0.3s ease;
+}
+
+.btn-outline-danger {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.containervuoto p {
+    font-size: 18px;
+}
+
+/* Responsive Styles */
+
+@media screen and (max-width: 600px) {
+    .table th,
+    .table td {
+        font-size: 12px;
+    }
+
+    .form_vuoto button {
+        padding: 8px 16px;
+    }
+}

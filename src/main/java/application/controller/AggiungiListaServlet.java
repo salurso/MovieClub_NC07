@@ -33,7 +33,7 @@ public class AggiungiListaServlet extends HttpServlet {
 
         String Nome = request.getParameter("Nome");
         String Descrizione = request.getParameter("Descrizione");
-        boolean Privata = Boolean.parseBoolean(request.getParameter("Privata"));
+        boolean Privata = "1".equals(request.getParameter("Privata"));
 
         Lista l = new Lista();
         l.setNome(Nome);

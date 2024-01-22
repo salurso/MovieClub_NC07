@@ -62,4 +62,30 @@
     border-radius: 10px;
     padding: 10px;
 }
+#search-container {
+    margin-top: 20px; /* Aggiunto margine sopra */
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
+#search-container h2 {
+    margin-right: 10px; /* Aggiunto margine tra la scritta "Cerca" e l'input */
+    color: #ffa31a;
+}
+
+#searchInput {
+    width: 300px;
+    margin-top: 5px; /* Aggiunto margine sopra l'input */
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#searchInput:focus {
+    border-color: #ffa31a;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 1);
+}
