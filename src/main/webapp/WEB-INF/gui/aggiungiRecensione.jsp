@@ -25,7 +25,7 @@
         <textarea name="Descrizione" id="Descrizione" placeholder="Commenta qui..."></textarea>
 
         <!-- Campo data automatico -->
-        <input type="hidden" name="Data" value="<%= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) %>">
+        <!--<input type="hidden" name="Data" value="new SimpleDateFormat("yyyy-MM-dd").format(new Date())"> -->
 
         <!-- Campi Email_persona e ID_Film nascosti -->
         <input type="hidden" name="Email_persona" value="<%= request.getParameter("Email_persona") %>">

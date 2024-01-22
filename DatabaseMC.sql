@@ -53,7 +53,7 @@ FOREIGN KEY (ID_Film) references Film (ID)
 CREATE TABLE Recensione(
 Valutazione int NOT NULL,
 Descrizione varchar(250),
-Data date NOT NULL,
+DataInserimento date NOT NULL,
 Email_Persona varchar(50),
 ID_Film int,
 PRIMARY KEY (Email_Persona, ID_Film),

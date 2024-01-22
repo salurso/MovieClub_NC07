@@ -29,20 +29,23 @@ public class RecensioneDAO {
         }
     }
 
-    //AggiungiRecensione
+    // AggiungiRecensione
+    // AggiungiRecensione
     public static int doSave(Recensione r) throws IOException {
         int result;
-        try(Connection con = ConPool.getConnection()){
-
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Data, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
+        try (Connection con = ConPool.getConnection()) {
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Email_Persona, ID_Film) VALUES (?, ?, ?, ?)");
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
-            ps.setDate(3, (Date) (r.getData()));
-            ps.setString(4, r.getEmailPersona());
-            ps.setInt(5, r.getIdFilm());
 
-           return result = ps.executeUpdate();
-        }catch(SQLException e){
+            // Utilizza java.sql.Timestamp per la data
+            //ps.setTimestamp(3, new java.sql.Timestamp(r.getData().getTime()));
+
+            ps.setString(3, r.getEmailPersona());
+            ps.setInt(4, r.getIdFilm());
+
+            return result = ps.executeUpdate();
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
