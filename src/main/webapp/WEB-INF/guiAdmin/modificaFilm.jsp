@@ -6,7 +6,6 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page import="java.util.Random" %>
-<%@ page import="java.util.ArrayList" %>
 <%@ page import="application.entity.Film" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>

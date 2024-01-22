@@ -1,0 +1,143 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*font-family: 'Poppins', sans-serif;*/
+}
+
+body{
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5));
+}
+
+.add_film_title{
+    text-transform: uppercase;
+    color: black;
+    margin-bottom: 1rem;
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.update_film {
+    display: flex; /allinea gli elementi uno di fianco all'altro/
+flex-wrap: wrap; /se ho un elemento in più va daccapo/
+justify-content: center;
+    max-width: 800px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #eabd77;
+    padding: 2rem;
+    margin: 2rem auto;
+}
+
+input[type=text], input[type=time], input[type=date], textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 4px;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: none;
+    max-height: 150px;
+    overflow-y: scroll;
+}
+
+.btn_update{
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 1rem;
+    background-color: #ffa31a;
+    border: 2px solid  black;
+    color: black;
+    transition: all .2s linear;
+    margin-top: 5px;
+}
+
+.btnadd{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_update:hover{
+    background-color: #eabd77;
+    border: 2px solid black;
+    color: black;
+    transition: all .2s linear;
+}
+
+.btn_delete{
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 1rem;
+    background-color: brown;
+    border: 2px solid  black;
+    color: black;
+    transition: all .2s linear;
+    margin-top: 5px;
+}
+
+.btn_delete:hover{
+    background-color: #eabd77;
+    border: 2px solid black;
+    color: black;
+    transition: all .2s linear;
+}
+
+@media only screen and (max-width: 1200px) {
+    .update_film {
+        margin: 5% 2%;
+        padding: 15px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .update_film {
+        margin: 10% 2%;
+        padding: 10px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .update_film {
+        margin: 15% 2%;
+        padding: 10px;
+    }
+    .add_film_title {
+        font-size: 2rem;
+    }
+    input[type=text],
+    textarea {
+        max-height: 100px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .update_film {
+        margin: 20% 2%;
+        padding: 5px;
+    }
+    .add_film_title {
+        font-size: 1.8rem;
+    }
+    input[type=text],
+    textarea {
+        max-height: 80px;
+    }
+}
+
+.genre-filter{
+    margin-left: 30px;
+    margin-right: 3px;
+}
+
+#div-filtri{
+    margin-left: 5%;
+    margin-top: 5%;
+    background: #808080;
+    margin-right: 5%;
+    border-radius: 10px;
+    padding: 10px;
+}
