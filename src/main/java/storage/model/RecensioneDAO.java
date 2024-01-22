@@ -20,8 +20,8 @@ public class RecensioneDAO {
             ArrayList<Recensione> recensioni = new ArrayList<>();
 
             while(rs.next()){
-                Recensione r = parseRecensione(rs);
-                recensioni.add(r);
+                //Recensione r = parseRecensione(rs);
+                //recensioni.add(r);
             }
             return recensioni;
         }catch(SQLException s){
@@ -34,15 +34,12 @@ public class RecensioneDAO {
     public static int doSave(Recensione r) throws IOException {
         int result;
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, Email_Persona, ID_Film) VALUES (?, ?, ?, ?)");
+            PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
-
-            // Utilizza java.sql.Timestamp per la data
-            //ps.setTimestamp(3, new java.sql.Timestamp(r.getData().getTime()));
-
-            ps.setString(3, r.getEmailPersona());
-            ps.setInt(4, r.getIdFilm());
+            ps.setDate(3, (Date) r.getDataInserimento());
+            ps.setString(4, r.getEmailPersona());
+            ps.setInt(5, r.getIdFilm());
 
             return result = ps.executeUpdate();
         } catch (SQLException e) {
@@ -53,10 +50,10 @@ public class RecensioneDAO {
     //ModificaRecensione
     public int doUpdate(Recensione r){
         try(Connection con = ConPool.getConnection()){
-            PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, Data = ? WHERE Email_Persona = ? AND ID_Film = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, DataInserimento = ? WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
-            ps.setDate(3, javaToSqlDate(r.getData()));
+            ps.setDate(3, (Date) (r.getDataInserimento()));
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
@@ -68,14 +65,14 @@ public class RecensioneDAO {
 
 
     //EliminaRecensione
-    public static void removeRecensione(Recensione r){
+    public int removeRecensione(Recensione r){
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
             PreparedStatement pt = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
             pt.setString(1, r.getEmailPersona());
             pt.setInt(2, r.getIdFilm());
-            pt.executeUpdate();
+            return pt.executeUpdate();
 
             /*cancelliamo il collegamento Recensione - Utente
             PreparedStatement ps = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ?");
@@ -102,7 +99,7 @@ public class RecensioneDAO {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                r = parseRecensione(rs);
+                //r = parseRecensione(rs);
             }
             return r;
         }catch(SQLException e){
@@ -121,24 +118,13 @@ public class RecensioneDAO {
             if(rs.next()){
                 r.setValutazione(rs.getInt("Valutazione"));
                 r.setDescrizione(rs.getString("Descrizione"));
-                r.setData(rs.getDate("Data"));
+                r.setDataInserimento(rs.getDate("DataInserimento"));
                 r.setEmailPersona(rs.getString("Email_Persona"));
                 r.setIdFilm(rs.getInt("ID_Film"));
             }
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-        return r;
-    }
-
-    public static Recensione parseRecensione(ResultSet rs) throws SQLException {
-        Recensione r = new Recensione();
-        r.setValutazione(rs.getInt("Valutazione"));
-        r.setDescrizione(rs.getString("Descrizione"));
-        r.setData(sqlToJavaDate(rs.getDate("Data")));
-        r.setEmailPersona(rs.getString("Email_Persona"));
-        r.setIdFilm(rs.getInt("ID_Film"));
-
         return r;
     }
 

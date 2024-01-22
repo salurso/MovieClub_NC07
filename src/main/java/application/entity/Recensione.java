@@ -7,14 +7,14 @@ public class Recensione {
 
     private int valutazione;
     private String descrizione;
-    private Date data;
+    private Date dataInserimento;
     private String emailPersona;
     private int idFilm;
 
-    public Recensione(int valutazione, String descrizione, Date data, String emailPersona, int idFilm) {
+    public Recensione(int valutazione, String descrizione, Date dataInserimento, String emailPersona, int idFilm) {
         this.valutazione = valutazione;
         this.descrizione = descrizione;
-        this.data = data;
+        this.dataInserimento = dataInserimento;
         this.emailPersona = emailPersona;
         this.idFilm = idFilm;
     }
@@ -38,12 +38,12 @@ public class Recensione {
         this.descrizione = descrizione;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataInserimento() {
+        return dataInserimento;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataInserimento(Date dataInserimento) {
+        this.dataInserimento = dataInserimento;
     }
 
     public String getEmailPersona() {
@@ -67,7 +67,7 @@ public class Recensione {
         return "Recensione{" +
                 "valutazione=" + valutazione +
                 ", descrizione='" + descrizione + '\'' +
-                ", data=" + data +
+                ", data=" + dataInserimento +
                 ", emailPersona='" + emailPersona + '\'' +
                 ", ID Film=" + idFilm +
                 '}';
