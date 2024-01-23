@@ -1,7 +1,6 @@
 package storage.model;
 
 import application.entity.Recensione;
-import storage.service.RecensioneService;
 
 import java.io.IOException;
 import java.sql.*;
@@ -31,20 +30,23 @@ public class RecensioneDAO {
 
     // AggiungiRecensione
     // AggiungiRecensione
-    public static int doSave(Recensione r) throws IOException {
-        int result;
+    public static void doSave(Recensione recensione) throws IOException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
-            ps.setInt(1, r.getValutazione());
-            ps.setString(2, r.getDescrizione());
-            ps.setDate(3, (Date) r.getDataInserimento());
-            ps.setString(4, r.getEmailPersona());
-            ps.setInt(5, r.getIdFilm());
+            ps.setInt(1, recensione.getValutazione());
+            ps.setString(2, recensione.getDescrizione());
+            ps.setDate(3, new java.sql.Date(recensione.getDataInserimento().getTime()));
+            ps.setString(4, recensione.getEmailPersona());
+            ps.setInt(5, recensione.getIdFilm());
 
-            return result = ps.executeUpdate();
+            if(ps.executeUpdate() != 1){
+                throw new RuntimeException("Errore nella definizione dell'indirizzo");
+            }
+
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+
     }
 
     //ModificaRecensione
