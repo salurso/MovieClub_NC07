@@ -94,7 +94,7 @@ public class ListaDAO {
            ps.setString(2, l.getDescrizione());
            ps.setString(3, l.getImmagine());
            ps.setBoolean(4, l.isPrivata());
-           ps.setString(5, ("user1@example.com"));
+           ps.setString(5, ("utente1@email.com"));
 
            return ps.executeUpdate();
        } catch (SQLException s) {
