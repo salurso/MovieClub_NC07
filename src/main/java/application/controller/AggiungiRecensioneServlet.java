@@ -21,16 +21,18 @@ public class AggiungiRecensioneServlet extends HttpServlet {
         String result = "";
 
         // Ottieni i parametri dalla richiesta
-        int valutazione = Integer.parseInt(request.getParameter("Valutazione"));
+        String valutazione = request.getParameter("Valutazione");
+        int stelle = Integer.parseInt(valutazione);
         String descrizione = request.getParameter("Descrizione");
         String emailPersona = request.getParameter("Email_persona");
         int idFilm = Integer.parseInt(request.getParameter("ID_Film"));
 
         // Crea un oggetto Recensione con i parametri ricevuti
         Recensione recensione = new Recensione();
-        recensione.setValutazione(valutazione);
+        recensione.setValutazione(stelle);
         recensione.setDescrizione(descrizione);
         recensione.setDataInserimento(new Date());  // Utilizziamo la data corrente
+        //controllo con if
         recensione.setEmailPersona(emailPersona);
         recensione.setIdFilm(idFilm);
 

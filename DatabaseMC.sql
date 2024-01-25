@@ -61,5 +61,9 @@ FOREIGN KEY (Email_Persona) references Persona (Email),
 FOREIGN KEY (ID_Film) references Film (ID)
 );
 
+INSERT INTO Film (Titolo, Descrizione, DataUscita, Regista, Durata, Genere, Copertina, Trailer)
+VALUES ('Film1', 'Descrizione Film1', '2024-01-25', 'Regista1', '02:30:00', 'Azione', 'copertina1.jpg', 'trailer1.mp4'),
+       ('Film2', 'Descrizione Film2', '2024-01-26', 'Regista2', '02:15:00', 'Commedia', 'copertina2.jpg', 'trailer2.mp4')
+
 
 

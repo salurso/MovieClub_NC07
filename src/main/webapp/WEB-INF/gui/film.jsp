@@ -149,6 +149,7 @@
                         <input type="hidden" name="action" value="aggiungiFilm">
                         <input type="hidden" name="idFilm" value="<%= f.getId() %>">
 
+
                         <!-- tendina per vedere le liste -->
                         <select name="idLista" class="btn btn-primary" id="listaSelect_<%= f.getId() %>" onchange="aggiungiFilm('<%= f.getId() %>')">
                             <option value="" disabled selected>Aggiungi a Lista</option>
@@ -161,6 +162,14 @@
                             %>
                         </select>
                     </form>
+
+                    <!-- Aggiungi un recensione -->
+                    <form action="RecensioneServlet?action=aggRecensione" method="POST" id="aggiungiRecensioneForm<%= f.getId() %>">
+                        <input type="hidden" name="idFilm" value="<%= f.getId() %>">
+                        <input type="submit" value="Aggiungi recensione">
+
+                    </form>
+
                 </div>
             </div>
         </div>

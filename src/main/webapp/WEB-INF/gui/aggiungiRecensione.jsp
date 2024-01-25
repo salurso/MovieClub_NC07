@@ -14,10 +14,19 @@
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
+<%
+    // Ottieni il valore del parametro "idFilm" dalla richiesta
+    String idFilmParameter = request.getParameter("idFilm");
+    int idFilm = 0;
+    if (idFilmParameter != null && !idFilmParameter.isEmpty()) {
+        idFilm = Integer.parseInt(idFilmParameter);
+    }
+%>
+
 <h1>Recensione del Film</h1>
 
 <div class="formRecensione">
-    <form action="AggiungiRecensioneServlet" method="POST" enctype="multipart/form-data">
+    <form action="AggiungiRecensioneServlet" method="POST">
 
         <label for="Valutazione">Valutazione:</label>
         <input type="number" name="Valutazione" id="Valutazione" required min="1" max="5">
@@ -29,8 +38,8 @@
         <!--<input type="hidden" name="DataInserimento" value="<= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) >">-->
 
         <!-- Campi Email_persona e ID_Film nascosti -->
-        <input type="hidden" name="Email_Persona" value="%>">
-        <input type="hidden" name="ID_Film" value="<=%>">
+        <input type="hidden" name="Email_persona" value="<%=persona.getEmail()%>">
+        <input type="hidden" name="ID_Film" value="<%=idFilm%>">
 
         <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return validateInsert()">
     </form>
