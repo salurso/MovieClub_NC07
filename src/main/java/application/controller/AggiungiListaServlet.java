@@ -2,6 +2,7 @@ package application.controller;
 
 import application.entity.Lista;
 
+import application.entity.Persona;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -33,18 +34,22 @@ public class AggiungiListaServlet extends HttpServlet {
 
         String Nome = request.getParameter("Nome");
         String Descrizione = request.getParameter("Descrizione");
+        Persona p = (Persona) request.getSession().getAttribute("Persona");
+        String Email_Persona = p.getEmail();
         boolean Privata = "1".equals(request.getParameter("Privata"));
 
         Lista l = new Lista();
         l.setNome(Nome);
         l.setDescrizione(Descrizione);
         l.setPrivata(Privata);
+        l.setEmail_Persona(Email_Persona);
 
         String result = "";
         try{
             lDAO.doInsert(l);
             result = "Lista inserita!";
         }catch (Exception e){
+            e.printStackTrace();
             result = "Lista già esistente!";
         }
         request.setAttribute("result", result);

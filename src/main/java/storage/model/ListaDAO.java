@@ -89,12 +89,12 @@ public class ListaDAO {
 
        try (Connection con = ConPool.getConnection()) {
 
-           PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (Nome, Descrizione, Immagine, Privata, Email_Persona) VALUES (?,?,?,?,?)");
+           PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Immagine, Email_Persona) VALUES (?,?,?,?,?)");
            ps.setString(1, l.getNome());
-           ps.setString(2, l.getDescrizione());
-           ps.setString(3, l.getImmagine());
-           ps.setBoolean(4, l.isPrivata());
-           ps.setString(5, ("utente1@email.com"));
+           ps.setBoolean(2, l.isPrivata());
+           ps.setString(3, l.getDescrizione());
+           ps.setString(4, l.getImmagine());
+           ps.setString(5, l.getEmail_Persona());
 
            return ps.executeUpdate();
        } catch (SQLException s) {
