@@ -14,6 +14,7 @@
 </head>
 <body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+
 <div class="centered-alert">
     <% if(request.getAttribute("result")!=null){ %>
   <div class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -22,9 +23,9 @@
   </div>
     <% } %>
 
-  <h1 align="center">Le mie liste</h1>
+  <h1 align="center">Le liste di <%=persona.getNome()%></h1>
 
-    <% ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
+    <% ArrayList<Lista> lists = (ArrayList<Lista>) session.getAttribute("userLists");
     if(lists==null || lists.isEmpty()) { %>
   <form action="ListaServlet?action=creazione" method="POST">
     <div class="alert alert-info" role="alert">
@@ -36,14 +37,14 @@
 
   <div class="row row-cols-1 row-cols-md-4 g-4">
     <%
-      // Scorrere le liste private
+      // Scorrere tutte le liste (pubbliche e private)
       for (Lista l : lists) {
-        if (l.isPrivata()) {
-          String textColorClass = l.isPrivata() ? "private" : "public";
+        String textColorClass = l.isPrivata() ? "private" : "public";
     %>
     <div class="grid-container">
       <div class="card" style="width: 18rem;">
         <div class="card-body">
+          <p><%=persona.getNome()%></p>
           <h5 class="card-title <%= textColorClass %>"><%= l.getNome() %> - <%= l.isPrivata() ? "Privata" : "Pubblica" %></h5>
           <p class="card-text"><%= l.getDescrizione() %></p>
           <a href="ListaServlet?action=info&id=<%= l.getId() %>" class="card-link-apri mr-4">Apri Lista</a>
@@ -52,26 +53,6 @@
       </div>
     </div>
     <%
-        }
-      }
-
-      // Scorrere le liste pubbliche
-      for (Lista l : lists) {
-        if (!l.isPrivata()) {
-          String textColorClass = l.isPrivata() ? "private" : "public";
-    %>
-    <div class="grid-container">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title <%= textColorClass %>"><%= l.getNome() %> - <%= l.isPrivata() ? "Privata" : "Pubblica" %></h5>
-          <p class="card-text"><%= l.getDescrizione() %></p>
-          <a href="ListaServlet?action=info&id=<%= l.getId() %>" class="card-link-apri mr-4">Apri Lista</a>
-          <a href="ListaServlet?action=gestisci&id=<%= l.getId() %>" class="card-link-gestisci">Gestisci Lista</a>
-        </div>
-      </div>
-    </div>
-    <%
-        }
       }
     %>
   </div>

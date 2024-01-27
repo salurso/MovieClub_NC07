@@ -92,6 +92,7 @@
 <%
     ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
     ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
+    ArrayList<Lista> userLists = (ArrayList<Lista>) session.getAttribute("userLists");
 
 %>
 <div id="search-container">
@@ -132,6 +133,7 @@
     <div class="row row-cols-1 row-cols-md-4 g-4" id="container-film">
         <%
             for(Film f : films){
+
         %>
         <div class="col" data-genre="<%=f.getGenere()%>" id="genere-paragraph">
             <div class="card h-100">
@@ -149,12 +151,11 @@
                         <input type="hidden" name="action" value="aggiungiFilm">
                         <input type="hidden" name="idFilm" value="<%= f.getId() %>">
 
-
                         <!-- tendina per vedere le liste -->
                         <select name="idLista" class="btn btn-primary" id="listaSelect_<%= f.getId() %>" onchange="aggiungiFilm('<%= f.getId() %>')">
                             <option value="" disabled selected>Aggiungi a Lista</option>
                             <%
-                                for(Lista l : lists){
+                                for(Lista l : userLists){
                             %>
                             <option value="<%= l.getId() %>"><%= l.getNome() %></option>
                             <%

@@ -64,7 +64,25 @@ public class PersonaDAO {
         return p;
     }
 
+    public Persona doRetrieveByEmail(String email) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM Persona WHERE email = ?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
 
+            if (rs.next()) {
+                Persona persona = new Persona();
+                persona.setEmail(rs.getString("email"));
+                persona.setNome(rs.getString("nome"));
+
+                return persona;
+            } else {
+                return null; // Utente non trovato
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 
 }

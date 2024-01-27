@@ -34,7 +34,7 @@ FOREIGN KEY (ID_Film) references Film (ID)
 
 CREATE TABLE Lista(
 ID int auto_increment PRIMARY KEY,
-Nome varchar(30) NOT NULL unique,
+Nome varchar(30) NOT NULL,
 Privata boolean NOT NULL,
 Descrizione varchar(100),
 Immagine varchar(50),

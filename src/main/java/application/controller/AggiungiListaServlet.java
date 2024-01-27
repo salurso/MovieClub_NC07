@@ -1,27 +1,17 @@
 package application.controller;
 
 import application.entity.Lista;
-
-import application.entity.Persona;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.Part;
+import jakarta.servlet.http.HttpSession;
 import storage.model.ListaDAO;
 
-import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
-import java.util.List;
 
 @WebServlet(name = "AggiungiListaServlet", value = "/AggiungiListaServlet")
 public class AggiungiListaServlet extends HttpServlet {
@@ -29,38 +19,46 @@ public class AggiungiListaServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ListaDAO lDAO = new ListaDAO();
-        ArrayList<Lista> lists = lDAO.doRetrieveAll();
-        request.setAttribute("lists", lists);
+
+        String emailPersona = request.getParameter("Email_Persona");
 
         String Nome = request.getParameter("Nome");
         String Descrizione = request.getParameter("Descrizione");
-        Persona p = (Persona) request.getSession().getAttribute("Persona");
-        String Email_Persona = p.getEmail();
         boolean Privata = "1".equals(request.getParameter("Privata"));
 
         Lista l = new Lista();
         l.setNome(Nome);
         l.setDescrizione(Descrizione);
         l.setPrivata(Privata);
-        l.setEmail_Persona(Email_Persona);
+        l.setEmail_Persona(emailPersona);
 
         String result = "";
-        try{
-            lDAO.doInsert(l);
-            result = "Lista inserita!";
-        }catch (Exception e){
+        try {
+            int rowsAffected = lDAO.doInsert(l);
+            if (rowsAffected > 0) {
+                result = "Lista inserita!";
+            } else {
+                result = "Lista già esistente per l'utente corrente";
+            }
+        } catch (RuntimeException e) {
             e.printStackTrace();
-            result = "Lista già esistente!";
+            result = "Errore durante l'inserimento della lista: " + e.getMessage();
         }
         request.setAttribute("result", result);
 
+        // Recupera solo le liste create dall'utente corrente
+        ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(emailPersona);
+
+        // Aggiorna la sessione con le liste dell'utente corrente
+        request.getSession().setAttribute("userLists", userLists);
+
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
-
-
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Reindirizza alla home page
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServlet?action=homePage");
         requestDispatcher.forward(request, response);
     }
