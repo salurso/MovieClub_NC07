@@ -32,6 +32,16 @@
     <label for="immagine">Immagine: (il nome del file deve essere di max 20 caratteri)</label>
     <input type="file" id="immagine" name="immagine" value="<%=l.getImmagine()%>"><br>
 
+    <label class="form-check-label">Visibilita': </label>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="Privata" id="Pubblica" value="0" checked>
+      <label class="form-check-label" for="Pubblica">Pubblica</label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="radio" name="Privata" id="Privata" value="1">
+      <label class="form-check-label" for="Privata">Privata</label>
+    </div>
+
     <div class="btnadd">
 
       <input class="btn btn-warning" type="submit" name="action" value="AGGIORNA" onclick="return(validateUpdate())">

@@ -91,7 +91,7 @@
 <% } %>
 <%
     ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
-    ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
+//    ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("lists");
     ArrayList<Lista> userLists = (ArrayList<Lista>) session.getAttribute("userLists");
 
 %>

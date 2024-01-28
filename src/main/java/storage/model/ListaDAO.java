@@ -31,24 +31,26 @@ public class ListaDAO {
         }
     }
 
-    public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
-        try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE ID = ?");
+    public Lista doRetrieveById(int id) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata, Email_Persona FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
-            while(rs.next()){
+            while (rs.next()) {
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
                 l.setPrivata(rs.getBoolean(5));
+                l.setEmail_Persona(rs.getString(6)); // Imposta l'attributo email_Persona
             }
             return l;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
 
     public ArrayList<Lista> doRetrieveByEmail(String email) {
         try (Connection connection = ConPool.getConnection()) {
@@ -171,7 +173,6 @@ public class ListaDAO {
 
     public int doDeleteFilmList(int idLista, int idFilm) { //ELIMINA FILM DALLA LISTA
         try (Connection connection = ConPool.getConnection()){
-            //AGGIUNGERE CONTROLLO SESSIONE EMAIL_PERSONA = ID_LISTA
             PreparedStatement ps = connection.prepareStatement("DELETE FROM Include WHERE ID_Lista = ? AND ID_Film = ?");
             ps.setInt(1, idLista);
             ps.setInt(2, idFilm);
