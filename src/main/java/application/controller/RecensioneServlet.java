@@ -16,9 +16,14 @@ public class RecensioneServlet extends HttpServlet {
         String action = request.getParameter("action");
         RecensioneDAO rDAO = new RecensioneDAO();
         String result = "";
+        int idFilm = 0;
 
         if (action != null) {
             if(action.equals("aggRecensione")){
+                if(request.getParameter("idFilm") != null) {
+                    idFilm = Integer.parseInt(request.getParameter("idFilm"));
+                }
+                request.setAttribute("ifFilm", idFilm);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/aggiungiRecensione.jsp");
                 ds.forward(request, response);
             }else{

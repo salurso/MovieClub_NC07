@@ -2,6 +2,7 @@ package storage.model;
 
 import application.entity.Film;
 import application.entity.Lista;
+import application.entity.Persona;
 
 import java.io.IOException;
 import java.sql.*;
@@ -30,24 +31,51 @@ public class ListaDAO {
         }
     }
 
-    public Lista doRetrieveById(int id){ //TROVA INFO LISTA DALL'ID
-        try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE ID = ?");
+    public Lista doRetrieveById(int id) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata, Email_Persona FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
-            while(rs.next()){
+            while (rs.next()) {
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
                 l.setImmagine(rs.getString(4));
                 l.setPrivata(rs.getBoolean(5));
+                l.setEmail_Persona(rs.getString(6)); // Imposta l'attributo email_Persona
             }
             return l;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
+
+    public ArrayList<Lista> doRetrieveByEmail(String email) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE Email_Persona = ?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            ArrayList<Lista> lists = new ArrayList<>();
+            while (rs.next()) {
+                Lista l = new Lista();
+                l.setId(rs.getInt(1));
+                l.setNome(rs.getString(2));
+                l.setDescrizione(rs.getString(3));
+                l.setImmagine(rs.getString(4));
+                l.setPrivata(rs.getBoolean(5));
+                lists.add(l);
+            }
+            return lists;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
     public ArrayList<Film> getFilmsInList(int idLista) {
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT f.* FROM Film f JOIN Include i ON f.id = i.ID_Film WHERE i.ID_Lista = ?");
@@ -85,23 +113,35 @@ public class ListaDAO {
         }
     }
 
-   public int doInsert(Lista l)throws IOException{
+    public int doInsert(Lista l) throws IOException {
+        try (Connection con = ConPool.getConnection()) {
+            // Verifica se esiste già una lista con lo stesso nome associata alla stessa email
+            PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?");
+            psCheck.setString(1, l.getNome());
+            psCheck.setString(2, l.getEmail_Persona());
+            ResultSet rsCheck = psCheck.executeQuery();
+            rsCheck.next();
+            int count = rsCheck.getInt(1);
 
-       try (Connection con = ConPool.getConnection()) {
+            if (count > 0) {
+                // Una lista con lo stesso nome è già associata alla stessa email, quindi non possiamo inserirla
+                return 0;
+            }
 
-           PreparedStatement ps = con.prepareStatement("INSERT INTO Lista (Nome, Descrizione, Immagine, Privata, Email_Persona) VALUES (?,?,?,?,?)");
-           ps.setString(1, l.getNome());
-           ps.setString(2, l.getDescrizione());
-           ps.setString(3, l.getImmagine());
-           ps.setBoolean(4, l.isPrivata());
-           ps.setString(5, ("user1@example.com"));
+            // Procedi con l'inserimento della nuova lista
+            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Immagine, Email_Persona) VALUES (?,?,?,?,?)");
+            psInsert.setString(1, l.getNome());
+            psInsert.setBoolean(2, l.isPrivata());
+            psInsert.setString(3, l.getDescrizione());
+            psInsert.setString(4, l.getImmagine());
+            psInsert.setString(5, l.getEmail_Persona());
 
-           return ps.executeUpdate();
-       } catch (SQLException s) {
-           throw new RuntimeException(s);
-       }
-   }
-
+            int rowsAffected = psInsert.executeUpdate();
+            return rowsAffected; // Ritorniamo il numero di righe modificate (1 se l'inserimento è avvenuto correttamente)
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
 
     public int doDeleteList(int id) {
         try (Connection connection = ConPool.getConnection()) {
@@ -133,7 +173,6 @@ public class ListaDAO {
 
     public int doDeleteFilmList(int idLista, int idFilm) { //ELIMINA FILM DALLA LISTA
         try (Connection connection = ConPool.getConnection()){
-            //AGGIUNGERE CONTROLLO SESSIONE EMAIL_PERSONA = ID_LISTA
             PreparedStatement ps = connection.prepareStatement("DELETE FROM Include WHERE ID_Lista = ? AND ID_Film = ?");
             ps.setInt(1, idLista);
             ps.setInt(2, idFilm);
@@ -175,17 +214,22 @@ public class ListaDAO {
 
     public ArrayList<Lista> getPublicLists() {
         try (Connection connection = ConPool.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE Privata = false");
+            PreparedStatement ps = connection.prepareStatement("SELECT l.ID, l.Nome, l.Descrizione, l.Immagine, l.Privata, l.Email_Persona FROM Lista l JOIN Persona p ON l.Email_Persona = p.Email WHERE l.Privata = false");
             ResultSet rs = ps.executeQuery();
 
             ArrayList<Lista> publicLists = new ArrayList<>();
             while (rs.next()) {
                 Lista l = new Lista();
-                l.setId(rs.getInt(1));
-                l.setNome(rs.getString(2));
-                l.setDescrizione(rs.getString(3));
-                l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
+                l.setId(rs.getInt("ID"));
+                l.setNome(rs.getString("Nome"));
+                l.setDescrizione(rs.getString("Descrizione"));
+                l.setImmagine(rs.getString("Immagine"));
+                l.setPrivata(rs.getBoolean("Privata"));
+
+                // Aggiungi l'email della persona alla lista
+                String emailPersona = rs.getString("Email_Persona");
+                l.setEmail_Persona(emailPersona);
+
                 publicLists.add(l);
             }
             return publicLists;
@@ -195,5 +239,8 @@ public class ListaDAO {
     }
 
 
+
+
 }
+
 

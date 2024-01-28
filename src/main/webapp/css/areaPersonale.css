@@ -96,6 +96,53 @@ body{
     color: #EF6D16;
 }
 
+
+#listeUtente {
+    width: 80%;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    max-height: 300px; /* Altezza massima con scroll se necessario */
+    overflow-y: auto;
+    margin: 20px auto; /* Centro il contenitore e aggiungo margine sopra e sotto */
+    border-radius: 8px;
+    border: 2px solid #000000;
+    scrollbar-color: black #000000;
+}
+
+#listeUtente::-webkit-scrollbar {
+    width: 12px; /* Larghezza della scrollbar per browser basati su WebKit */
+}
+
+#listeUtente h1 {
+    color: #ffa31a;
+    text-transform: uppercase;
+    text-align: center; /* Centro il titolo all'interno del contenitore */
+}
+
+#listeUtente ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#listeUtente li {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#listeUtente a {
+    text-decoration: none;
+    color: #292929;
+    font-weight: bold;
+}
+
+#listeUtente a:hover {
+    text-decoration: none;
+    color: #ffa31a;
+}
+
+
 @media (max-width: 767px) {
     .item {
         flex-basis: 45%;

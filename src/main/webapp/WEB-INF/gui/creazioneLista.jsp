@@ -36,7 +36,7 @@
                 <input class="form-check-input" type="radio" name="Privata" id="Privata" value="1">
                 <label class="form-check-label" for="Privata">Privata</label>
             </div>
-
+            <input type="hidden" name="Email_Persona" value="<%=persona.getEmail()%>">
             <input class="btn_add" type="submit" name="action" value="CREA LISTA" onclick="return(validateInsert())">
 
         </form>
