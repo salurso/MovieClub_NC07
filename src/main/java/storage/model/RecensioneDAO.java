@@ -101,7 +101,11 @@ public class RecensioneDAO {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                //r = parseRecensione(rs);
+                r.setValutazione(rs.getInt("Valutazione"));
+                r.setDescrizione(rs.getString("Descrizione"));
+                r.setDataInserimento(rs.getDate("DataInserimento"));
+                r.setEmailPersona(rs.getString("Email_Persona"));
+                r.setIdFilm(rs.getInt("ID_Film"));
             }
             return r;
         }catch(SQLException e){
@@ -130,6 +134,26 @@ public class RecensioneDAO {
         return r;
     }
 
+    public ArrayList<Recensione> doRetrieveByIDFilm(){
+        Recensione r = null;
+        try(Connection con = ConPool.getConnection()){
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE ID_Film = ?");
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Recensione> recensioni = new ArrayList<>();
+
+            while(rs.next()){
+                r.setValutazione(rs.getInt("Valutazione"));
+                r.setDescrizione(rs.getString("Descrizione"));
+                r.setDataInserimento(rs.getDate("DataInserimento"));
+                r.setEmailPersona(rs.getString("Email_Persona"));
+                r.setIdFilm(rs.getInt("ID_Film"));
+                recensioni.add(r);
+            }
+            return recensioni;
+        }catch(SQLException s){
+            throw new RuntimeException(s);
+        }
+    }
 
     private static java.util.Date sqlToJavaDate(java.sql.Date sqlDate) {
         return new java.util.Date(sqlDate.getTime());
