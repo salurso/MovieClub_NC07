@@ -9,6 +9,7 @@
 <head>
     <title>Recensione del Film</title>
     <link rel="stylesheet" type="text/css" href="./css/recensione.css?v=<%=new Random().nextInt()%>">
+    <script src="./js/aggiungiRecensione.js"></script>
 </head>
 <body>
 
@@ -44,13 +45,6 @@
         <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return validateInsert()">
     </form>
 </div>
-
-<script>
-    function validateInsert() {
-        // Aggiungi eventuali controlli di validazione del modulo se necessario
-        return true;
-    }
-</script>
 
 </body>
 </html>

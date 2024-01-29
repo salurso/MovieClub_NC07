@@ -1,19 +1,93 @@
 body {
-    background-color: #f8f9fa;
-    font-family: 'Arial', sans-serif;
+    background-color: #292929;
 }
 
 h1{
     color: #1b1b1b;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    color : #ffa31a;
+    margin-top : 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
 }
 
-.formRecensione{
+.formRecensione {
     margin: 20px auto;
     max-width: 600px;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #000000; /* Colore del contorno (nero) */
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center; /* Centra gli elementi all'interno del form */
+    background-color: #808080;
+}
+
+/* Stile per l'input number e textarea */
+.formRecensione input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formRecensione textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: vertical;
+}
+
+.formRecensione input[type="number"]:hover,
+.formRecensione input[type="number"]:focus,
+.formRecensione textarea:hover,
+.formRecensione textarea:focus {
+    border: 1px solid #ffa31a;
+}
+
+/* Stile per il pulsante INVIA RECENSIONE */
+.formRecensione input[type="submit"] {
+    background-color: #ffa31a;
+    color: #1b1b1b;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: font-size 0.3s ease;
+    margin-top: 20px;
+    font-size: 1em;
+}
+
+.formRecensione input[type="submit"]:hover {
+    font-size: 1.1em;
+    background-color: #EF6D16;
+    color: #ffffff;
+    transition: font-size 0.3s ease;
+}
+
+/* Centratura di tutti gli elementi del form */
+.formRecensione {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 600px;
+    padding: 20px;
+    border: 1px solid #000000; /* Colore del contorno (nero) */
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
+/* Centratura delle label */
+.formRecensione label {
+    text-align: center;
+    width: 100%;
+    color: #1b1b1b;
+}
+
+
