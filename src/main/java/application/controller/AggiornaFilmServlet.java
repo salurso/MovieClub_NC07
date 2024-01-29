@@ -69,6 +69,19 @@ public class AggiornaFilmServlet extends HttpServlet {
                 result = "Prodotto eliminato!";
             }
 
+            try{
+                fDAO.doDelete(f.getId());
+                result = "Film eliminato!";
+            }catch (Exception e){
+                e.printStackTrace(); // Aggiungi questa riga per vedere i dettagli dell'errore nella console
+                throw new RuntimeException(e);
+//                result = "Film già esistente!";
+//                request.setAttribute("result", result);
+
+//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
+//                requestDispatcher.forward(request, response);
+            }
+
             //Imposta la risposta
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");

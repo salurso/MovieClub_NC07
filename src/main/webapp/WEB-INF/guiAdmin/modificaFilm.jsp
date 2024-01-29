@@ -77,9 +77,9 @@
 
         <div class="btnadd">
             <input class="btn_update" type="submit" name="action" value="AGGIORNA" onclick="return(validateInsert())">
+            <input class="btn_delete" type="submit" name="action" value="ELIMINA" onclick="return(confirmDelete(<%=f.getId()%>))">
         </div>
     </form>
-    <input class="btn_delete" type="submit" name="action" value="ELIMINA" onclick="return(confirmDelete(<%=f.getId()%>))">
 
 </div>
 </body>

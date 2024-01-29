@@ -154,13 +154,13 @@
                         <!-- tendina per vedere le liste -->
                         <select name="idLista" class="btn btn-primary" id="listaSelect_<%= f.getId() %>" onchange="aggiungiFilm('<%= f.getId() %>')">
                             <option value="" disabled selected>Aggiungi a Lista</option>
-                            <%
-                                for(Lista l : userLists){
-                            %>
-                            <option value="<%= l.getId() %>"><%= l.getNome() %></option>
-                            <%
-                                }
-                            %>
+<%--                            <%--%>
+<%--                                for(Lista l : userLists){--%>
+<%--                            %>--%>
+<%--                            <option value="<%= l.getId() %>"><%= l.getNome() %></option>--%>
+<%--                            <%--%>
+<%--                                }--%>
+<%--                            %>--%>
                         </select>
                     </form>
 

@@ -1,0 +1,179 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1;
+    font-family: 'Roboto', sans-serif;
+}
+
+html{
+    overflow-x: hidden;
+    scroll-padding-top: 9rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width: .8rem;
+}
+
+html::-webkit-scrollbar-track{
+    background: #E4E0BB;
+}
+
+html::-webkit-scrollbar-thumb{
+    background: black;
+    border-radius: 1px;
+}
+
+img{
+    width: 100%;
+    display: block;
+}
+
+.main-wrapper{
+    min-height: 100vh;
+    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.film-div{
+    margin: 1rem 0;
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr auto);
+    background-color: #E4E0BB;
+    border-radius: 3px;
+    column-gap: 10px;
+}
+
+.film-div-left{
+    border-right:2px solid  #38271E;
+    padding: 20px;
+}
+
+.film-div-right{
+    padding: 20px;
+}
+
+.img-container img{
+    width: 300px;
+    height: 80%;
+    margin: 0 auto;
+}
+
+.film-div-right span{
+    display: block;
+}
+
+.film-titolo{
+    color: #38271E;
+    font-size: 26px;
+    margin-bottom: 22px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    opacity: 0.9;
+}
+
+.film-genere{
+    font-size: 24px;
+    opacity: 0.9;
+    font-weight: 400;
+}
+
+.film-descrizione{
+    line-height: 1.6;
+    font-weight: 300;
+    opacity: 0.9;
+    margin-top: 22px;
+}
+
+.btn-groups{
+    margin-top: 22px;
+}
+
+.btn-groups .add-cart-btn{
+    border: 2px solid #A0602B;
+    width: 150px;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #A0602B;
+    color: #E4E0BB;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: all .2s linear;
+}
+
+.btn-groups .add-cart-btn:hover {
+    background-color: #E4E0BB;
+    color: #A0602B;
+}
+
+.btn-groups input .fas{
+    margin-right: 8px;
+}
+
+.quantity{
+    border: 2px solid #A0602B;
+    width: 50px;
+    height: 50px;
+    font-size: 16px;
+    text-align: center;
+    background-color: #A0602B;
+    color: #E4E0BB;
+}
+
+.add-cart-btn {
+    background-color: #A0602B;
+    border: 2px solid #A0602B;
+    margin-right: 8px;
+}
+
+.add-cart-btn:hover{
+    background-color: #E4E0BB;
+    color: #A0602B;
+}
+
+@media screen and (min-width: 992px){
+    .film-div{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (max-width: 768px){
+    .img-container img{
+        width: 100%;
+        height: auto;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 576px){
+    .film-descrizione{
+        max-width: none;
+    }
+    .btn-groups{
+        flex-direction: column;
+    }
+    .btn-groups .add-cart-btn{
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .film-titolo {
+        font-size: 22px;
+    }
+    .film-genere {
+        font-size: 20px;
+    }
+}
