@@ -34,11 +34,11 @@
 
     <label class="form-check-label">Visibilita': </label>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="Privata" id="Pubblica" value="0" checked>
+      <input class="form-check-input" type="radio" name="Privata" id="Pubblica" value="0" <% if(!l.isPrivata()) { %>checked<% } %>>
       <label class="form-check-label" for="Pubblica">Pubblica</label>
     </div>
     <div class="form-check">
-      <input class="form-check-input" type="radio" name="Privata" id="Privata" value="1">
+      <input class="form-check-input" type="radio" name="Privata" id="Privata" value="1" <% if(l.isPrivata()) { %>checked<% } %>>
       <label class="form-check-label" for="Privata">Privata</label>
     </div>
 
