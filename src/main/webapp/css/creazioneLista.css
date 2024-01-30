@@ -8,7 +8,7 @@
     margin-top: 20px;
 }
 
-.add_product {
+.add_film {
     max-width: 600px; /* Limit the width of the container */
     margin: 20px auto; /* Center the container */
     background-color: #ffffff;
@@ -18,29 +18,29 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.add_product h3 {
+.add_film h3 {
     color: #ffa31a;
     text-align: center;
     font-weight: bold;
 }
 
-.add_product label,
-.add_product input,
-.add_product textarea,
-.add_product select {
+.add_film label,
+.add_film input,
+.add_film textarea,
+.add_film select {
     display: block;
     margin-top: 10px;
 }
 
-.add_product input[type="text"]:hover,
-.add_product input[type="file"]:hover,
-.add_product textarea:hover {
+.add_film input[type="text"]:hover,
+.add_film input[type="file"]:hover,
+.add_film textarea:hover {
     border: 1px solid #1b1b1b; /* Add border when hovering */
     transition: 0.3s ease;
 }
 
-.add_product input[type="text"],
-.add_product input[type="file"] {
+.add_film input[type="text"],
+.add_film input[type="file"] {
     width: calc(100% - 20px); /* Adjusted for padding */
     padding: 10px;
     border: 1px solid #ddd;
@@ -50,7 +50,7 @@
     transition: 0.3s ease;
 }
 
-.add_product textarea {
+.add_film textarea {
     width: calc(100% - 20px); /* Adjusted for padding */
     padding: 10px;
     border: 1px solid #ddd;
@@ -60,7 +60,7 @@
     resize: none; /* Disable resizing */
 }
 
-.add_product .form-check {
+.add_film .form-check {
     margin-top: 10px;
 }
 
@@ -95,13 +95,13 @@
 }
 
 @media only screen and (max-width: 650px) {
-    .add_product {
+    .add_film {
         width: 80%; /* Adjusted for smaller screens */
     }
 
-    .add_product input[type="text"],
-    .add_product input[type="file"],
-    .add_product textarea {
+    .add_film input[type="text"],
+    .add_film input[type="file"],
+    .add_film textarea {
         width: 100%; /* Full width on smaller screens */
     }
 }

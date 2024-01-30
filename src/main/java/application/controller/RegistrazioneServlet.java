@@ -39,8 +39,6 @@ public class RegistrazioneServlet extends HttpServlet {
             RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
             rs.forward(request, response);
         }
-
-
     }
 
     @Override

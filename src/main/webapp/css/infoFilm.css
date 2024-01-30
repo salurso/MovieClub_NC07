@@ -3,27 +3,27 @@
     padding: 0;
     box-sizing: border-box;
     line-height: 1;
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
 }
 
-html{
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
-}
+/*html{*/
+/*    overflow-x: hidden;*/
+/*    scroll-padding-top: 9rem;*/
+/*    scroll-behavior: smooth;*/
+/*}*/
 
-html::-webkit-scrollbar{
-    width: .8rem;
-}
+/*html::-webkit-scrollbar{*/
+/*    width: .8rem;*/
+/*}*/
 
-html::-webkit-scrollbar-track{
-    background: #E4E0BB;
-}
+/*html::-webkit-scrollbar-track{*/
+/*    background: #ffa31a;*/
+/*}*/
 
-html::-webkit-scrollbar-thumb{
-    background: black;
-    border-radius: 1px;
-}
+/*html::-webkit-scrollbar-thumb{*/
+/*    background: black;*/
+/*    border-radius: 1px;*/
+/*}*/
 
 img{
     width: 100%;
@@ -49,37 +49,41 @@ img{
     padding: 2rem 0;
     display: grid;
     grid-template-columns: repeat(2, 1fr auto);
-    background-color: #E4E0BB;
+    background-color: #ffa31a;
     border-radius: 3px;
     column-gap: 10px;
 }
 
-.film-div-left{
-    border-right:2px solid  #38271E;
+.film-div-left, .recensione-div-left{
+    border-right:2px solid  black;
     padding: 20px;
 }
 
-.film-div-right{
+.film-div-right, .recensione-div-right{
     padding: 20px;
 }
 
 .img-container img{
-    width: 300px;
-    height: 80%;
+    width: 50%;
+    /*height: 80%;*/
     margin: 0 auto;
 }
 
-.film-div-right span{
+.film-div-right span, .recensione-div-right span{
     display: block;
 }
 
-.film-titolo{
-    color: #38271E;
+.film-titolo, .film-recensione{
+    color: black;
     font-size: 26px;
     margin-bottom: 22px;
     font-weight: 700;
     letter-spacing: 1px;
     opacity: 0.9;
+}
+
+.film-recensione{
+    margin-left: 20px;
 }
 
 .film-genere{
@@ -99,51 +103,80 @@ img{
     margin-top: 22px;
 }
 
-.btn-groups .add-cart-btn{
-    border: 2px solid #A0602B;
-    width: 150px;
-    height: 50px;
-    font-size: 16px;
-    text-align: center;
-    background-color: #A0602B;
-    color: #E4E0BB;
-    cursor: pointer;
+.btn_add{
+    /*margin-top: 5px;*/
+    /*letter-spacing: 1px;*/
+    text-decoration: none;
+    border-radius: 4px;
     text-transform: uppercase;
+    padding: 1rem;
+    background-color: #ffa31a;
+    border: 2px solid black;
+    color: black;
     transition: all .2s linear;
 }
 
-.btn-groups .add-cart-btn:hover {
-    background-color: #E4E0BB;
-    color: #A0602B;
+.btn_add:hover{
+    background-color: #eabd77;
+    border: 2px solid black;
+    color: black;
+    transition: all .2s linear;
 }
 
-.btn-groups input .fas{
-    margin-right: 8px;
+.recensione-div{
+    margin: 1rem 0;
+    padding: 2rem 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr auto);
+    background-color: #eabd77;
+    border-radius: 3px;
+    column-gap: 10px;
 }
+/*.btn-groups .add-cart-btn{*/
+/*    border: 2px solid #A0602B;*/
+/*    width: 150px;*/
+/*    height: 50px;*/
+/*    font-size: 16px;*/
+/*    text-align: center;*/
+/*    background-color: #A0602B;*/
+/*    color: #E4E0BB;*/
+/*    cursor: pointer;*/
+/*    text-transform: uppercase;*/
+/*    transition: all .2s linear;*/
+/*}*/
 
-.quantity{
-    border: 2px solid #A0602B;
-    width: 50px;
-    height: 50px;
-    font-size: 16px;
-    text-align: center;
-    background-color: #A0602B;
-    color: #E4E0BB;
-}
+/*.btn-groups .add-cart-btn:hover {*/
+/*    background-color: #E4E0BB;*/
+/*    color: #A0602B;*/
+/*}*/
 
-.add-cart-btn {
-    background-color: #A0602B;
-    border: 2px solid #A0602B;
-    margin-right: 8px;
-}
+/*.btn-groups input .fas{*/
+/*    margin-right: 8px;*/
+/*}*/
 
-.add-cart-btn:hover{
-    background-color: #E4E0BB;
-    color: #A0602B;
-}
+/*.quantity{*/
+/*    border: 2px solid #A0602B;*/
+/*    width: 50px;*/
+/*    height: 50px;*/
+/*    font-size: 16px;*/
+/*    text-align: center;*/
+/*    background-color: #A0602B;*/
+/*    color: #E4E0BB;*/
+/*}*/
+
+/*.add-cart-btn {*/
+/*    background-color: #A0602B;*/
+/*    border: 2px solid #A0602B;*/
+/*    margin-right: 8px;*/
+/*}*/
+
+/*.add-cart-btn:hover{*/
+/*    background-color: #E4E0BB;*/
+/*    color: #A0602B;*/
+/*}*/
 
 @media screen and (min-width: 992px){
-    .film-div{
+    .film-div, .recensione-div{
         grid-template-columns: 1fr 1fr;
     }
 }
@@ -160,20 +193,29 @@ img{
     .film-descrizione{
         max-width: none;
     }
-    .btn-groups{
-        flex-direction: column;
+
+    .btn_add {
+        width: 100px;
+        /*font-size: 1.5rem;*/
+        /*padding: 0.8rem 2rem;*/
     }
-    .btn-groups .add-cart-btn{
-        width: 100%;
-        margin-top: 10px;
-    }
+    /*.btn-groups{*/
+    /*    flex-direction: column;*/
+    /*}*/
+    /*.btn-groups .add-cart-btn{*/
+    /*    width: 100%;*/
+    /*    margin-top: 10px;*/
+    /*}*/
 }
 
 @media screen and (max-width: 320px) {
-    .film-titolo {
+    .film-titolo, .film-recensione{
         font-size: 22px;
     }
     .film-genere {
         font-size: 20px;
+    }
+    .btn_add{
+        font-size: 0.7rem;
     }
 }

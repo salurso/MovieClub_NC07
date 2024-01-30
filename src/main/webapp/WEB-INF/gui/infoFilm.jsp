@@ -1,4 +1,7 @@
-<%@ page import="application.entity.Film" %><%--
+<%@ page import="application.entity.Film" %>
+<%@ page import="application.entity.Recensione" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="application.entity.Recensione" %><%--
   Created by IntelliJ IDEA.
   User: Costantino
   Date: 16/01/2024
@@ -12,6 +15,7 @@
 
     <%
         Film f = (Film) request.getAttribute("film");
+        ArrayList<Recensione> arrayRecensioni = (ArrayList<Recensione>) request.getAttribute("reensioni");
     %>
 
     <title><%=f.getTitolo()%></title>
@@ -40,6 +44,25 @@
                 <p class="film-descrizione">Data uscita: <%=f.getDataUscita()%></p>
                 <p class="film-descrizione">Regista:  <%=f.getRegista()%></p>
             </div>
+        </div>
+
+        <div class="recensione-div">
+            <div class="film-div-left">
+                <span class="film-recensione">Recensioni</span>
+            </div>
+            <div class="film-div-right">
+                <form action="RecensioneServlet?action=aggRecensione" method="POST" id="aggiungiRecensioneForm<%= f.getId() %>">
+                    <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
+                </form>
+            </div>
+<%--            <%--%>
+<%--            for(Recensione r = arrayRecensioni){--%>
+<%--            %>--%>
+<%--            <p class="film-descrizione"> <%=r.getValutazione()%></p>--%>
+<%--            <p class="film-descrizione"> <%=r.getDescrizione()%></p>--%>
+<%--            <%--%>
+<%--            }--%>
+<%--            %>--%>
         </div>
 
         <div class="ratio ratio-16x9">

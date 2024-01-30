@@ -134,10 +134,11 @@ public class RecensioneDAO {
         return r;
     }
 
-    public ArrayList<Recensione> doRetrieveByIDFilm(){
+    public ArrayList<Recensione> doRetrieveByIDFilm(int ID_Film){
         Recensione r = null;
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE ID_Film = ?");
+            ps.setInt(1, ID_Film);
             ResultSet rs = ps.executeQuery();
             ArrayList<Recensione> recensioni = new ArrayList<>();
 

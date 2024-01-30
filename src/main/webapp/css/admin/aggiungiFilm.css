@@ -30,14 +30,14 @@ input[type=text], input[type=number], input[type=time], input[type=date],select,
     margin: 2rem auto;
 }
 
-.add_product form{
+.add_film form{
     max-width: 50rem;
     margin: 0 auto;
     padding: 2rem;
     border-radius: .5rem;
 }
 
-.add_product h3{
+.add_film h3{
     text-transform: uppercase;
     color: #38271E;
     margin-bottom: 1rem;
@@ -67,10 +67,10 @@ input[type=text], input[type=number], input[type=time], input[type=date],select,
 
 @media screen and (max-width: 768px) {
     .container-info,
-    .add_product form {
+    .add_film form {
         padding: 1rem;
     }
-    .add_product h3 {
+    .add_film h3 {
         font-size: 2rem;
     }
 }

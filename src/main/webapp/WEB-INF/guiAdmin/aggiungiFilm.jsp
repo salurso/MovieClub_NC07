@@ -18,7 +18,7 @@
     <%@ include file="/WEB-INF/navbar/navbarAdmin.jsp" %>
 
     <div class="container-info">
-        <div class="add_product">
+        <div class="add_film">
             <form action="AggiungiFilmServlet" enctype="multipart/form-data" method="POST">
                 <h3>Aggiungi Film</h3>
 
