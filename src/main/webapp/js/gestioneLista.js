@@ -1,7 +1,7 @@
     function validateUpdate() {
     var nome = document.getElementById('nome').value;
     if (nome.length > 30) {
-    alert("Lunghezza non valida!");
+    alert("Lunghezza Nome non rispettata! (deve essere <=30)");
     return false;
 }
 
@@ -13,7 +13,7 @@
 
     var immagine = document.getElementById('immagine').value;
     if (immagine.length > 50){
-    alert("Lunghezza descrizione non valida!");
+    alert("Lunghezza descrizione non rispettata! (deve essere <=50)");
     return false
 }
     return true;

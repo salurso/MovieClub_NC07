@@ -38,7 +38,7 @@ public class AggiungiListaServlet extends HttpServlet {
             if (rowsAffected > 0) {
                 result = "Lista inserita!";
             } else {
-                result = "Lista già esistente per l'utente corrente";
+                result = "Nome Lista già presente per l'utente corrente";
             }
         } catch (RuntimeException e) {
             e.printStackTrace();
