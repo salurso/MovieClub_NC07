@@ -15,7 +15,7 @@
 
     <%
         Film f = (Film) request.getAttribute("film");
-        ArrayList<Recensione> arrayRecensioni = (ArrayList<Recensione>) request.getAttribute("reensioni");
+        ArrayList<Recensione> arrayRecensioni = (ArrayList<Recensione>) request.getAttribute("recensioni");
     %>
 
     <title><%=f.getTitolo()%></title>
@@ -55,14 +55,14 @@
                     <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
                 </form>
             </div>
-<%--            <%--%>
-<%--            for(Recensione r = arrayRecensioni){--%>
-<%--            %>--%>
-<%--            <p class="film-descrizione"> <%=r.getValutazione()%></p>--%>
-<%--            <p class="film-descrizione"> <%=r.getDescrizione()%></p>--%>
-<%--            <%--%>
-<%--            }--%>
-<%--            %>--%>
+            <%
+            for(Recensione recensione : arrayRecensioni){
+            %>
+            <p class="film-descrizione"> <%=recensione.getValutazione()%></p>
+            <p class="film-descrizione"> <%=recensione.getDescrizione()%></p>
+            <%
+            }
+            %>
         </div>
 
         <div class="ratio ratio-16x9">

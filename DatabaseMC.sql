@@ -19,7 +19,7 @@ Descrizione varchar(220) NOT NULL,
 DataUscita date,
 Regista varchar(60),
 Durata time,
-Genere varchar(80) NOT NULL,
+Genere varchar(100) NOT NULL,
 Copertina varchar(150),
 Trailer varchar(100)
 );
@@ -37,7 +37,6 @@ ID int auto_increment PRIMARY KEY,
 Nome varchar(30) NOT NULL,
 Privata boolean NOT NULL,
 Descrizione varchar(100),
-Immagine varchar(50),
 Email_Persona varchar(50) NOT NULL,
 FOREIGN KEY (Email_Persona) references Persona (Email)
 );
