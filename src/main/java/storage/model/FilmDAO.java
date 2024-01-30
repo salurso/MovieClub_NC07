@@ -35,24 +35,6 @@ public class FilmDAO {
         }
     }
 
-    public ArrayList<String> cercaGeneri(){
-        try (Connection con = ConPool.getConnection()) {
-
-            PreparedStatement ps = con.prepareStatement("select distinct genere from film");
-            ResultSet rs = ps.executeQuery();
-            ArrayList<String> generi = new ArrayList<>();
-
-            while (rs.next()){
-                generi.add(rs.getString(1));
-            }
-            return generi;
-
-        } catch (SQLException s) {
-            throw new RuntimeException(s);
-        }
-    }
-
-
     public Film doRetrieveById(int id) {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select ID, Titolo, Regista, Durata, Copertina, Trailer, Genere, Descrizione, DataUscita from film where id = ?");

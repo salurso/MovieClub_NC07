@@ -59,8 +59,9 @@ public class MainServlet extends HttpServlet {
             request.setAttribute("films", films);
             // Ottieni la lista delle liste
             ListaDAO lDAO = new ListaDAO();
-            ArrayList<Lista> lists = lDAO.doRetrieveAll();
-            request.setAttribute("lists", lists);
+            Persona p = (Persona) request.getSession().getAttribute("Persona");
+            ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
+            request.setAttribute("userLists", lists);
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
             ds.forward(request, response);
         }

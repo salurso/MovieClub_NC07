@@ -56,18 +56,18 @@ public class ListaServlet extends HttpServlet {
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/creazioneLista.jsp");
                 ds.forward(request, response);
 
-            } else if (action.equals("aggiuntaFilm")) {
-                FilmDAO fDAO = new FilmDAO();
-                ArrayList<Film> films = new ArrayList<Film>();
-                films = (ArrayList<Film>) fDAO.doRetrieveAll();
-                request.setAttribute("films", films);
-
-                // Ottieni la lista delle liste
-                ArrayList<Lista> lists = lDAO.doRetrieveAll();
-                request.setAttribute("lists", lists);
-
-                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
-                ds.forward(request, response);
+//            } else if (action.equals("aggiuntaFilm")) {
+//                FilmDAO fDAO = new FilmDAO();
+//                ArrayList<Film> films = new ArrayList<Film>();
+//                films = (ArrayList<Film>) fDAO.doRetrieveAll();
+//                request.setAttribute("films", films);
+//
+//                // Ottieni la lista delle liste
+//                ArrayList<Lista> lists = lDAO.doRetrieveAll();
+//                request.setAttribute("lists", lists);
+//
+//                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
+//                ds.forward(request, response);
 
             } else if (action.equals("aggiungiFilm")) {
                 FilmDAO fDAO = new FilmDAO();
@@ -75,9 +75,9 @@ public class ListaServlet extends HttpServlet {
                 films = (ArrayList<Film>) fDAO.doRetrieveAll();
                 request.setAttribute("films", films);
 
-                // Ottieni la lista delle liste
-                ArrayList<Lista> lists = lDAO.doRetrieveAll();
-                request.setAttribute("lists", lists);
+//                // Ottieni la lista delle liste
+//                ArrayList<Lista> lists = lDAO.doRetrieveAll();
+//                request.setAttribute("lists", lists);
 
                 // Aggiungi il film alla lista
                 String idListaParam = request.getParameter("idLista");
@@ -105,6 +105,9 @@ public class ListaServlet extends HttpServlet {
                 }
 
                 request.setAttribute("result", result);
+
+                ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
+                request.setAttribute("userLists", lists);
 
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
                 ds.forward(request, response);

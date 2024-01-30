@@ -91,7 +91,7 @@
 <% } %>
 <%
     ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
-    ArrayList<Lista> userLists = (ArrayList<Lista>) session.getAttribute("userLists");
+    ArrayList<Lista> userLists = (ArrayList<Lista>) request.getAttribute("userLists");
 %>
 <div id="search-container">
     <h2 class="search">Cerca:</h2>
