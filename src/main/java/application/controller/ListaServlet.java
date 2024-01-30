@@ -2,6 +2,8 @@ package application.controller;
 
 import application.entity.Film;
 import application.entity.Lista;
+import application.entity.Persona;
+import com.mysql.cj.xdevapi.Session;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -17,27 +19,24 @@ public class ListaServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
         ListaDAO lDAO = new ListaDAO();
+        Persona p = (Persona) request.getSession().getAttribute("Persona");
 
         if (action != null) {
             if (action.equals("lista")) {
-                // Blocco per gestire l'azione "lista"
-                ArrayList<Lista> lists = lDAO.doRetrieveAll();
-                request.setAttribute("lists", lists);
+
+                ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(p.getEmail());
+                request.setAttribute("userLists", userLists);
+
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
                 ds.forward(request, response);
             } else if (action.equals("pubblica")) {
-                // Blocco per gestire l'azione "lista"
-//                ArrayList<Lista> lists = lDAO.getPublicLists();
-//                request.setAttribute("lists", lists);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/listePubbliche.jsp");
                 ds.forward(request, response);
 
             } else if (action.equals("info")) {
-                // Blocco per gestire l'azione "info"
                 int id = Integer.parseInt(request.getParameter("id"));
                 Lista list = lDAO.doRetrieveById(id);
 
-                // Ottieni la lista di film associati a questa lista
                 ArrayList<Film> films = lDAO.getFilmsInList(id);
 
                 request.setAttribute("lists", list);

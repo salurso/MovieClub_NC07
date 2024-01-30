@@ -5,7 +5,6 @@ public class Lista {
 
     private String nome;
     private String descrizione;
-    private String immagine;
     private boolean privata;
     private String Email_Persona;
 
@@ -31,14 +30,6 @@ public class Lista {
         this.descrizione = descrizione;
     }
 
-    public String getImmagine() {
-        return immagine;
-    }
-
-    public void setImmagine(String immagine) {
-        this.immagine = immagine;
-    }
-
     public boolean isPrivata() {
         return privata;
     }
@@ -61,7 +52,6 @@ public class Lista {
                 "id=" + id +
                 ", nome='" + nome + '\'' +
                 ", descrizione='" + descrizione + '\'' +
-                ", immagine='" + immagine + '\'' +
                 ", privata=" + privata +
                 '}';
     }

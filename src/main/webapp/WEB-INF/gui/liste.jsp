@@ -25,7 +25,9 @@
 
   <h1 align="center">Le liste di <%=persona.getNome()%></h1>
 
-    <% ArrayList<Lista> lists = (ArrayList<Lista>) session.getAttribute("userLists");
+    <%
+      ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("userLists");
+//    ArrayList<Lista> lists = (ArrayList<Lista>) session.getAttribute("userLists");
     if(lists==null || lists.isEmpty()) { %>
   <form action="ListaServlet?action=creazione" method="POST">
     <div class="alert alert-info" role="alert">

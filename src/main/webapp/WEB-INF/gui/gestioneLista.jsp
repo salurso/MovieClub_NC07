@@ -29,9 +29,6 @@
     <label for="descrizione">descrizione: </label>
     <input id="descrizione" name="descrizione" type="text" value="<%=l.getDescrizione()%>">
 
-    <label for="immagine">Immagine: (il nome del file deve essere di max 20 caratteri)</label>
-    <input type="file" id="immagine" name="immagine" value="<%=l.getImmagine()%>"><br>
-
     <label class="form-check-label">Visibilita': </label>
     <div class="form-check">
       <input class="form-check-input" type="radio" name="Privata" id="Pubblica" value="0" <% if(!l.isPrivata()) { %>checked<% } %>>

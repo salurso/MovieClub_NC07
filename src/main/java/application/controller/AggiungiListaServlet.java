@@ -50,7 +50,7 @@ public class AggiungiListaServlet extends HttpServlet {
         ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(emailPersona);
 
         // Aggiorna la sessione con le liste dell'utente corrente
-        request.getSession().setAttribute("userLists", userLists);
+        request.setAttribute("userLists", userLists);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);

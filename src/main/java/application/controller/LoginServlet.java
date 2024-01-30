@@ -35,10 +35,10 @@ public class LoginServlet extends HttpServlet {
                 return;
             }
 
-            // Impostare le liste dell'utente nella sessione
-            ListaDAO listaDAO = new ListaDAO();
-            ArrayList<Lista> userLists = listaDAO.doRetrieveByEmail(email);
-            request.getSession().setAttribute("userLists", userLists);
+//            // Impostare le liste dell'utente nella sessione
+//            ListaDAO listaDAO = new ListaDAO();
+//            ArrayList<Lista> userLists = listaDAO.doRetrieveByEmail(email);
+//            request.getSession().setAttribute("userLists", userLists);
 
             request.setAttribute("LoginSuccess", "Login effettuato");
             RequestDispatcher rs = request.getRequestDispatcher(p.isAdmin() ? "./WEB-INF/guiAdmin/homeAdmin.jsp" : "index.jsp");

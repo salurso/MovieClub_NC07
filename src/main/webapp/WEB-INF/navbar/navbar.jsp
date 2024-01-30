@@ -43,6 +43,7 @@
                 <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>
             <%} else { %>
             <a class="nav-link" href="MainServlet?action=areaPersonale"><span class="navbar-text" id="text-areaPersonale">Area Personale</span></a>
+            <input type="hidden" name="Email_persona" id="Email_persona" value="<%=persona.getEmail()%>">
             <div class="nav-item dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Ciao, <%= persona.getNome() %>

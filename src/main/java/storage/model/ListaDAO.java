@@ -12,7 +12,7 @@ public class ListaDAO {
 
     public static ArrayList<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata FROM Lista");
             ResultSet rs = ps.executeQuery();
             ArrayList<Lista> lists = new ArrayList<>();
             while (rs.next()){
@@ -20,8 +20,7 @@ public class ListaDAO {
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
-                l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
+                l.setPrivata(rs.getBoolean(4));
 
                 lists.add(l);
             }
@@ -33,7 +32,7 @@ public class ListaDAO {
 
     public Lista doRetrieveById(int id) {
         try (Connection connection = ConPool.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata, Email_Persona FROM Lista WHERE ID = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata, Email_Persona FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             Lista l = new Lista();
@@ -41,9 +40,8 @@ public class ListaDAO {
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
-                l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
-                l.setEmail_Persona(rs.getString(6)); // Imposta l'attributo email_Persona
+                l.setPrivata(rs.getBoolean(4));
+                l.setEmail_Persona(rs.getString(5));
             }
             return l;
         } catch (SQLException e) {
@@ -54,7 +52,7 @@ public class ListaDAO {
 
     public ArrayList<Lista> doRetrieveByEmail(String email) {
         try (Connection connection = ConPool.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Immagine, Privata FROM Lista WHERE Email_Persona = ?");
+            PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata FROM Lista WHERE Email_Persona = ?");
             ps.setString(1, email);
             ResultSet rs = ps.executeQuery();
 
@@ -64,8 +62,7 @@ public class ListaDAO {
                 l.setId(rs.getInt(1));
                 l.setNome(rs.getString(2));
                 l.setDescrizione(rs.getString(3));
-                l.setImmagine(rs.getString(4));
-                l.setPrivata(rs.getBoolean(5));
+                l.setPrivata(rs.getBoolean(4));
                 lists.add(l);
             }
             return lists;
@@ -100,12 +97,11 @@ public class ListaDAO {
     }
     public int doUpdate(Lista l) { //MODIFICA LE INFORMAZIONI DELLA LISTA
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET Nome = ?, Descrizione = ?, Immagine = ?, Privata = ? WHERE ID = ?");
+            PreparedStatement ps = con.prepareStatement("UPDATE Lista SET Nome = ?, Descrizione = ?, Privata = ? WHERE ID = ?");
             ps.setString(1, l.getNome());
             ps.setString(2, l.getDescrizione());
-            ps.setString(3, l.getImmagine());
-            ps.setBoolean(4, l.isPrivata());
-            ps.setInt(5, l.getId());
+            ps.setBoolean(3, l.isPrivata());
+            ps.setInt(4, l.getId());
 
             return ps.executeUpdate();
         } catch (SQLException s) {
@@ -129,15 +125,14 @@ public class ListaDAO {
             }
 
             // Procedi con l'inserimento della nuova lista
-            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Immagine, Email_Persona) VALUES (?,?,?,?,?)");
+            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)");
             psInsert.setString(1, l.getNome());
             psInsert.setBoolean(2, l.isPrivata());
             psInsert.setString(3, l.getDescrizione());
-            psInsert.setString(4, l.getImmagine());
-            psInsert.setString(5, l.getEmail_Persona());
+            psInsert.setString(4, l.getEmail_Persona());
 
             int rowsAffected = psInsert.executeUpdate();
-            return rowsAffected; // Ritorniamo il numero di righe modificate (1 se l'inserimento è avvenuto correttamente)
+            return rowsAffected;
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }
@@ -214,7 +209,7 @@ public class ListaDAO {
 
     public ArrayList<Lista> getPublicLists() {
         try (Connection connection = ConPool.getConnection()) {
-            PreparedStatement ps = connection.prepareStatement("SELECT l.ID, l.Nome, l.Descrizione, l.Immagine, l.Privata, l.Email_Persona FROM Lista l JOIN Persona p ON l.Email_Persona = p.Email WHERE l.Privata = false");
+            PreparedStatement ps = connection.prepareStatement("SELECT l.ID, l.Nome, l.Descrizione, l.Privata, l.Email_Persona FROM Lista l JOIN Persona p ON l.Email_Persona = p.Email WHERE l.Privata = false");
             ResultSet rs = ps.executeQuery();
 
             ArrayList<Lista> publicLists = new ArrayList<>();
@@ -223,7 +218,6 @@ public class ListaDAO {
                 l.setId(rs.getInt("ID"));
                 l.setNome(rs.getString("Nome"));
                 l.setDescrizione(rs.getString("Descrizione"));
-                l.setImmagine(rs.getString("Immagine"));
                 l.setPrivata(rs.getBoolean("Privata"));
 
                 // Aggiungi l'email della persona alla lista

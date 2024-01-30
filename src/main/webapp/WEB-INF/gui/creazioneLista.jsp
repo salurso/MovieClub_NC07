@@ -24,9 +24,6 @@
             <label for="Descrizione">Descrizione: </label>
             <textarea name="Descrizione" id="Descrizione" style="height:200px" maxlength="500"></textarea>
 
-            <label for="Immagine">Immagine: </label>
-            <input type="file" id="Immagine" name="Immagine" value="inserisci immagine">
-
             <label class="form-check-label">Visibilita': </label>
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="Privata" id="Pubblica" value="0" checked>

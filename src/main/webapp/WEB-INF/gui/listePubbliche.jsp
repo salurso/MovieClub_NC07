@@ -15,7 +15,7 @@
 <body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 <%
-    ArrayList<Lista> lists = (ArrayList<Lista>) session.getAttribute("userLists");
+    ArrayList<Lista> lists = (ArrayList<Lista>) request.getAttribute("userLists");
 %>
 
 <h1 align="center" class="title_pubblica"> Liste Pubbliche</h1>

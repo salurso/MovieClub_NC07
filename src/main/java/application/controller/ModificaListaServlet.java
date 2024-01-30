@@ -1,6 +1,7 @@
 package application.controller;
 
 import application.entity.Lista;
+import application.entity.Persona;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
@@ -16,10 +17,11 @@ import java.util.ArrayList;
 
 @WebServlet(name = "ModificaListaServlet", value = "/ModificaListaServlet")
 public class ModificaListaServlet extends HttpServlet {
-    private static final String CARTELLA_UPLOAD = "upload";
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
+        boolean Privata = "1".equals(request.getParameter("Privata"));
+        Persona p = (Persona) request.getSession().getAttribute("Persona");
         ListaDAO lDAO = new ListaDAO();
 
         if (action.equals("AGGIORNA")) {
@@ -27,18 +29,18 @@ public class ModificaListaServlet extends HttpServlet {
             l.setId(Integer.parseInt(request.getParameter("id")));
             l.setNome(request.getParameter("nome"));
             l.setDescrizione(request.getParameter("descrizione"));
-            l.setImmagine(request.getParameter("immagine"));
-
+            l.setPrivata(Privata);
             String result = "";
             try {
                 lDAO.doUpdate(l);
-                result = "Lista aggiornato!";
+                result = "Lista aggiornata!";
             } catch (Exception e) {
                 result = "Lista già esistente!";
                 request.setAttribute("result", result);
 
-                ArrayList<Lista> lists = (ArrayList<Lista>) lDAO.doRetrieveAll();
-                request.setAttribute("lists", lists);
+                ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(p.getEmail());
+                request.setAttribute("userLists", userLists);
+
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
                 requestDispatcher.forward(request, response);
                 return;
@@ -46,8 +48,9 @@ public class ModificaListaServlet extends HttpServlet {
 
             request.setAttribute("result", result);
 
-            ArrayList<Lista> lists = (ArrayList<Lista>) lDAO.doRetrieveAll();
-            request.setAttribute("lists", lists);
+
+            ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(p.getEmail());
+            request.setAttribute("userLists", userLists);
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
             ds.forward(request, response);
         }
@@ -70,61 +73,6 @@ public class ModificaListaServlet extends HttpServlet {
 
 
 
-//        } else if (action.equals("creazione")) {
-//            String nome = request.getParameter("nome");
-//            String descrizione = request.getParameter("descrizione");
-//
-//            Part filePart = request.getPart("immagine");
-//
-//            // Verifica se il filePart è diverso da null e se ha un nome
-//            if (filePart != null && filePart.getSubmittedFileName() != null && !filePart.getSubmittedFileName().isEmpty()) {
-//                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
-//
-//                Lista l = new Lista();
-//                l.setNome(nome);
-//                l.setDescrizione(descrizione);
-//                l.setImmagine(fileName);
-//
-//                String result = "";
-//                ListaDAO pDAO = new ListaDAO();
-//                try {
-//                    lDAO.doInsert(l);
-//                    result = "Lista Creata!";
-//                } catch (Exception e) {
-//                    result = "Lista già creata!";
-//                    request.setAttribute("result", result);
-//
-//                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
-//                    requestDispatcher.forward(request, response);
-//                }
-//
-//                String destinazione = CARTELLA_UPLOAD + File.separator + fileName;
-//                Path pathDestinazione = Paths.get(getServletContext().getRealPath(destinazione));
-//
-//                // se un file con quel nome esiste già, gli cambia nome
-//                for (int i = 2; Files.exists(pathDestinazione); i++) {
-//                    destinazione = CARTELLA_UPLOAD + File.separator + i + "_" + fileName;
-//                    pathDestinazione = Paths.get(getServletContext().getRealPath(destinazione));
-//                }
-//
-//                InputStream fileInputStream = filePart.getInputStream();
-//                // crea CARTELLA_UPLOAD, se non esiste
-//                Files.createDirectories(pathDestinazione.getParent());
-//                // scrive il file
-//                Files.copy(fileInputStream, pathDestinazione);
-//
-//                request.setAttribute("result", result);
-//
-//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
-//                requestDispatcher.forward(request, response);
-//            } else {
-//                // Nessun file fornito per l'upload
-//                String errorMessage = "Nessun file fornito per l'upload.";
-//                request.setAttribute("result", errorMessage);
-//
-//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/gui/liste.jsp");
-//                requestDispatcher.forward(request, response);
-//            }
         } else if (action.equals("rimuoviFilm")) {
             int idLista = Integer.parseInt(request.getParameter("idLista"));
             int idFilm = Integer.parseInt(request.getParameter("idFilm"));
