@@ -16,11 +16,7 @@ public class ConPool {
             p.setUrl("jdbc:mysql://localhost:3306/persistenzaMC?serverTimexone="+ TimeZone.getDefault().getID());
             p.setDriverClassName("com.mysql.cj.jdbc.Driver");
             p.setUsername("root");
-<<<<<<< HEAD
-            p.setPassword("1107");
-=======
-            p.setPassword("@Paci24!");
->>>>>>> e95687fd124265f5fbced7d6b9f52005c13065f2
+            p.setPassword("1234");
             p.setMaxActive(100);
             p.setInitialSize(10);
             p.setMinIdle(10);
