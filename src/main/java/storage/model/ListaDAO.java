@@ -10,6 +10,19 @@ import java.util.ArrayList;
 
 public class ListaDAO {
 
+    private static ListaDAO instance;
+
+    private ListaDAO() {
+        // Costruttore privato per impedire l'istanziazione esterna
+    }
+
+    public static synchronized ListaDAO getInstance() {
+        if (instance == null) {
+            instance = new ListaDAO();
+        }
+        return instance;
+    }
+
     public static ArrayList<Lista> doRetrieveAll(){
         try (Connection connection = ConPool.getConnection()){
             PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata FROM Lista");
@@ -110,6 +123,10 @@ public class ListaDAO {
     }
 
     public int doInsert(Lista l) throws IOException {
+        if (l == null) {
+            throw new IllegalArgumentException("Lista cannot be null");
+        }
+
         try (Connection con = ConPool.getConnection()) {
             // Verifica se esiste già una lista con lo stesso nome associata alla stessa email
             PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?");
@@ -123,7 +140,6 @@ public class ListaDAO {
                 // Una lista con lo stesso nome è già associata alla stessa email, quindi non possiamo inserirla
                 return 0;
             }
-
             // Procedi con l'inserimento della nuova lista
             PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)");
             psInsert.setString(1, l.getNome());

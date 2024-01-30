@@ -58,7 +58,7 @@ public class MainServlet extends HttpServlet {
             films = (ArrayList<Film>) fDAO.doRetrieveAll();
             request.setAttribute("films", films);
             // Ottieni la lista delle liste
-            ListaDAO lDAO = new ListaDAO();
+            ListaDAO lDAO = ListaDAO.getInstance();
             Persona p = (Persona) request.getSession().getAttribute("Persona");
             ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
             request.setAttribute("userLists", lists);

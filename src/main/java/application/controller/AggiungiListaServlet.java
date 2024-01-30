@@ -18,7 +18,7 @@ public class AggiungiListaServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ListaDAO lDAO = new ListaDAO();
+        ListaDAO lDAO = ListaDAO.getInstance();
 
         String emailPersona = request.getParameter("Email_Persona");
 

@@ -22,7 +22,7 @@ public class ModificaListaServlet extends HttpServlet {
         String action = request.getParameter("action");
         boolean Privata = "1".equals(request.getParameter("Privata"));
         Persona p = (Persona) request.getSession().getAttribute("Persona");
-        ListaDAO lDAO = new ListaDAO();
+        ListaDAO lDAO = ListaDAO.getInstance();
 
         if (action.equals("AGGIORNA")) {
             Lista l = new Lista();
