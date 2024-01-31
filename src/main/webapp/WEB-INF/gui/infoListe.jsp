@@ -4,14 +4,26 @@
 <%@ page import="application.entity.Persona" %>
 <%@ page import="storage.model.PersonaDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.Set" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
   <%
-    Lista l = (Lista) request.getAttribute("lists");
-    PersonaDAO personaDAO = new PersonaDAO();
+    String tipoRichiesta = (String) request.getAttribute("tipoRichiesta");
+    Lista l = new Lista();
+    PersonaDAO personaDAO = PersonaDAO.getInstance();
+
+    if (tipoRichiesta == null) {
+      l = (Lista) request.getAttribute("lists");
+    }
   %>
+
+  <% if (tipoRichiesta == null) { %>
   <title>Informazioni Lista: <%= l.getNome() %></title>
+  <% } else { %>
+  <title> Watchlist</title>
+  <% } %>
+
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
@@ -22,10 +34,16 @@
 <body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
-<%
-  ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
-  ArrayList<Lista> lists = (ArrayList<Lista>) session.getAttribute("userLists");
-  Persona creatoreLista = personaDAO.doRetrieveByEmail(l.getEmail_Persona());
+<%ArrayList<Film> films = null;
+  ArrayList<Lista> lists = null;
+  Persona creatoreLista = null;
+  if(tipoRichiesta != null) {
+    films = persona.getWatchlist();
+} else {
+    films = (ArrayList<Film>) request.getAttribute("films");
+    lists = (ArrayList<Lista>) session.getAttribute("userLists");
+    creatoreLista = personaDAO.doRetrieveByEmail(l.getEmail_Persona());
+}
 %>
 
 <%
@@ -48,9 +66,17 @@
     </form>
 <%
 } else { %>
-<h1 align="center">Lista: <%= l.getNome() %> </h1>
-<div class="container">
-  <p style="color: #ffa31a">Lista di: <%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
+  <% if(tipoRichiesta == null) { %>
+  <h1 align="center">Lista: <%= l.getNome() %> </h1>
+  <div class="container">
+    <p style="color: #ffa31a">Lista di: <%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
+  </div>
+  <% } else { %>
+  <h1 align="center"> Watchlist </h1>
+  <div class="container">
+    <p style="color: #ffa31a">di: <%= persona.getNome() %></p>
+  </div>
+  <% } %>
   <table class="table">
     <thead>
     <tr>
@@ -71,15 +97,27 @@
       <td><%=film.getCopertina()%></td>
       <td><%=film.getGenere()%></td>
       <td>
-        <form id="removeForm_<%= film.getId() %>" class="remove-form"
-              action="ModificaListaServlet?action=rimuoviFilm" method="POST">
-          <input type="hidden" name="idLista" value="<%= l.getId() %>">
-          <input type="hidden" name="idFilm" value="<%= film.getId() %>">
-          <button type="button" class="btn btn-outline-danger"
-                  onclick="removeFilm(<%= film.getId() %>)"
-                  <%= (persona != null && creatoreLista != null && persona.getEmail().equals(creatoreLista.getEmail())) ? "" : "disabled" %>>RIMUOVI
-          </button>
-        </form>
+
+        <%if(tipoRichiesta == null) {%>
+          <form id="removeForm_<%= film.getId() %>" class="remove-form"
+                action="ModificaListaServlet?action=rimuoviFilm" method="POST">
+            <input type="hidden" name="idLista" value="<%= l.getId() %>">
+            <input type="hidden" name="idFilm" value="<%= film.getId() %>">
+            <button type="button" class="btn btn-outline-danger"
+                    onclick="removeFilm(<%= film.getId() %>)"
+                    <%= (persona != null && creatoreLista != null && persona.getEmail().equals(creatoreLista.getEmail())) ? "" : "disabled" %>>RIMUOVI
+            </button>
+          </form
+        <%} else {%>
+            <form id=watchlistForm_<%= film.getId() %>" class="remove-form"
+                  action="WatchlistServlet" method="POST">
+              <input type="hidden" name="idFilm" value="<%= film.getId() %>">
+              <button type="button" class="btn btn-outline-danger"
+                      onclick="removeWatchlist(<%= film.getId() %>)">RIMUOVI
+              </button>
+            </form>
+        <%}%>
+
       </td>
     </tr>
     <% } %>

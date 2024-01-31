@@ -134,9 +134,13 @@
         %>
         <div class="col" data-genre="<%=f.getGenere()%>" id="genere-paragraph">
             <div class="card h-100">
-                <%if(persona != null){%>
-                <a href="#" class="btn btn-primary position-absolute top-0 end-0" id="link-addWatchlist">+W</a>
-                <%}else{%>
+                <% if (persona != null) { %>
+                <form action="WatchlistServlet" method="post">
+                    <input type="hidden" name="idFilm" value="<%= f.getId() %>">
+                    <input type="hidden" name="richiesta" value="addWatchlist">
+                    <button type="submit" class="btn btn-primary position-absolute top-0 end-0">+W</button>
+                </form>
+                <% } else{ %>
                 <a href="MainServlet?action=login" class="btn btn-primary position-absolute top-0 end-0" id="link-addWatchlist">+W</a>
                 <%}%>
                 <img src="<%=f.getCopertina()%>" class="card-img-top" alt="immagine non disponibile">
