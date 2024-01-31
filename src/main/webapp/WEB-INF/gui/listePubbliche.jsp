@@ -21,7 +21,7 @@
 <h1 align="center" class="title_pubblica"> Liste Pubbliche</h1>
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <%
-        ListaDAO listaDAO = new ListaDAO();
+        ListaDAO listaDAO = ListaDAO.getInstance();
         PersonaDAO personaDAO = new PersonaDAO();
         ArrayList<Lista> listePubbliche = listaDAO.getPublicLists();
 
