@@ -11,7 +11,7 @@
     <link rel="stylesheet" type="text/css" href="./css/recensione.css?v=<%=new Random().nextInt()%>">
     <script src="./js/aggiungiRecensione.js"></script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
