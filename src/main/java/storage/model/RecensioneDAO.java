@@ -135,7 +135,6 @@ public class RecensioneDAO {
     }
 
     public ArrayList<Recensione> doRetrieveByIDFilm(int ID_Film){
-        Recensione r = null;
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE ID_Film = ?");
             ps.setInt(1, ID_Film);
@@ -143,6 +142,7 @@ public class RecensioneDAO {
             ArrayList<Recensione> recensioni = new ArrayList<>();
 
             while(rs.next()){
+                Recensione r = new Recensione();
                 r.setValutazione(rs.getInt("Valutazione"));
                 r.setDescrizione(rs.getString("Descrizione"));
                 r.setDataInserimento(rs.getDate("DataInserimento"));

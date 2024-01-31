@@ -54,12 +54,12 @@ img{
     column-gap: 10px;
 }
 
-.film-div-left, .recensione-div-left{
+.film-div-left{
     border-right:2px solid  black;
     padding: 20px;
 }
 
-.film-div-right, .recensione-div-right{
+.film-div-right{
     padding: 20px;
 }
 
@@ -69,7 +69,7 @@ img{
     margin: 0 auto;
 }
 
-.film-div-right span, .recensione-div-right span{
+.film-div-right span{
     display: block;
 }
 
@@ -104,8 +104,7 @@ img{
 }
 
 .btn_add{
-    /*margin-top: 5px;*/
-    /*letter-spacing: 1px;*/
+    margin-left: 10px;
     text-decoration: none;
     border-radius: 4px;
     text-transform: uppercase;
@@ -122,58 +121,6 @@ img{
     color: black;
     transition: all .2s linear;
 }
-
-.recensione-div{
-    margin: 1rem 0;
-    padding: 2rem 0;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr auto);
-    background-color: #eabd77;
-    border-radius: 3px;
-    column-gap: 10px;
-}
-/*.btn-groups .add-cart-btn{*/
-/*    border: 2px solid #A0602B;*/
-/*    width: 150px;*/
-/*    height: 50px;*/
-/*    font-size: 16px;*/
-/*    text-align: center;*/
-/*    background-color: #A0602B;*/
-/*    color: #E4E0BB;*/
-/*    cursor: pointer;*/
-/*    text-transform: uppercase;*/
-/*    transition: all .2s linear;*/
-/*}*/
-
-/*.btn-groups .add-cart-btn:hover {*/
-/*    background-color: #E4E0BB;*/
-/*    color: #A0602B;*/
-/*}*/
-
-/*.btn-groups input .fas{*/
-/*    margin-right: 8px;*/
-/*}*/
-
-/*.quantity{*/
-/*    border: 2px solid #A0602B;*/
-/*    width: 50px;*/
-/*    height: 50px;*/
-/*    font-size: 16px;*/
-/*    text-align: center;*/
-/*    background-color: #A0602B;*/
-/*    color: #E4E0BB;*/
-/*}*/
-
-/*.add-cart-btn {*/
-/*    background-color: #A0602B;*/
-/*    border: 2px solid #A0602B;*/
-/*    margin-right: 8px;*/
-/*}*/
-
-/*.add-cart-btn:hover{*/
-/*    background-color: #E4E0BB;*/
-/*    color: #A0602B;*/
-/*}*/
 
 @media screen and (min-width: 992px){
     .film-div, .recensione-div{
@@ -193,19 +140,6 @@ img{
     .film-descrizione{
         max-width: none;
     }
-
-    .btn_add {
-        width: 100px;
-        /*font-size: 1.5rem;*/
-        /*padding: 0.8rem 2rem;*/
-    }
-    /*.btn-groups{*/
-    /*    flex-direction: column;*/
-    /*}*/
-    /*.btn-groups .add-cart-btn{*/
-    /*    width: 100%;*/
-    /*    margin-top: 10px;*/
-    /*}*/
 }
 
 @media screen and (max-width: 320px) {
@@ -218,4 +152,76 @@ img{
     .btn_add{
         font-size: 0.7rem;
     }
+}
+
+.recensione-div{
+    margin-top: 1rem;
+    margin-bottom: 0;
+    padding-top: 1rem;
+    padding-bottom: 0;
+    background-color: #eabd77;
+    border-radius: 0; /* Assicura che l'arrotondamento sia solo nella parte superiore */
+    border-top-left-radius: 3px; /* Arrotonda solo l'angolo in alto a sinistra */
+    border-top-right-radius: 3px; /* Arrotonda solo l'angolo in alto a destra */
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Le colonne si adattano automaticamente alla larghezza dello schermo */
+    grid-gap: 5px; /* Spazio tra le celle */
+}
+
+.recensione-div-film{
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding: 1rem 0;
+    background-color: #eabd77;
+    border-radius: 3px;
+    border-top-left-radius: 0; /* Arrotondamento solo per l'angolo in basso a sinistra */
+    border-top-right-radius: 0; /* Arrotondamento solo per l'angolo in basso a destra */
+    column-gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Le colonne si adattano automaticamente alla larghezza dello schermo */
+    grid-gap: 10px; /* Spazio tra le celle */
+}
+
+.grid-item {
+    padding: 5px;
+    text-align: center;
+}
+
+.email-user {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dataInserimento {
+    font-style: italic;
+    color: #666;
+}
+
+/* Stile generale per le stelle */
+.stella {
+    font-size: 20px; /* Imposta la dimensione desiderata per le stelle */
+    color: #ffc107; /* Imposta il colore per le stelle */
+    background: black;
+    display: inline-block; /* Assicura che le stelle siano visualizzate su una riga */
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Stile per le stelle piene */
+.stella.piena::before {
+    background: #ffa31a;
+    content: "\f005"; /* Utilizza il codice dell'icona stella piena di Font Awesome */
+    font-family: "Font Awesome 5 Free"; /* Specifica il font di Font Awesome */
+}
+
+/* Stile per le stelle vuote */
+.stella.vuota::before {
+    background: white;
+    content: "\f005"; /* Utilizza il codice dell'icona stella vuota di Font Awesome */
+    font-family: "Font Awesome 5 Free"; /* Specifica il font di Font Awesome */
 }

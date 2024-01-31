@@ -22,6 +22,7 @@ public class MainServlet extends HttpServlet {
 //        HttpSession session = request.getSession();
 //        PersonaDAO pDAO = new PersonaDAO();
 //        Persona persona = PersonaDAO.doRetrieveByEmailPassword(request.getParameter("email"), request.getParameter("password"));
+        Persona p = (Persona) request.getSession().getAttribute("Persona");
         if(action.equals("homePage")){
             RequestDispatcher ds = request.getRequestDispatcher("index.jsp");
             ds.forward(request, response);
@@ -64,9 +65,10 @@ public class MainServlet extends HttpServlet {
             request.setAttribute("films", films);
             // Ottieni la lista delle liste
             ListaDAO lDAO = ListaDAO.getInstance();
-            Persona p = (Persona) request.getSession().getAttribute("Persona");
-            ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
-            request.setAttribute("userLists", lists);
+            if(p!=null) {
+                ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
+                request.setAttribute("userLists", lists);
+            }
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
             ds.forward(request, response);
         }

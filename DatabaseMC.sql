@@ -60,9 +60,16 @@ FOREIGN KEY (Email_Persona) references Persona (Email),
 FOREIGN KEY (ID_Film) references Film (ID)
 );
 
-INSERT INTO Film (Titolo, Descrizione, DataUscita, Regista, Durata, Genere, Copertina, Trailer)
-VALUES ('Film1', 'Descrizione Film1', '2024-01-25', 'Regista1', '02:30:00', 'Azione', 'copertina1.jpg', 'trailer1.mp4'),
-       ('Film2', 'Descrizione Film2', '2024-01-26', 'Regista2', '02:15:00', 'Commedia', 'copertina2.jpg', 'trailer2.mp4')
+INSERT INTO Film (ID, Titolo, Descrizione, DataUscita, Regista, Durata, Genere, Copertina, Trailer)
+VALUES (1, 'Film1', 'Descrizione Film1', '2024-01-25', 'Regista1', '02:30:00', 'Action', 'copertina1.jpg', 'trailer1.mp4'),
+       (2, 'Film2', 'Descrizione Film2', '2024-01-26', 'Regista2', '02:15:00', 'Comedy', 'copertina2.jpg', 'trailer2.mp4');
 
+INSERT INTO Persona (Email, Password, Nome, Cognome, Admin)
+VALUES ('user1@gmail.com', sha1('user1234'), 'UserUno', 'User', 0),
+       ('user2@gmail.com', sha1('user1234'), 'UserDue', 'User', 0),
+       ('admin@gmail.com', sha1('admin'), 'Admin', 'Admin', 1);
 
-
+INSERT INTO Recensione (Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film)
+VALUES (5, 'film bellissimo', '2023-01-31', 'user1@gmail.com', 2),
+       (4, 'film unico', '2021-01-10', 'user2@gmail.com', 1),
+       (1, 'sconsiglio questo film', '2022-10-10', 'user2@gmail.com', 2);

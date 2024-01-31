@@ -15,7 +15,9 @@ import java.util.ArrayList;
 public class FilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        int id = Integer.parseInt(request.getParameter("id"));
         int id = Integer.parseInt(request.getParameter("id"));
+
         FilmDAO pDAO = new FilmDAO();
         Film f = pDAO.doRetrieveById(id);
         RecensioneDAO rDAO = new RecensioneDAO();
