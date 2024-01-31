@@ -47,19 +47,42 @@
         </div>
 
         <div class="recensione-div">
-            <div class="film-div-left">
-                <span class="film-recensione">Recensioni</span>
-            </div>
-            <div class="film-div-right">
-                <form action="RecensioneServlet?action=aggRecensione" method="POST" id="aggiungiRecensioneForm<%= f.getId() %>">
-                    <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
-                </form>
-            </div>
+            <span class="film-recensione">Recensioni</span>
+            <%if(persona != null){%>
+            <form action="RecensioneServlet?action=aggRecensione" method="POST">
+                <input type="hidden" name="ID_Film" value="<%=f.getId()%>">
+            <%}else{%>
+            <form action="MainServlet?action=login" method="POST">
+            <%}%>
+                <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
+            </form>
+        </div>
+        <div class="recensione-div-film">
             <%
             for(Recensione recensione : arrayRecensioni){
             %>
-            <p class="film-descrizione"> <%=recensione.getValutazione()%></p>
-            <p class="film-descrizione"> <%=recensione.getDescrizione()%></p>
+            <div class="email-user">
+                <span class="grid-item"><%=recensione.getEmailPersona()%></span>
+                <div class="valutazione">
+                    <%
+                    int valutazione = recensione.getValutazione(); // Supponiamo che la valutazione sia un numero intero compreso tra 1 e 5
+                    for (int i = 1; i <= 5; i++) {
+                    if (i <= valutazione) {
+                    %>
+                        <span class="stella piena"></span>
+                    <% } else { %>
+                        <span class="stella vuota"></span>
+                    <% }
+                        } %>
+
+                    <!-- Puoi aggiungere o rimuovere stelle piene o vuote a seconda della valutazione -->
+                <span class="grid-item descrizione"><%=recensione.getDescrizione()%></span>
+                </div>
+                <span class="grid-item">
+                        <%=recensione.getDataInserimento()%>
+                </span>
+            </div>
+
             <%
             }
             %>

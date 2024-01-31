@@ -23,7 +23,7 @@ public class RecensioneServlet extends HttpServlet {
                 if(request.getParameter("idFilm") != null) {
                     idFilm = Integer.parseInt(request.getParameter("idFilm"));
                 }
-                request.setAttribute("ifFilm", idFilm);
+                request.setAttribute("idFilm", idFilm);
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/aggiungiRecensione.jsp");
                 ds.forward(request, response);
             }else{
