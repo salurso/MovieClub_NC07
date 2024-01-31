@@ -10,54 +10,41 @@ import jakarta.servlet.http.HttpServletResponse;
 import storage.model.RecensioneDAO;
 
 import java.io.IOException;
+import java.util.Date;
 
 @WebServlet(name = "ModificaRecensioneServlet", value = "/ModificaRecensioneServlet")
 public class ModificaRecensioneServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
-        Recensione r = new Recensione();
 
-        if(action.equals("aggiornaRecensione")){
-            r.setValutazione(Integer.parseInt(request.getParameter("Valutazione")));
-            r.setDescrizione(request.getParameter("Descrizione"));
-            r.setEmailPersona(request.getParameter("Email_persona"));
-            r.setIdFilm(Integer.parseInt(request.getParameter("ID_Film")));
-            String result = "";
-            try{
-                rDAO.doUpdate(r);
-                result = "Recensione aggiornata con successo!";
-            }catch(Exception e){
-                result = "Errore nell'aggiornamento della recensione!";
-            }
+        int valutazione = Integer.parseInt(request.getParameter("Valutazione"));
+        String descrizione = request.getParameter("Descrizione");
+        Date dataInserimento = new Date();
+        int idFilm = Integer.parseInt(request.getParameter("ID_Film"));
+        String emailPersona = request.getParameter("Email_persona");
 
+        Recensione recensione = new Recensione();
+        recensione.setValutazione(valutazione);
+        recensione.setDescrizione(descrizione);
+        recensione.setDataInserimento(dataInserimento);
+        recensione.setIdFilm(idFilm);
+        recensione.setEmailPersona(emailPersona);
+        String result = "";
+
+        try {
+            rDAO.doUpdate(recensione);
+            result = "Recensione modificata!";
+        } catch (Exception e) {
+            result = "Errore nella modifica della recensione!";
             request.setAttribute("result", result);
-
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/infoFilm.jsp");
-            ds.forward(request, response);
         }
 
-        if(action.equals("eliminaRecensione")){
-            r.setValutazione(Integer.parseInt(request.getParameter("Valutazione")));
-            r.setDescrizione(request.getParameter("Descrizione"));
-            r.setEmailPersona(request.getParameter("Email_persona"));
-            r.setIdFilm(Integer.parseInt(request.getParameter("ID_Film")));
-            String result = "";
-            try{
-                rDAO.doUpdate(r);
-                result = "Recensione eliminata con successo!";
-            }catch(Exception e){
-                result = "Errore nella rimozione della recensione!";
-            }
+        request.setAttribute("result", result);
 
-            request.setAttribute("result", result);
-
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/infoFilm.jsp");
-            ds.forward(request, response);
-
-        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("infoFilm.jsp");
+        requestDispatcher.forward(request, response);
     }
 
     @Override
