@@ -17,6 +17,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script>
+        //funzione per ricercare i film dal titolo
+        function searchFilms() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+
+            var filmParagraphs = document.querySelectorAll('#genere-paragraph');
+            filmParagraphs.forEach(function(paragraph) {
+                var filmTitle = paragraph.querySelector('.card-title').textContent.toLowerCase();
+                if (filmTitle.includes(searchQuery)) {
+                    paragraph.style.display = 'block';
+                } else {
+                    paragraph.style.display = 'none';
+                }
+            });
+        }
+
         // Funzione per filtrare i film in base ai generi selezionati
         function filterFilms() {
             var selectedGenres = [];
@@ -64,6 +79,10 @@
 <%
     ArrayList<Film> films = (ArrayList<Film>) request.getAttribute("films");
 %>
+<div id="search-container">
+    <h2 class="search">Cerca:</h2>
+    <input type="text" id="searchInput" oninput="searchFilms()" placeholder="Inserisci il titolo del film">
+</div>
 <div>
     <div>
         <div id="div-filtri">
