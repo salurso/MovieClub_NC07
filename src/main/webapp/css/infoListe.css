@@ -12,10 +12,10 @@
     margin-top: 50px;
 }
 
-.add_film{
+.add_film {
     background-color: #ffa31a;
     color: #292929;
-    padding: 10px 20px;
+    padding: 8px 16px; /* Adjusted padding for smaller screens */
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -28,23 +28,21 @@
     transition: font-size 0.3s ease;
 }
 
-h1{
+h1 {
     color: #ffa31a;
 }
+
 .container {
     margin-top: 20px;
 }
 
-.table th{
-    color: #ffa31a;
-    text-align: center;
-}
+.table th,
 .table td {
     color: #ffffff;
     text-align: center;
 }
 
-.table td:hover{
+.table td:hover {
     transition: font-size 0.3s ease;
 }
 
@@ -60,18 +58,16 @@ h1{
 }
 
 .containervuoto p {
-    font-size: 18px;
+    font-size: 16px; /* Adjusted font size for smaller screens */
 }
 
 /* Responsive Styles */
-
-@media screen and (max-width: 600px) {
-    .table th,
-    .table td {
-        font-size: 12px;
+@media screen and (max-width: 280px) {
+    .add_film {
+        padding: 6px 12px; /* Further adjusted padding for very small screens */
     }
 
-    .form_vuoto button {
-        padding: 8px 16px;
+    .containervuoto p {
+        font-size: 14px; /* Further adjusted font size for very small screens */
     }
 }

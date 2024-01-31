@@ -4,6 +4,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -15,7 +16,7 @@ public class Persona {
     private String email;
     private String password;
     private boolean admin;
-    private Set<Film> watchlist;
+    private ArrayList<Film> watchlist;
 
     public Persona() {
     }
@@ -26,7 +27,7 @@ public class Persona {
         this.email = email;
         setPassword(password);
         this.admin = false;
-        watchlist = new HashSet<>();
+        watchlist = new ArrayList<>();
     }
 
     public int getId() {
@@ -85,11 +86,11 @@ public class Persona {
         this.admin = admin;
     }
 
-    public Set<Film> getWatchlist() {
+    public ArrayList<Film> getWatchlist() {
         return watchlist;
     }
 
-    public void setWatchlist(Set<Film> watchlist) {
+    public void setWatchlist(ArrayList<Film> watchlist) {
         this.watchlist = watchlist;
     }
 }

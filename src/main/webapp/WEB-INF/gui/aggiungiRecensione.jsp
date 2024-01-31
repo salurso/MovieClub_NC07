@@ -11,13 +11,13 @@
     <link rel="stylesheet" type="text/css" href="./css/recensione.css?v=<%=new Random().nextInt()%>">
     <script src="./js/aggiungiRecensione.js"></script>
 </head>
-<body>
+<body class="body">
 
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
 <%
     // Ottieni il valore del parametro "idFilm" dalla richiesta
-    String idFilmParameter = request.getParameter("idFilm");
+    String idFilmParameter = request.getParameter("ID_Film");
     int idFilm = 0;
     if (idFilmParameter != null && !idFilmParameter.isEmpty()) {
         idFilm = Integer.parseInt(idFilmParameter);
@@ -34,9 +34,6 @@
 
         <label for="Descrizione">Descrizione:</label>
         <textarea name="Descrizione" id="Descrizione" placeholder="Commenta qui..."></textarea>
-
-        <!-- Campo data automatico -->
-        <!--<input type="hidden" name="DataInserimento" value="<= new SimpleDateFormat("yyyy-MM-dd").format(new Date()) >">-->
 
         <!-- Campi Email_persona e ID_Film nascosti -->
         <input type="hidden" name="Email_persona" value="<%=persona.getEmail()%>">

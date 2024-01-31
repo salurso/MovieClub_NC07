@@ -5,8 +5,23 @@ import application.entity.Persona;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class PersonaDAO {
+
+    private static PersonaDAO instance;
+
+    private PersonaDAO() {
+
+    }
+
+    public static synchronized PersonaDAO getInstance() {
+        if (instance == null) {
+            instance = new PersonaDAO();
+        }
+        return instance;
+    }
 
     public static void doRegistration(Persona p) throws SQLException {
         try (Connection con = ConPool.getConnection()) {
@@ -58,6 +73,7 @@ public class PersonaDAO {
 
     public static Persona parsePersona(ResultSet rs) throws SQLException {
         Persona p = new Persona();
+        p.setId(rs.getInt("ID"));
         p.setEmail(rs.getString("email"));
         p.setPassword(rs.getString("password"));
         p.setNome(rs.getString("nome"));
@@ -101,7 +117,6 @@ public class PersonaDAO {
                 film.setDurata(rs.getTime("Durata"));
                 film.setCopertina(rs.getString("Copertina"));
                 film.setGenere(rs.getString("Genere"));
-                // Aggiungi altri campi di Film secondo necessità
 
                 watchlistFilms.add(film);
             }
@@ -110,6 +125,30 @@ public class PersonaDAO {
             throw new RuntimeException(e);
         }
     }
+
+    public static void addToWatchlist(int idPersona, int idFilm) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("INSERT INTO watchlist (ID_Persona, ID_Film) VALUES (?, ?)");
+            ps.setInt(1, idPersona);
+            ps.setInt(2, idFilm);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void removeFromWatchlist(int idPersona, int idFilm) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement("DELETE FROM watchlist WHERE ID_Persona = ? AND ID_Film = ?");
+            ps.setInt(1, idPersona);
+            ps.setInt(2, idFilm);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 
 
 }
