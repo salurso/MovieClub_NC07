@@ -1,9 +1,11 @@
 package storage.service;
 
+import application.entity.Film;
 import application.entity.Persona;
 import storage.model.PersonaDAO;
 
 import java.sql.SQLException;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 public class AutenticazioneService {
@@ -28,8 +30,18 @@ public class AutenticazioneService {
         if(!isValidLogin(email, password)) {
             return null;
         }
-        Persona p;
-        return p = PersonaDAO.doLogin(email, password);
+        Persona p = PersonaDAO.doLogin(email, password);
+        assert p != null;
+        p.setWatchlist(PersonaDAO.getWatchlistFilms(p.getId()));
+        return p;
+    }
+
+    public static void watchlistService(String tipoRichiesta, int id_persona, int id_film) {
+        if(tipoRichiesta != null) {
+            PersonaDAO.addToWatchlist(id_persona, id_film);
+        } else {
+            PersonaDAO.removeFromWatchlist(id_persona, id_film);
+        }
     }
 
     public static boolean isValidEmail(String email) {

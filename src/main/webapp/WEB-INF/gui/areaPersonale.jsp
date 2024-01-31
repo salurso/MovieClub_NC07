@@ -18,7 +18,7 @@
     <button class="item" id="creaLista" value=" " onclick="location.href='MainServlet?action=creazioneLista'">
         <span class="item-text"></span>
     </button>
-    <button class="item" id="watchlist" value=" " onclick="location.href='MainServlet?action='">
+    <button class="item" id="watchlist" value=" " onclick="location.href='MainServlet?action=watchlist'">
         <span class="item-text"></span>
     </button>
 </div>

@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import storage.model.PersonaDAO;
 import storage.model.ListaDAO;
+import storage.service.AutenticazioneService;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -25,7 +26,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
 
         try {
-            Persona p = PersonaDAO.doLogin(email, password);
+            Persona p = AutenticazioneService.doLoginService(email, password);
             request.getSession().setAttribute("Persona", p);
 
             if(p == null) {

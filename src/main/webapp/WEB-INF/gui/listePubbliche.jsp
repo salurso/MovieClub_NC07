@@ -22,7 +22,7 @@
 <div class="row row-cols-1 row-cols-md-4 g-4">
     <%
         ListaDAO listaDAO = ListaDAO.getInstance();
-        PersonaDAO personaDAO = new PersonaDAO();
+        PersonaDAO personaDAO = PersonaDAO.getInstance();
         ArrayList<Lista> listePubbliche = listaDAO.getPublicLists();
 
         for (Lista lista : listePubbliche) {
