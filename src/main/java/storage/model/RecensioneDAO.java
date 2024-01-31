@@ -9,6 +9,19 @@ import java.util.List;
 
 public class RecensioneDAO {
 
+    private static RecensioneDAO instance;
+
+    private RecensioneDAO() {
+        // Costruttore privato per impedire l'istanziazione esterna
+    }
+
+    public static synchronized RecensioneDAO getInstance() {
+        if (instance == null) {
+            instance = new RecensioneDAO();
+        }
+        return instance;
+    }
+
     //VisualizzaRecensione
     public List<Recensione> doRetrieveAll(){
 

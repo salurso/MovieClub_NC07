@@ -14,7 +14,7 @@ public class RecensioneServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        RecensioneDAO rDAO = new RecensioneDAO();
+        RecensioneDAO rDAO = RecensioneDAO.getInstance();
         String result = "";
         int idFilm = 0;
 

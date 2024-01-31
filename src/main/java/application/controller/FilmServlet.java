@@ -20,7 +20,7 @@ public class FilmServlet extends HttpServlet {
 
         FilmDAO pDAO = new FilmDAO();
         Film f = pDAO.doRetrieveById(id);
-        RecensioneDAO rDAO = new RecensioneDAO();
+        RecensioneDAO rDAO = RecensioneDAO.getInstance();
         ArrayList<Recensione> recensioni = rDAO.doRetrieveByIDFilm(id);
         request.setAttribute("film", f);
         request.setAttribute("recensioni", recensioni);
