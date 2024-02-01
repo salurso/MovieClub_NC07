@@ -123,9 +123,6 @@ public class ListaDAO {
     }
 
     public int doInsert(Lista l) throws IOException {
-        if (l == null) {
-            throw new IllegalArgumentException("Lista cannot be null");
-        }
 
         try (Connection con = ConPool.getConnection()) {
             // Verifica se esiste già una lista con lo stesso nome associata alla stessa email

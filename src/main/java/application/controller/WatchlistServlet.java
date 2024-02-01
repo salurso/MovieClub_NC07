@@ -16,8 +16,19 @@ public class WatchlistServlet extends HttpServlet {
         int idFilm = Integer.parseInt(request.getParameter("idFilm"));
         String tipoRichiesta = request.getParameter("richiesta");
         Persona p = (Persona) request.getSession().getAttribute("Persona");
+        String result;
 
-        AutenticazioneService.watchlistService(tipoRichiesta, p.getId(), idFilm);
+        int valore = AutenticazioneService.watchlistRemoveService(p.getId(), idFilm);
+        if(valore == 0) {
+            result = "Errore rimozione";
+        } else {
+            result = "Film rimosso con successo";
+        }
+
+        if(tipoRichiesta != null) {
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
+            ds.forward(request, response);
+        }
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");

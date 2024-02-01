@@ -1,7 +1,6 @@
 package application.controller;
 
-import application.controller.AggiungiFilmServlet;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import static org.mockito.Mockito.*;
 import jakarta.servlet.RequestDispatcher;

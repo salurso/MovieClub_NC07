@@ -6,6 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Persona {
@@ -88,6 +89,19 @@ public class Persona {
 
     public ArrayList<Film> getWatchlist() {
         return watchlist;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Persona persona = (Persona) o;
+        return nome.equals(persona.nome) && cognome.equals(persona.cognome) && email.equals(persona.email) && password.equals(persona.password);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nome, cognome, email, password);
     }
 
     public void setWatchlist(ArrayList<Film> watchlist) {

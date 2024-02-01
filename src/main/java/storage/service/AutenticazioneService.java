@@ -11,7 +11,6 @@ import java.util.regex.Pattern;
 public class AutenticazioneService {
 
     public static Persona doRegistrationService(String nome, String cognome, String email, String password) throws SQLException {
-
         if(PersonaDAO.checkEmailDuplicate(email)){
             return null;
         }
@@ -36,12 +35,17 @@ public class AutenticazioneService {
         return p;
     }
 
-    public static void watchlistService(String tipoRichiesta, int id_persona, int id_film) {
+    public static int watchlistService(String tipoRichiesta, int id_persona, int id_film) {
         if(tipoRichiesta != null) {
             PersonaDAO.addToWatchlist(id_persona, id_film);
         } else {
-            PersonaDAO.removeFromWatchlist(id_persona, id_film);
+           return PersonaDAO.removeFromWatchlist(id_persona, id_film);
         }
+        return 0;
+    }
+
+    public static int watchlistRemoveService(int id_persona, int id_film) {
+        return PersonaDAO.removeFromWatchlist(id_persona, id_film);
     }
 
     public static boolean isValidEmail(String email) {
@@ -60,7 +64,19 @@ public class AutenticazioneService {
     }
 
     public static boolean isValidRegistration(String email, String password, String nome, String cognome) {
-        return isValidEmail(email) && isValidPassword(password) && isValidString(nome) && isValidString(cognome);
+        if (!isValidEmail(email))
+            throw new IllegalArgumentException("Formato email non corretto!");
+
+        if (!isValidPassword(password))
+            throw new IllegalArgumentException("Formato password non corretto!");
+
+        if (!isValidString(nome))
+            throw new IllegalArgumentException("Formato nome non corretto!");
+
+        if (!isValidString(cognome))
+            throw new IllegalArgumentException("Formato cognome non corretto!");
+
+        return true;
     }
 
     public static boolean isValidLogin(String email, String password) {
