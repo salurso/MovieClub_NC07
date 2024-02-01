@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Nunito, sans-serif;
+    transition:.2s linear;
+    outline: none;
+    border:none;
+}
+
+body{
+    background: #292929 !important;
+}
+
+.home_ord{
+    min-height: 15vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.home_ord h3{
+    font-size: 3rem;
+    text-transform: uppercase;
+    color: #EF6D16;
+}
+
+/*.main-title{*/
+/*    margin-top: 10px;*/
+/*    color: white;*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*}*/
+
+.tabular--wrapper{
+    display: flex; /*allinea gli elementi uno di fianco all'altro*/
+    flex-wrap: wrap; /*se ho un elemento in più va daccapo*/
+    justify-content: center;
+    max-width: 800px;
+    height: auto;
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 2rem;
+    /*margin: 2rem auto;*/
+    margin-top: 0px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.table-container{
+    width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 15px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+thead{
+    background: #ffa31a;
+    color: #ffffff;
+}
+
+tbody{
+    background: #ffffff;
+}
+
+td{
+    padding: 15px;
+    font-size: 14px;
+    color: black;
+}
+
+@media only screen and (max-width: 420px) {
+    /*.main-title{*/
+    /*    font-size: 1.2rem;*/
+    /*}*/
+    .tabular--wrapper{
+        padding: 1px;
+    }
+}

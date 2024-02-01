@@ -1,10 +1,12 @@
 package application.controller;
 
 import application.entity.Film;
+import application.entity.Persona;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import storage.model.FilmDAO;
+import storage.model.PersonaDAO;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -31,12 +33,12 @@ public class MainServletAdmin extends HttpServlet {
             ds.forward(request, response);
         }
         if(action.equals("utenti")){
-//            UtenteDAO uDAO = new UtenteDAO();
-//            ArrayList<Utente> users = new ArrayList<>();
-//            users = uDAO.doRetrieveAll();
-//            request.setAttribute("users", users);
-//            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/administrator/manageUsers.jsp");
-//            ds.forward(request, response);
+            PersonaDAO pDAO = PersonaDAO.getInstance();
+            ArrayList<Persona> persone = new ArrayList<>();
+            persone = pDAO.doRetrieveAll();
+            request.setAttribute("persone", persone);
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/visualizzaUtenti.jsp");
+            ds.forward(request, response);
         }
     }
 

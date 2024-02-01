@@ -148,7 +148,26 @@ public class PersonaDAO {
         }
     }
 
+    public ArrayList<Persona> doRetrieveAll(){
+        try (Connection con = ConPool.getConnection()) {
 
+            PreparedStatement ps = con.prepareStatement("select Email, Nome, Cognome, Admin from persona");
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Persona> persone = new ArrayList<>();
 
+            while (rs.next()){
+                Persona p = new Persona();
+                p.setEmail(rs.getString(1));
+                p.setNome(rs.getString(2));
+                p.setCognome(rs.getString(3));
+                p.setAdmin(rs.getBoolean(4));
 
+                persone.add(p);
+            }
+            return persone;
+
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
 }

@@ -6,37 +6,14 @@
     /*font-family: 'Roboto', sans-serif;*/
 }
 
-/*html{*/
-/*    overflow-x: hidden;*/
-/*    scroll-padding-top: 9rem;*/
-/*    scroll-behavior: smooth;*/
-/*}*/
-
-/*html::-webkit-scrollbar{*/
-/*    width: .8rem;*/
-/*}*/
-
-/*html::-webkit-scrollbar-track{*/
-/*    background: #ffa31a;*/
-/*}*/
-
-/*html::-webkit-scrollbar-thumb{*/
-/*    background: black;*/
-/*    border-radius: 1px;*/
-/*}*/
-
 img{
     width: 100%;
     display: block;
 }
 
-/*.main-wrapper{*/
-/*    min-height: 100vh;*/
-/*    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");*/
-/*    display: flex;*/
-/*    align-items: center;*/
-/*    justify-content: center;*/
-/*}*/
+body{
+    background-color: #292929 !important;
+}
 
 .container{
     max-width: 1200px;
@@ -110,7 +87,7 @@ img{
     padding: 0.5rem;
     background-color: #ffa31a;
     border: 2px solid black;
-    color: #E4E0BB;
+    color: #ffffff;
     font-weight: bold;
     transition: all .2s linear;
 }
@@ -125,7 +102,7 @@ img{
     border-radius: 3px;
     background-color: #ffa31a;
     border: 2px solid black;
-    color: #E4E0BB;
+    color: #ffffff;
     font-weight: bold;
     transition: all .2s linear;
 }
@@ -178,7 +155,7 @@ img{
     margin-bottom: 0;
     padding-top: 1rem;
     padding-bottom: 0;
-    background-color: #eabd77;
+    background-color: #ffffff;
     border-radius: 0; /* Assicura che l'arrotondamento sia solo nella parte superiore */
     border-top-left-radius: 3px; /* Arrotonda solo l'angolo in alto a sinistra */
     border-top-right-radius: 3px; /* Arrotonda solo l'angolo in alto a destra */
@@ -192,7 +169,7 @@ img{
     margin-top: 0;
     margin-bottom: 1rem;
     padding: 1rem 0;
-    background-color: #eabd77;
+    background-color: #ffffff;
     border-radius: 3px;
     border-top-left-radius: 0; /* Arrotondamento solo per l'angolo in basso a sinistra */
     border-top-right-radius: 0; /* Arrotondamento solo per l'angolo in basso a destra */
@@ -232,11 +209,8 @@ img{
     position: relative; /* Imposta la posizione relativa */
 
     content: ""; /* Rimuove il contenuto */
-    /*position: absolute; !* Imposta la posizione assoluta *!*/
     top: 0; /* Allinea nella parte superiore */
     left: 0; /* Allinea a sinistra */
-    /*width: 100%; !* Larghezza al 100% *!*/
-    /*height: 100%; !* Altezza al 100% *!*/
     background-image: url('../images/stellaPiena.png'); /* Percorso del tuo file PNG a forma di stella */
 }
 
@@ -251,11 +225,8 @@ img{
     position: relative; /* Imposta la posizione relativa */
 
     content: ""; /* Rimuove il contenuto */
-    /*position: absolute; !* Imposta la posizione assoluta *!*/
     top: 0; /* Allinea nella parte superiore */
     left: 0; /* Allinea a sinistra */
-    /*width: 100%; !* Larghezza al 100% *!*/
-    /*height: 100%; !* Altezza al 100% *!*/
     background-image: url('../images/stellaVuota.png'); /* Percorso del tuo file PNG a forma di stella */
 }
 
