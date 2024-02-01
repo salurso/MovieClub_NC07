@@ -35,22 +35,22 @@ h1 {
     margin-top: 20px;
 }
 
-/* Optional: Add hover effect for the cards */
 .card:hover {
     transform: translateY(-5px);
 }
 
-/* Optional: Style the "CREA LISTA" button */
 .alert-info {
+    width: 50%;
+    margin: auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 10px;
-    background-color: #d1ecf1;
+    background-color: #292929; /* Imposta lo sfondo nero */
 }
 
 input[type="submit"] {
-    width: 100%; /* Make button full width */
+    width: 30%;
     background-color: #1b1b1b;
     color: #fff;
     border: none;
@@ -60,7 +60,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #ffa31a;
 }
 
 .card-title {
@@ -99,7 +99,6 @@ input[type="submit"]:hover {
     text-decoration: none;
 }
 
-/* Positioning "Apri Lista" and "Gestisci Lista" */
 .card-links {
-    background-color: rgba(0, 0, 0, 0.5); /* Adjust the background color as needed */
+    background-color: rgba(0, 0, 0, 0.5);
 }

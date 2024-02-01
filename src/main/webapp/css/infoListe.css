@@ -1,3 +1,5 @@
+/* infoListe.css */
+
 /* Add your custom styles here */
 
 .body {
@@ -30,6 +32,7 @@
 
 h1 {
     color: #ffa31a;
+    text-align: center; /* Centra il testo della classe h1 */
 }
 
 .container {
@@ -40,6 +43,11 @@ h1 {
 .table td {
     color: #ffffff;
     text-align: center;
+}
+
+.pcreator {
+    color: #ffa31a;
+    text-align: center; /* Centra il testo della classe pcreator */
 }
 
 .table td:hover {
@@ -62,12 +70,81 @@ h1 {
 }
 
 /* Responsive Styles */
-@media screen and (max-width: 280px) {
+
+@media screen and (max-width: 767px) {
+    .table {
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .pcreator {
+        text-align: center;
+    }
+
+    .table td:last-child {
+        text-align: left;
+        padding-top: 10px;
+    }
+}
+
+@media screen and (max-width: 515px) {
+    .table th:nth-child(3),
+    .table td:nth-child(3),
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+        display: none; /* Nascondi le colonne Durata e Copertina */
+    }
+
+    h1,
+    .pcreator {
+        text-align: center; /* Centra il titolo della lista e la classe pcreator */
+    }
+
     .add_film {
-        padding: 6px 12px; /* Further adjusted padding for very small screens */
+        padding: 6px 12px;
     }
 
     .containervuoto p {
-        font-size: 14px; /* Further adjusted font size for very small screens */
+        font-size: 14px;
     }
 }
+
+
+
+@media screen and (max-width: 400px) {
+    .table th:nth-child(3),
+    .table td:nth-child(3) {
+        display: none;
+    }
+
+    h1,
+    .pcreator {
+        text-align: center; /* Centra il titolo della lista e la classe pcreator */
+    }
+
+    .add_film {
+        padding: 6px 12px;
+    }
+
+    .containervuoto p {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .table {
+        font-size: 12px; /* Riduci la dimensione del testo della tabella */
+    }
+}
+
+
+@media screen and (max-width: 280px) {
+    .add_film {
+        padding: 6px 12px;
+    }
+
+    .containervuoto p {
+        font-size: 14px;
+    }
+}
+

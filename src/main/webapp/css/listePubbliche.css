@@ -1,16 +1,17 @@
-/* Add your custom styles here */
 
 .body {
     background-color: #292929;
+    color: #212529;
 }
 
 .centered-alert {
     margin-top: 20px;
 }
 
-.title_pubblica{
+.title_pubblica {
     font-weight: bold;
     color: #ffa31a;
+    text-align: center;
     padding-bottom: 2rem;
 }
 
@@ -19,11 +20,12 @@
 }
 
 .card {
-    transition: 0.3s ease-in-out;
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    position: relative;
+    width: 100%; /* Make cards full width */
 }
-
 .grid-container {
     display: flex;
     justify-content: center;
@@ -33,54 +35,52 @@
     margin-top: 20px;
 }
 
-/* Optional: Add hover effect for the cards */
+.card {
+    width: 18rem;
+    margin: 10px; /* Aggiungi margine tra le card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: 0.3s ease-in-out;
+    text-decoration: none;
+}
+
 .card:hover {
     transform: translateY(-5px);
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Optional: Style the "CREA LISTA" button */
-.alert-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #d1ecf1;
-}
-
-input[type="submit"] {
-    background-color: #1b1b1b;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover {
-    background-color: #0056b3;
-}
-
-.card-title {
-    color: #1b1b1b;
-}
-
-.card-title.private {
-    color: #dc3545;
-}
-
-.card-link-apri{
-    transition: 0.3s ease;
-    color: #ffa31a;
     text-decoration: none;
 }
 
-.card-link-apri:hover{
-    transition: 0.3s ease;
-    color: #1b1b1b;
-    text-decoration: none;
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+    .row {
+        flex-direction: column;
+    }
+
+    .grid-container {
+        align-items: center;
+    }
+
+    .card {
+        width: 100%;
+    }
 }
 
+@media screen and (min-width: 768px) and (max-width: 999px) {
+    .row {
+        justify-content: space-between;
+    }
 
+    .card {
+        width: calc(25% - 20px);
+    }
+}
 
+@media screen and (min-width: 500px) and (max-width: 767px) {
+    .card {
+        width: calc(33.33% - 20px);
+    }
+}
 
+@media screen and (max-width: 499px) {
+    .card {
+        width: calc(100% - 20px);
+    }
+}

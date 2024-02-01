@@ -68,7 +68,7 @@
   <% if(tipoRichiesta == null) { %>
   <h1 align="center">Lista: <%= l.getNome() %> </h1>
   <div class="container">
-    <p style="color: #ffa31a">Lista di: <%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
+    <p class="pcreator" style="color: #ffa31a">Lista di: <%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
   </div>
   <% } else { %>
   <h1 align="center"> Watchlist </h1>
