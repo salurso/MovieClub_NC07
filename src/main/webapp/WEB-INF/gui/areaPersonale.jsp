@@ -26,7 +26,7 @@
     <h1>Le tue liste</h1>
     <ul>
         <%
-            ArrayList<Lista> userLists = (ArrayList<Lista>) request.getSession().getAttribute("userLists");
+            ArrayList<Lista> userLists = (ArrayList<Lista>) request.getAttribute("userLists");
             if (userLists != null && !userLists.isEmpty()) {
                 int counter = 1;
                 for (Lista l : userLists) {

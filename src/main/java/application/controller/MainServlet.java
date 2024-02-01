@@ -77,6 +77,11 @@ public class MainServlet extends HttpServlet {
             ds.forward(request, response);
         }
         if(action.equals("areaPersonale")){
+            ListaDAO lDAO = ListaDAO.getInstance();
+            ArrayList<Lista> userLists = lDAO.doRetrieveByEmail(p.getEmail());
+
+            // Imposta le liste come attributo di richiesta
+            request.setAttribute("userLists", userLists);
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/areaPersonale.jsp");
             ds.forward(request, response);
         }
