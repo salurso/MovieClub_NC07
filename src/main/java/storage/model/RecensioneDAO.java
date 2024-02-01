@@ -9,6 +9,19 @@ import java.util.List;
 
 public class RecensioneDAO {
 
+    private static RecensioneDAO instance;
+
+    private RecensioneDAO() {
+        // Costruttore privato per impedire l'istanziazione esterna
+    }
+
+    public static synchronized RecensioneDAO getInstance() {
+        if (instance == null) {
+            instance = new RecensioneDAO();
+        }
+        return instance;
+    }
+
     //VisualizzaRecensione
     public List<Recensione> doRetrieveAll(){
 
@@ -55,7 +68,7 @@ public class RecensioneDAO {
             PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, DataInserimento = ? WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setInt(1, r.getValutazione());
             ps.setString(2, r.getDescrizione());
-            ps.setDate(3, (Date) (r.getDataInserimento()));
+            ps.setDate(3, new java.sql.Date(r.getDataInserimento().getTime()));
             ps.setString(4, r.getEmailPersona());
             ps.setInt(5, r.getIdFilm());
 
@@ -67,13 +80,13 @@ public class RecensioneDAO {
 
 
     //EliminaRecensione
-    public int removeRecensione(Recensione r){
+    public int removeRecensione(String emailPersona, int idFilm){
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
             PreparedStatement pt = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
-            pt.setString(1, r.getEmailPersona());
-            pt.setInt(2, r.getIdFilm());
+            pt.setString(1, emailPersona);
+            pt.setInt(2, idFilm);
             return pt.executeUpdate();
 
             /*cancelliamo il collegamento Recensione - Utente

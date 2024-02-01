@@ -1,29 +1,29 @@
-html{
-    overflow-x: hidden;
-    scroll-padding-top: 9rem;
-    scroll-behavior: smooth;
-}
+/*html{*/
+/*    overflow-x: hidden;*/
+/*    scroll-padding-top: 9rem;*/
+/*    scroll-behavior: smooth;*/
+/*}*/
 
-html::-webkit-scrollbar{
-    width: .8rem;
-}
+/*html::-webkit-scrollbar{*/
+/*    width: .8rem;*/
+/*}*/
 
-html::-webkit-scrollbar-track{
-    background: #ffffff;
-}
+/*html::-webkit-scrollbar-track{*/
+/*    background: #ffffff;*/
+/*}*/
 
-html::-webkit-scrollbar-thumb{
-    background: black;
-    border-radius: 1px;
-}
+/*html::-webkit-scrollbar-thumb{*/
+/*    background: black;*/
+/*    border-radius: 1px;*/
+/*}*/
 
 body{
-    background: #808080;
+    background-color: #808080 !important;
 }
 
 .container{
-    padding: 1rem;
-    display: flex; /*allinea gli elementi uno di fianco all'altro*/
+padding: 1rem;
+display: flex; /*allinea gli elementi uno di fianco all'altro*/
     flex-wrap: wrap; /*se ho un elemento in più va daccapo*/
     justify-content: space-around;
     align-items: center;

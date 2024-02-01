@@ -30,13 +30,13 @@ img{
     display: block;
 }
 
-.main-wrapper{
-    min-height: 100vh;
-    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+/*.main-wrapper{*/
+/*    min-height: 100vh;*/
+/*    background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*}*/
 
 .container{
     max-width: 1200px;
@@ -103,7 +103,7 @@ img{
     margin-top: 22px;
 }
 
-.btn_add{
+.btn_add, .btn_delete{
     margin-left: 10px;
     text-decoration: none;
     border-radius: 4px;
@@ -115,7 +115,12 @@ img{
     transition: all .2s linear;
 }
 
-.btn_add:hover{
+.btn_delete{
+    background-color: brown;
+    margin-top: 5px;
+}
+
+.btn_add:hover, .btn_delete:hover{
     background-color: #eabd77;
     border: 2px solid black;
     color: black;
@@ -149,9 +154,9 @@ img{
     .film-genere {
         font-size: 20px;
     }
-    .btn_add{
-        font-size: 0.7rem;
-    }
+    /*.btn_add{*/
+    /*    font-size: 0.7rem;*/
+    /*}*/
 }
 
 .recensione-div{
@@ -202,26 +207,43 @@ img{
     color: #666;
 }
 
-/* Stile generale per le stelle */
-.stella {
-    font-size: 20px; /* Imposta la dimensione desiderata per le stelle */
-    color: #ffc107; /* Imposta il colore per le stelle */
-    background: black;
+/* Stile per le stelle piene */
+.stella.piena {
+    width: 20px; /* Imposta la larghezza desiderata per le stelle */
+    height: 20px; /* Imposta l'altezza desiderata per le stelle */
     display: inline-block; /* Assicura che le stelle siano visualizzate su una riga */
     margin-top: 20px;
     margin-bottom: 20px;
-}
+    background-size: cover; /* Per adattare l'immagine allo spazio disponibile */
+    position: relative; /* Imposta la posizione relativa */
 
-/* Stile per le stelle piene */
-.stella.piena::before {
-    background: #ffa31a;
-    content: "\f005"; /* Utilizza il codice dell'icona stella piena di Font Awesome */
-    font-family: "Font Awesome 5 Free"; /* Specifica il font di Font Awesome */
+    content: ""; /* Rimuove il contenuto */
+    /*position: absolute; !* Imposta la posizione assoluta *!*/
+    top: 0; /* Allinea nella parte superiore */
+    left: 0; /* Allinea a sinistra */
+    /*width: 100%; !* Larghezza al 100% *!*/
+    /*height: 100%; !* Altezza al 100% *!*/
+    background-image: url('../images/stellaPiena.png'); /* Percorso del tuo file PNG a forma di stella */
 }
 
 /* Stile per le stelle vuote */
-.stella.vuota::before {
-    background: white;
-    content: "\f005"; /* Utilizza il codice dell'icona stella vuota di Font Awesome */
-    font-family: "Font Awesome 5 Free"; /* Specifica il font di Font Awesome */
+.stella.vuota {
+    width: 20px; /* Imposta la larghezza desiderata per le stelle */
+    height: 20px; /* Imposta l'altezza desiderata per le stelle */
+    display: inline-block; /* Assicura che le stelle siano visualizzate su una riga */
+    margin-top: 20px;
+    margin-bottom: 20px;
+    background-size: cover; /* Per adattare l'immagine allo spazio disponibile */
+    position: relative; /* Imposta la posizione relativa */
+
+    content: ""; /* Rimuove il contenuto */
+    /*position: absolute; !* Imposta la posizione assoluta *!*/
+    top: 0; /* Allinea nella parte superiore */
+    left: 0; /* Allinea a sinistra */
+    /*width: 100%; !* Larghezza al 100% *!*/
+    /*height: 100%; !* Altezza al 100% *!*/
+    background-image: url('../images/stellaVuota.png'); /* Percorso del tuo file PNG a forma di stella */
 }
+
+
+
