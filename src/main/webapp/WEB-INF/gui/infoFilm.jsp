@@ -52,65 +52,77 @@
             <form action="RecensioneServlet" method="POST">
                 <input type="hidden" name="ID_Film" value="<%=f.getId()%>">
 
-            <%
-            boolean presente = false;
-            for(Recensione recensione : arrayRecensioni) {
-                if (recensione.getEmailPersona().equals(persona.getEmail())) {
-                    presente = true;
-                }
-            }
-            if(presente){
-            %>
-                <input class="btn_add" type="submit" name="action" value="MODIFICA RECENSIONE">
-                <input class="btn_delete" type="submit" name="action" value="ELIMINA RECENSIONE">
-            <%
-            }else{
-            %>
+                <%
+                    boolean presente = false;
+                    for(Recensione recensione : arrayRecensioni) {
+                        if (recensione.getEmailPersona().equals(persona.getEmail())) {
+                            presente = true;
+                        }
+                    }
+                    if(presente){
+                %>
+                <!-- Non mostrare il form se l'utente ha già una recensione -->
+                <%
+                }else{
+                %>
                 <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
-            <%
-            }
-            %>
+                <%
+                    }
+                %>
             </form>
             <%
             }else{
             %>
-                <form action="MainServlet?action=login" method="POST">
-                    <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
+            <form action="MainServlet?action=login" method="POST">
+                <input class="btn_add" type="submit" name="action" value="AGGIUNGI RECENSIONE">
+            </form>
             <%
                 }
             %>
-            </form>
         </div>
         <div class="recensione-div-film">
             <%
-            for(Recensione recensione : arrayRecensioni){
+                for(Recensione recensione : arrayRecensioni){
             %>
             <div class="email-user">
-<%--                <span class="grid-item" <%if(recensione.getEmailPersona().equals(persona.getEmail())&&persona!=null){%> style="color:red" <%}%> ><%=recensione.getEmailPersona()%></span>--%>
-            <span class="grid-item" style="font-weight: bold; <% if (recensione.getEmailPersona() != null && persona != null && recensione.getEmailPersona().equals(persona.getEmail())) { %> text-transform: uppercase; <% } %>" ><%= recensione.getEmailPersona() %></span>
+                <span class="grid-item" style="font-weight: bold; <% if (recensione.getEmailPersona() != null && persona != null && recensione.getEmailPersona().equals(persona.getEmail())) { %> text-transform: uppercase; <% } %>" ><%= recensione.getEmailPersona() %></span>
 
-            <div class="valutazione">
+                <div class="valutazione">
                     <%
-                    int valutazione = recensione.getValutazione(); // Supponiamo che la valutazione sia un numero intero compreso tra 1 e 5
-                    for (int i = 1; i <= 5; i++) {
-                    if (i <= valutazione) {
+                        int valutazione = recensione.getValutazione();
+                        for (int i = 1; i <= 5; i++) {
+                            if (i <= valutazione) {
                     %>
-                        <span class="stella piena"></span>
-                    <% } else { %>
-                        <span class="stella vuota"></span>
-                    <% }
-                        } %>
-
-                    <!-- Puoi aggiungere o rimuovere stelle piene o vuote a seconda della valutazione -->
+                    <span class="stella piena"></span>
+                    <%
+                    } else {
+                    %>
+                    <span class="stella vuota"></span>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
-                <span class="grid-item"><%=recensione.getDescrizione()%></span>
-                <span class="grid-item">
-                        <%=recensione.getDataInserimento()%>
-                </span>
-            </div>
 
+                <span class="grid-item"><%=recensione.getDescrizione()%></span>
+                <span class="grid-item"><%=recensione.getDataInserimento()%></span>
+
+                <!-- Aggiungi i bottoni solo se l'utente corrente è l'autore della recensione -->
+                <%
+                    if (persona != null && recensione.getEmailPersona().equals(persona.getEmail())) {
+                %>
+                <form action="RecensioneServlet" method="POST">
+                    <input type="hidden" name="ID_Film" value="<%=f.getId()%>">
+                    <input type="hidden" name="Email_persona" value="<%=persona.getEmail()%>">
+                    <input class="btn_modify" type="submit" name="action" value="MODIFICA">
+                    <input class="btn_delete" type="submit" name="action" value="ELIMINA">
+                </form>
+                <%
+                    }
+                %>
+            </div>
             <%
-            }
+                }
             %>
         </div>
 

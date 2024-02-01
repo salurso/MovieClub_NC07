@@ -102,25 +102,39 @@ img{
 .btn-groups{
     margin-top: 22px;
 }
-
-.btn_add, .btn_delete{
-    margin-left: 10px;
+.btn_add{
+    font-size: 20px;
     text-decoration: none;
     border-radius: 4px;
     text-transform: uppercase;
-    padding: 1rem;
+    padding: 0.5rem;
     background-color: #ffa31a;
     border: 2px solid black;
-    color: black;
+    color: #E4E0BB;
+    font-weight: bold;
     transition: all .2s linear;
 }
 
-.btn_delete{
-    background-color: brown;
-    margin-top: 5px;
+/* Aggiungi queste regole di stile alla fine del tuo file CSS */
+
+/* Stile aggiuntivo per i bottoni Modifica ed Elimina */
+.btn_modify, .btn_delete {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 0.3rem;
+    border-radius: 3px;
+    background-color: #ffa31a;
+    border: 2px solid black;
+    color: #E4E0BB;
+    font-weight: bold;
+    transition: all .2s linear;
 }
 
-.btn_add:hover, .btn_delete:hover{
+.btn_delete {
+    background-color: brown;
+}
+
+.btn_modify:hover, .btn_delete:hover {
     background-color: #eabd77;
     border: 2px solid black;
     color: black;

@@ -105,26 +105,28 @@ public class RecensioneDAO {
     }
 
     //Cerca la Recensione effettuata dall'Utente (Email_Persona) su quel determinato film(ID_Film)
-    public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film){
+    public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film) {
         Recensione r = null;
-        try(Connection con = ConPool.getConnection()){
+        try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setString(1, Email_Persona);
             ps.setInt(2, ID_Film);
             ResultSet rs = ps.executeQuery();
 
-            while(rs.next()){
+            if (rs.next()) {
+                r = new Recensione(); // Inizializza l'oggetto Recensione
                 r.setValutazione(rs.getInt("Valutazione"));
                 r.setDescrizione(rs.getString("Descrizione"));
                 r.setDataInserimento(rs.getDate("DataInserimento"));
                 r.setEmailPersona(rs.getString("Email_Persona"));
                 r.setIdFilm(rs.getInt("ID_Film"));
             }
-            return r;
-        }catch(SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+        return r;
     }
+
 
     //check duplicato
     public static Recensione checkDuplicate(String Email_Persona, int ID_Film){

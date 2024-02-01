@@ -1,14 +1,15 @@
 package application.controller;
 
 import application.entity.Recensione;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
-import storage.model.ListaDAO;
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import storage.model.RecensioneDAO;
 
 import java.io.IOException;
-import java.util.Date;
 
 @WebServlet(name = "RecensioneServlet", value = "/RecensioneServlet")
 public class RecensioneServlet extends HttpServlet {
@@ -22,7 +23,6 @@ public class RecensioneServlet extends HttpServlet {
 
         if (action != null) {
             if(action.equals("AGGIUNGI RECENSIONE")){
-                Recensione r = new Recensione();
                 if(request.getParameter("idFilm") != null) {
                     idFilm = Integer.parseInt(request.getParameter("idFilm"));
                 }
@@ -30,22 +30,16 @@ public class RecensioneServlet extends HttpServlet {
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/aggiungiRecensione.jsp");
                 ds.forward(request, response);
 
-            }else if(action.equals("MODIFICA RECENSIONE") ){
-                // Ottieni l'id del film e l'email della persona per identificare la recensione
+            } else if(action.equals("MODIFICA")) {
                 int idFilm1 = Integer.parseInt(request.getParameter("ID_Film"));
                 String emailPersona = request.getParameter("Email_persona");
-
-                // Ottieni l'oggetto Recensione dalla DAO
                 Recensione recensione = rDAO.doRetrievebyEmailID(emailPersona, idFilm1);
-
-                // Imposta l'oggetto Recensione come attributo nella richiesta
                 request.setAttribute("recensione", recensione);
 
-                // Inoltra la richiesta alla pagina di gestione delle recensioni
                 RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/gestioneRecensione.jsp");
                 ds.forward(request, response);
 
-            }else if(action.equals("ELIMINA RECENSIONE")){
+            } else if(action.equals("ELIMINA")) {
                 int idFilmToDelete = Integer.parseInt(request.getParameter("ID_Film"));
                 String emailPersonaToDelete = request.getParameter("Email_persona");
 
@@ -67,8 +61,7 @@ public class RecensioneServlet extends HttpServlet {
                 RequestDispatcher ds = request.getRequestDispatcher("index.jsp");
                 ds.forward(request, response);
 
-
-            }else{
+            } else {
                 result = "Error!";
             }
         }
@@ -77,10 +70,4 @@ public class RecensioneServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("{\"result\": \"" + result + "\"}");
     }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
-    }
-
 }

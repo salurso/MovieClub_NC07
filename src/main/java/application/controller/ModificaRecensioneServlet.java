@@ -43,7 +43,7 @@ public class ModificaRecensioneServlet extends HttpServlet {
 
         request.setAttribute("result", result);
 
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("infoFilm.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
         requestDispatcher.forward(request, response);
     }
 
