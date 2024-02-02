@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");
+}
+
+.container {
+    max-width: 600px;
+    padding: 20px;
+    background-color: #E4E0BB;
+    margin: 3rem auto;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+.button_update{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #A06028;
+    box-sizing: border-box;
+}
+
+.btn_update {
+    letter-spacing: 1px;
+    text-decoration: none;
+    border-radius: 4px;
+    text-transform: uppercase;
+    padding: 1rem;
+    background-color: #A0602B;
+    border: 2px solid #E4E0BB;
+    color: #E4E0BB;
+    transition: all .2s linear;
+}
+
+.btn_update:hover {
+    background-color: #E4E0BB;
+    border: 2px solid #A0602B;
+    color: #A0602B;
+    transition: all .2s linear;
+}
