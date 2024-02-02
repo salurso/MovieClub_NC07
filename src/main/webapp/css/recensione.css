@@ -90,4 +90,14 @@ h1{
     color: #1b1b1b;
 }
 
+@media screen and (max-width: 1030px) {
+    .formRecensione {
+        max-width: 100%;
+        padding: 10px;
+    }
 
+    .formRecensione input[type="submit"] {
+        font-size: 1em;
+    }
+
+}
