@@ -137,12 +137,12 @@ public class PersonaDAO {
         }
     }
 
-    public static int removeFromWatchlist(int idPersona, int idFilm) {
+    public static void removeFromWatchlist(int idPersona, int idFilm) {
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM watchlist WHERE ID_Persona = ? AND ID_Film = ?");
             ps.setInt(1, idPersona);
             ps.setInt(2, idFilm);
-            return ps.executeUpdate();
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
