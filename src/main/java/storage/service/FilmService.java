@@ -31,7 +31,7 @@ public class FilmService {
         if(!isValidDurata(durata))
             return "Formato durata non corretto!";
 
-        if(!isValidDesccrizione(descrizione))
+        if(!isValidDescrizione(descrizione))
             return "Formato descrizione non corretto!";
 
         if(!isValidGenere(genere))
@@ -50,7 +50,7 @@ public class FilmService {
     }
 
     private static boolean isValidRegista(String regista) {
-        String stringRegex = "^[a-zA-Z]*$";
+        String stringRegex = "^[a-zA-Z ]*$";
         if(Pattern.matches(stringRegex, regista) && regista.length()<=60 && !regista.isEmpty())
             return true;
         return false;
@@ -81,14 +81,35 @@ public class FilmService {
         return false;
     }
 
-    public static boolean isValidDesccrizione(String descrizione){
+    public static boolean isValidDescrizione(String descrizione){
         if(descrizione!=null && descrizione.length()<=220)
             return true;
         return false;
     }
 
     public static boolean isValidGenere(String genere){
-        if(!genere.isEmpty() && genere.length()<=100)
+        String[] generi = {"Documentary", "Biography", "Drama", "Music", "Horror", "Sci-Fi", "Crime", "Mystery", "Romance", "Thriller", "Adventure", "Comedy", "Action", "Sport", "Fantasy", "History", "Family", "Animation", "War", "Western", "Musical"};
+        boolean isValid = false;
+        if(genere!=null) {
+            String[] genereArray = genere.split(",\\s*"); // Divide la stringa genere in elementi separati da virgola e spazio
+
+            for (String g : genereArray) { // Itera su ogni elemento della stringa genere
+                boolean found = false;
+                for (String validGenere : generi) { // Confronta l'elemento con gli elementi dell'array generi
+                    if (g.equals(validGenere)) {
+                        found = true;
+                        break;
+                    }
+                }
+                // Se l'elemento non è stato trovato nell'array generi, imposta la variabile booleana su false e interrompi il ciclo
+                if (!found || genere.length()<=100) {
+                    isValid = false;
+                    break;
+                }
+            }
+        }
+
+        if(isValid)
             return true;
         return false;
     }
