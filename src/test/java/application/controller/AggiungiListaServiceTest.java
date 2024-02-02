@@ -6,12 +6,11 @@ import org.mockito.MockedStatic;
 import storage.service.ListaService;
 
 import java.io.IOException;
-import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
-public class AggiungiListaServletTest {
+public class AggiungiListaServiceTest {
     Faker faker = new Faker();
     boolean privata = true; // CORRETTO
 
