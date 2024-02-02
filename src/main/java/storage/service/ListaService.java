@@ -11,7 +11,7 @@ public class ListaService {
 
     public static int doInsertService(String email, String nome, String descrizione, boolean privata) throws IOException {
 
-        if(!validLista(email, nome, descrizione))
+        if (!validLista(email, nome, descrizione))
             return 0;
 
         Lista l = new Lista();
@@ -21,6 +21,12 @@ public class ListaService {
         l.setPrivata(privata);
 
         ListaDAO listaDAO = ListaDAO.getInstance();
+
+        // Utilizza le nuove funzioni separate per controllare duplicati e fare l'inserimento
+        if (listaDAO.isListaDuplicata(nome, email)) {
+            throw new RuntimeException("Una lista con lo stesso nome è già associata alla stessa email!");
+        }
+
         return listaDAO.doInsert(l);
     }
 
@@ -30,7 +36,7 @@ public class ListaService {
     }
 
     private static boolean isValidNomeLista(String input) {
-        if(input.length() < 1 || input.length() > 30) {
+        if (input.length() < 1 || input.length() > 30) {
             throw new RuntimeException("Dimensione nome non corretta");
         }
 
@@ -39,7 +45,7 @@ public class ListaService {
     }
 
     private static boolean isValidDescrizione(String input) {
-        if(input.length() > 100) {
+        if (input.length() > 100) {
             throw new RuntimeException("Dimensione descrizione non corretta");
         }
 
@@ -59,5 +65,4 @@ public class ListaService {
 
         return true;
     }
-
 }

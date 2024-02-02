@@ -122,34 +122,65 @@ public class ListaDAO {
         }
     }
 
-    public int doInsert(Lista l) throws IOException {
+    public boolean isListaDuplicata(String nome, String email) throws IOException {
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?")) {
 
-        try (Connection con = ConPool.getConnection()) {
-            // Verifica se esiste già una lista con lo stesso nome associata alla stessa email
-            PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?");
-            psCheck.setString(1, l.getNome());
-            psCheck.setString(2, l.getEmail_Persona());
+            psCheck.setString(1, nome);
+            psCheck.setString(2, email);
             ResultSet rsCheck = psCheck.executeQuery();
             rsCheck.next();
             int count = rsCheck.getInt(1);
 
-            if (count > 0) {
-                // Una lista con lo stesso nome è già associata alla stessa email, quindi non possiamo inserirla
-                return 0;
-            }
-            // Procedi con l'inserimento della nuova lista
-            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)");
+            return count > 0;
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
+
+    public int doInsert(Lista l) throws IOException {
+        try (Connection con = ConPool.getConnection();
+             PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)")) {
+
             psInsert.setString(1, l.getNome());
             psInsert.setBoolean(2, l.isPrivata());
             psInsert.setString(3, l.getDescrizione());
             psInsert.setString(4, l.getEmail_Persona());
 
-            int rowsAffected = psInsert.executeUpdate();
-            return rowsAffected;
+            return psInsert.executeUpdate();
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }
     }
+
+//    public int doInsert(Lista l) throws IOException {
+//
+//        try (Connection con = ConPool.getConnection()) {
+//            // Verifica se esiste già una lista con lo stesso nome associata alla stessa email
+//            PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?");
+//            psCheck.setString(1, l.getNome());
+//            psCheck.setString(2, l.getEmail_Persona());
+//            ResultSet rsCheck = psCheck.executeQuery();
+//            rsCheck.next();
+//            int count = rsCheck.getInt(1);
+//
+//            if (count > 0) {
+//                // Una lista con lo stesso nome è già associata alla stessa email, quindi non possiamo inserirla
+//                return 0;
+//            }
+//            // Procedi con l'inserimento della nuova lista
+//            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)");
+//            psInsert.setString(1, l.getNome());
+//            psInsert.setBoolean(2, l.isPrivata());
+//            psInsert.setString(3, l.getDescrizione());
+//            psInsert.setString(4, l.getEmail_Persona());
+//
+//            int rowsAffected = psInsert.executeUpdate();
+//            return rowsAffected;
+//        } catch (SQLException s) {
+//            throw new RuntimeException(s);
+//        }
+//    }
 
     public int doDeleteList(int id) {
         try (Connection connection = ConPool.getConnection()) {
@@ -244,10 +275,6 @@ public class ListaDAO {
             throw new RuntimeException(e);
         }
     }
-
-
-
-
 }
 
 
