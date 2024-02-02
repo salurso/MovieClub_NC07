@@ -34,17 +34,12 @@ public class AutenticazioneService {
         return p;
     }
 
-    public static int watchlistService(String tipoRichiesta, int id_persona, int id_film) {
+    public static void watchlistService(String tipoRichiesta, int id_persona, int id_film) {
         if(tipoRichiesta != null) {
             PersonaDAO.addToWatchlist(id_persona, id_film);
         } else {
-           return PersonaDAO.removeFromWatchlist(id_persona, id_film);
+            PersonaDAO.removeFromWatchlist(id_persona, id_film);
         }
-        return 0;
-    }
-
-    public static int watchlistRemoveService(int id_persona, int id_film) {
-        return PersonaDAO.removeFromWatchlist(id_persona, id_film);
     }
 
     public static boolean isValidEmail(String email) {

@@ -9,7 +9,7 @@
 <head>
     <title>Area personale di <%=p.getNome()%> </title>
 </head>
-<body>
+<body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 <div class="container">
     <button class="item" id="datiPersona" value=" " onclick="location.href='MainServlet?action=datiPersona'">

@@ -15,6 +15,12 @@ import java.util.ArrayList;
 
 @WebServlet(name = "AggiungiListaServlet", value = "/AggiungiListaServlet")
 public class AggiungiListaServlet extends HttpServlet {
+//    private static ListaDAO listaDAO;  // Dichiarazione della variabile del DAO
+//
+//    // Metodo setter per il DAO
+//    public static void setListaDAO(ListaDAO dao) {
+//        listaDAO = dao;
+//    }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

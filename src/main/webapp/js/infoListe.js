@@ -27,7 +27,6 @@ function removeWatchlist(filmId) {
     var formId = "watchlistForm_" + filmId;
     var form = document.getElementById(formId);
 
-    var formData = new FormData(form);
     var xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = function () {
