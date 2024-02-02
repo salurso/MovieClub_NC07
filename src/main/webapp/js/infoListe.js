@@ -26,8 +26,9 @@ function removeFilm(filmId) {
 function removeWatchlist(filmId) {
     var formId = "watchlistForm_" + filmId;
     var form = document.getElementById(formId);
-
     var xhr = new XMLHttpRequest();
+
+    var formData = new FormData(form);
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -40,7 +41,7 @@ function removeWatchlist(filmId) {
         }
     };
 
-    xhr.open("POST", form.action, true);
+    xhr.open("POST","WatchlistServlet", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send(new URLSearchParams(formData));
 }
