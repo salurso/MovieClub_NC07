@@ -11,6 +11,7 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/admin/aggiungiFilm.css?v=<%=new Random().nextInt()%>"/>
+    <link rel="stylesheet" type="text/css" href="./css/admin/alert.css?v=<%=new Random().nextInt()%>"/>
     <script src="./js/film.js"></script>
     <title>Inserisci prodotto</title>
 </head>

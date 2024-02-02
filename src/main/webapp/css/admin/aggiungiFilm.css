@@ -9,34 +9,6 @@ body{
     background-color: #292929 !important;
 }
 
-.alert {
-    width:300px;
-    padding: 1rem 1rem;
-    margin:20px auto;
-    background-color: white !important;
-    color: black;
-    border-radius: 10px;
-    border: 2px solid #EF6D16 !important;
-    text-align:center;
-    font-weight: bold;
-    box-shadow: 0 20px 35px rgba(0,0,0,0.1);
-}
-
-.closebtn {
-    margin-left: 15px;
-    color: black;
-    font-weight: bold;
-    float: right;
-    font-size: 22px;
-    line-height: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.closebtn:hover {
-    color: #EF6D16;
-}
-
 input[type=text], input[type=number], input[type=time], input[type=date],select, textarea {
     width: 100%;
     padding: 12px;

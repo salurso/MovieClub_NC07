@@ -11,6 +11,7 @@ import storage.model.FilmDAO;
 import java.io.IOException;
 import java.sql.Date;
 import java.sql.Time;
+import java.util.ArrayList;
 
 @WebServlet(name = "AggiornaFilmServlet", value = "/AggiornaFilmServlet")
 public class AggiornaFilmServlet extends HttpServlet {
@@ -20,6 +21,9 @@ public class AggiornaFilmServlet extends HttpServlet {
         FilmDAO fDAO = FilmDAO.getInstance();
         Film f = new Film();
         f.setId(Integer.parseInt(request.getParameter("id")));
+        ArrayList<Film> films = new ArrayList<Film>();
+        films = (ArrayList<Film>) fDAO.doRetrieveAll();
+        request.setAttribute("films", films);
 
         if(action.equals("AGGIORNA")){
             f.setTitolo(request.getParameter("titolo"));
@@ -46,53 +50,43 @@ public class AggiornaFilmServlet extends HttpServlet {
                 fDAO.doUpdate(f);
                 result = "Film aggiornato!";
             }catch (Exception e){
-                e.printStackTrace(); // Aggiungi questa riga per vedere i dettagli dell'errore nella console
-                throw new RuntimeException(e);
-//                result = "Film già esistente!";
-//                request.setAttribute("result", result);
-
-//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
-//                requestDispatcher.forward(request, response);
+//                e.printStackTrace(); // Visualizza i dettagli dell'errore nella console
+//                throw new RuntimeException(e);
+                result = "Errore aggiornamento!";
+                request.setAttribute("result", result);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/gestisiFilm.jsp");
+                requestDispatcher.forward(request, response);
             }
 
             request.setAttribute("result", result);
-
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
             ds.forward(request, response);
         }
         if(action.equals("ELIMINA")){
-            String result;
-
-            if(fDAO.doDelete(f.getId())==0){
-                result = "Problema eliminazione!";
-            }else{
-                result = "Prodotto eliminato!";
-            }
+            String result = "";
 
             try{
                 fDAO.doDelete(f.getId());
                 result = "Film eliminato!";
             }catch (Exception e){
-                e.printStackTrace(); // Aggiungi questa riga per vedere i dettagli dell'errore nella console
-                throw new RuntimeException(e);
-//                result = "Film già esistente!";
-//                request.setAttribute("result", result);
+//                e.printStackTrace(); // Visualizza i dettagli dell'errore nella console
+//                throw new RuntimeException(e);
+                request.setAttribute("result", "Errore eliminazione!");
 
-//                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
-//                requestDispatcher.forward(request, response);
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/gestisciFilm.jsp");
+                requestDispatcher.forward(request, response);
             }
 
-            //Imposta la risposta
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write(result);
+            request.setAttribute("result", result);
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
+            ds.forward(request, response);
 
         }
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServletAdmin?action=homeAdmin");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServletAdmin?action=gestisciFilm.jsp");
         requestDispatcher.forward(request, response);
     }
 }
