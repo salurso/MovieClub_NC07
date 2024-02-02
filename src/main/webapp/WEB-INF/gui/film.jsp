@@ -33,6 +33,30 @@
             });
         }
 
+        //funzione aggiunta film watchlist
+        function addWatchlist(filmId) {
+            var formId = "watchlistForm_" + filmId;
+            var form = document.getElementById(formId);
+            var xhr = new XMLHttpRequest();
+
+            var formData = new FormData(form);
+
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    if (xhr.status === 200) {
+                        alert("Film aggiunto dalla watchlist con successo!");
+                        window.location.reload();
+                    } else {
+                        alert("Film già presente nella watchlist");
+                    }
+                }
+            };
+
+            xhr.open("POST","WatchlistServlet", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.send(new URLSearchParams(formData));
+        }
+
         //funzione per gestire il cambio nella tendina di selezione
         function aggiungiFilm(idFilm) {
             var listaSelect = document.getElementById('listaSelect_' + idFilm);
@@ -135,10 +159,12 @@
         <div class="col" data-genre="<%=f.getGenere()%>" id="genere-paragraph">
             <div class="card h-100">
                 <% if (persona != null) { %>
-                <form action="WatchlistServlet" method="post">
+                <form id="watchlistForm_<%= f.getId() %>" action="WatchlistServlet" method="post">
                     <input type="hidden" name="idFilm" value="<%= f.getId() %>">
                     <input type="hidden" name="richiesta" value="addWatchlist">
-                    <button type="submit" class="btn btn-primary position-absolute top-0 end-0">+W</button>
+                    <button type="button" class="btn btn-primary position-absolute top-0 end-0"
+                            onclick="addWatchlist(<%= f.getId() %>)">+W
+                    </button>
                 </form>
                 <% } else{ %>
                 <a href="MainServlet?action=login" class="btn btn-primary position-absolute top-0 end-0" id="link-addWatchlist">+W</a>

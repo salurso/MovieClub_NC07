@@ -19,11 +19,6 @@ public class WatchlistServlet extends HttpServlet {
 
         AutenticazioneService.watchlistService(tipoRichiesta, p.getId(), idFilm);
 
-        if(tipoRichiesta != null) {
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
-            ds.forward(request, response);
-        }
-
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
     }

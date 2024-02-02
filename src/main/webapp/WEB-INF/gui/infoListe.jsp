@@ -108,7 +108,7 @@
             </button>
           </form
         <%} else {%>
-            <form id=watchlistForm_<%= film.getId() %>" class="remove-form"
+            <form id="watchlistForm_<%= film.getId() %>" class="remove-form"
                   action="WatchlistServlet" method="POST">
               <input type="hidden" name="idFilm" value="<%= film.getId() %>">
               <button type="button" class="btn btn-outline-danger"
