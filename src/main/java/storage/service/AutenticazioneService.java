@@ -30,7 +30,6 @@ public class AutenticazioneService {
         }
         Persona p = PersonaDAO.doLogin(email, password);
         assert p != null;
-        p.setWatchlist(PersonaDAO.getWatchlistFilms(p.getId()));
         return p;
     }
 

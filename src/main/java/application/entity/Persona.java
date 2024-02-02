@@ -1,5 +1,7 @@
 package application.entity;
 
+import storage.model.PersonaDAO;
+
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -17,7 +19,6 @@ public class Persona {
     private String email;
     private String password;
     private boolean admin;
-    private ArrayList<Film> watchlist;
 
     public Persona() {
     }
@@ -28,7 +29,6 @@ public class Persona {
         this.email = email;
         setPassword(password);
         this.admin = false;
-        watchlist = new ArrayList<>();
     }
 
     public int getId() {
@@ -88,7 +88,7 @@ public class Persona {
     }
 
     public ArrayList<Film> getWatchlist() {
-        return watchlist;
+        return PersonaDAO.getWatchlistFilms(getId());
     }
 
     @Override
@@ -104,7 +104,4 @@ public class Persona {
         return Objects.hash(nome, cognome, email, password);
     }
 
-    public void setWatchlist(ArrayList<Film> watchlist) {
-        this.watchlist = watchlist;
-    }
 }
