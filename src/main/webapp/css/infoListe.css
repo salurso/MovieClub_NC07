@@ -53,13 +53,15 @@ h1 {
 .table td:hover {
     transition: font-size 0.3s ease;
 }
-
-.btn-outline-danger {
+.btn_remove{
     color: #dc3545;
     border-color: #dc3545;
+    border-radius: 3px;
+    background-color: transparent;
 }
 
-.btn-outline-danger:hover {
+
+.btn_remove:hover {
     color: #fff;
     background-color: #dc3545;
     border-color: #dc3545;
@@ -135,10 +137,7 @@ h1 {
     .table {
         font-size: 12px; /* Riduci la dimensione del testo della tabella */
     }
-}
 
-
-@media screen and (max-width: 280px) {
     .add_film {
         padding: 6px 12px;
     }
@@ -146,5 +145,10 @@ h1 {
     .containervuoto p {
         font-size: 14px;
     }
-}
 
+    @media screen and (max-width: 280px) {
+        .add_film {
+            padding: 4px 8px; /* Riduci ulteriormente il padding per il button sotto i 280px */
+        }
+    }
+}

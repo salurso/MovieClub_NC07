@@ -11,13 +11,17 @@
 <head>
     <title>Login</title>
     <link rel="stylesheet" type="text/css" href="./css/login.css?v=<%=new Random().nextInt()%>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
 </head>
-<body>
+<body class="body">
+<%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+
 <div class="wrapper">
-  <h1> Login </h1>
+  <h1 class="title_log"> Login </h1>
   <form action="LoginServlet" method="post">
-    <input type="text" placeholder="E-mail" name="email" id="email" required>
-    <input type="password" placeholder="Password" name="password" id="password" required>
+    <input class="input_log" type="text" placeholder="E-mail" name="email" id="email" required>
+    <input class="input_log" type="password" placeholder="Password" name="password" id="password" required>
     <button class="btn_login" type="submit" onclick="return(validaLogin())"> Login </button>
     <%String loginFail = (String) request.getAttribute("LoginFail");
       if(loginFail != null) {

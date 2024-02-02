@@ -33,9 +33,9 @@
         <a href="ListaServlet?action=info&id=<%= lista.getId() %>" class="card-link-apri">
             <div class="card" style="width: 18rem;">
                 <div class="card-body">
-                    <p>Lista di: <%= (creatoreLista != null) ? creatoreLista.getNome() : "N/A" %></p>
-                    <h4><%= lista.getNome() %> </h4>
-                    <p><%= lista.getDescrizione() %></p>
+                    <p class ="card-text"><%= (creatoreLista != null) ? creatoreLista.getNome() : "N/A" %></p>
+                    <h5 class ="card-title"><%= lista.getNome() %> </h5>
+                    <p class ="card-text"><%= lista.getDescrizione() %></p>
                 </div>
             </div>
         </a>
@@ -50,3 +50,6 @@
 
 </body>
 </html>
+
+
+

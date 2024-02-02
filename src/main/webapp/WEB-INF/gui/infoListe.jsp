@@ -102,7 +102,7 @@
                 action="ModificaListaServlet?action=rimuoviFilm" method="POST">
             <input type="hidden" name="idLista" value="<%= l.getId() %>">
             <input type="hidden" name="idFilm" value="<%= film.getId() %>">
-            <button type="button" class="btn btn-outline-danger"
+            <button type="button" class="btn_remove"
                     onclick="removeFilm(<%= film.getId() %>)"
                     <%= (persona != null && creatoreLista != null && persona.getEmail().equals(creatoreLista.getEmail())) ? "" : "disabled" %>>RIMUOVI
             </button>
