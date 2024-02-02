@@ -17,7 +17,7 @@ public class AggiornaFilmServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
-        FilmDAO fDAO = new FilmDAO();
+        FilmDAO fDAO = FilmDAO.getInstance();
         Film f = new Film();
         f.setId(Integer.parseInt(request.getParameter("id")));
 

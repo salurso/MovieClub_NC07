@@ -14,6 +14,20 @@ public class Film {
     private String copertina;
     private String trailer;
 
+    public Film(String titolo, String descrizione, Date dataUscita, String regista, Time durata, String genere, String copertina, String trailer) {
+        this.titolo = titolo;
+        this.descrizione = descrizione;
+        this.dataUscita = dataUscita;
+        this.regista = regista;
+        this.durata = durata;
+        this.genere = genere;
+        this.copertina = copertina;
+        this.trailer = trailer;
+    }
+
+    public Film() {
+    }
+
     public int getId() {
         return id;
     }

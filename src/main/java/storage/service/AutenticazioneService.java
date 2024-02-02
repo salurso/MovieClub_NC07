@@ -22,7 +22,6 @@ public class AutenticazioneService {
         Persona p = new Persona(nome, cognome, email, password);
         PersonaDAO.doRegistration(p);
         return p;
-
     }
 
     public static Persona doLoginService(String email, String password) throws SQLException {
@@ -82,9 +81,4 @@ public class AutenticazioneService {
     public static boolean isValidLogin(String email, String password) {
         return isValidEmail(email) && isValidPassword(password);
     }
-
-
-
-
-
 }

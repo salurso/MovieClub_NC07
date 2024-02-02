@@ -18,7 +18,7 @@ public class FilmServlet extends HttpServlet {
 //        int id = Integer.parseInt(request.getParameter("id"));
         int id = Integer.parseInt(request.getParameter("id"));
 
-        FilmDAO pDAO = new FilmDAO();
+        FilmDAO pDAO = FilmDAO.getInstance();
         Film f = pDAO.doRetrieveById(id);
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
         ArrayList<Recensione> recensioni = rDAO.doRetrieveByIDFilm(id);

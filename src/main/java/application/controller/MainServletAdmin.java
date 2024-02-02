@@ -25,7 +25,7 @@ public class MainServletAdmin extends HttpServlet {
             ds.forward(request, response);
         }
         if(action.equals("gestisci_film")){
-            FilmDAO fDAO = new FilmDAO();
+            FilmDAO fDAO = FilmDAO.getInstance();
             ArrayList<Film> films = new ArrayList<Film>();
             films = (ArrayList<Film>) fDAO.doRetrieveAll();
             request.setAttribute("films", films);

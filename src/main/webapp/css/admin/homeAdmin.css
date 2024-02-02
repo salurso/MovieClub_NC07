@@ -83,10 +83,10 @@ display: flex; /*allinea gli elementi uno di fianco all'altro*/
     width:300px;
     padding: 1rem 1rem;
     margin:20px auto;
-    background-color: white;
-    color: #38271E;
+    background-color: white !important;
+    color: black;
     border-radius: 10px;
-    border: 2px solid #A06028;
+    border: 2px solid #EF6D16 !important;
     text-align:center;
     font-weight: bold;
     box-shadow: 0 20px 35px rgba(0,0,0,0.1);
@@ -94,7 +94,7 @@ display: flex; /*allinea gli elementi uno di fianco all'altro*/
 
 .closebtn {
     margin-left: 15px;
-    color: #38271E;
+    color: black !important;
     font-weight: bold;
     float: right;
     font-size: 22px;
@@ -104,7 +104,7 @@ display: flex; /*allinea gli elementi uno di fianco all'altro*/
 }
 
 .closebtn:hover {
-    color: #A06028;
+    color: #EF6D16;
 }
 
 @media (max-width: 767px) {

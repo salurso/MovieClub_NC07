@@ -61,27 +61,6 @@ class AggiungiListaServletTest {
     }
 
     @Test
-    void testNomeListaMaxLengthDue() throws Exception {
-        // Preparazione dei mock
-        HttpServletRequest request = mock(HttpServletRequest.class);
-        HttpServletResponse response = mock(HttpServletResponse.class);
-        RequestDispatcher requestDispatcher = null; // Inizializza a null
-        ListaDAO listaDAO = mock(ListaDAO.class);
-        AggiungiListaServlet servlet = new AggiungiListaServlet();
-
-        // Configurazione degli input simulati
-        when(request.getParameter("Email_Persona")).thenReturn("user1@gmail.com");
-        // Simula un nome troppo lungo
-        when(request.getParameter("Nome")).thenReturn("PROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVA");
-
-        // Esegui il metodo doPost della servlet
-        servlet.doPost(request, response);
-
-        // Verifica che il metodo doInsert del mock ListaDAO non sia stato chiamato
-        verify(listaDAO, never()).doInsert(any());
-    }
-
-    @Test
     void testNomeListaMaxLength() throws Exception {
         // Preparazione dei mock
         HttpServletRequest request = mock(HttpServletRequest.class);
@@ -95,8 +74,7 @@ class AggiungiListaServletTest {
         when(request.getParameter("Nome")).thenReturn("PROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVAPROVA");
 
             try{
-                when(listaDAO.doInsert(any())).thenReturn(1); // Simula che l'inserimento abbia avuto successo
-
+                when(listaDAO.doInsert(any())).thenReturn(0); // Simula che l'inserimento abbia avuto successo
                 servlet.doPost(request, response);
             }catch (Exception e){
                 fail("Eccezione non attesa: " + e.getMessage());

@@ -17,6 +17,13 @@
 <body>
     <%@ include file="/WEB-INF/navbar/navbarAdmin.jsp" %>
 
+    <%if(request.getAttribute("result")!=null){%>
+    <div class="alert" id="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        <%=request.getAttribute("result")%>
+    </div>
+    <%}%>
+
     <div class="container-info">
         <div class="add_film">
             <form action="AggiungiFilmServlet" enctype="multipart/form-data" method="POST">
@@ -69,7 +76,7 @@
                 <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="220" required></textarea>
 
                 <input class="btn_add" type="submit" name="action" value="AGGIUNGI FILM" onclick="return(validateInsert())">
-
+<%--                onclick="return(validateInsert())"--%>
             </form>
         </div>
     </div>

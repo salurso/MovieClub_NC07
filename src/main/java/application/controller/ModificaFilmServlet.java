@@ -13,7 +13,7 @@ public class ModificaFilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        FilmDAO fDAO = new FilmDAO();
+        FilmDAO fDAO = FilmDAO.getInstance();
         Film f = fDAO.doRetrieveById(id);
         request.setAttribute("film", f);
 

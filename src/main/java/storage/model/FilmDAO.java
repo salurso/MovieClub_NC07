@@ -9,18 +9,18 @@ import java.util.List;
 
 public class FilmDAO {
 
-//    private static FilmDAO instance;
-//
-//    private FilmDAO() {
-//        // Costruttore privato per impedire l'istanziazione esterna
-//    }
-//
-//    public static synchronized FilmDAO getInstance() {
-//        if (instance == null) {
-//            instance = new FilmDAO();
-//        }
-//        return instance;
-//    }
+    private static FilmDAO instance;
+
+    private FilmDAO() {
+        // Costruttore privato per impedire l'istanziazione esterna
+    }
+
+    public static synchronized FilmDAO getInstance() {
+        if (instance == null) {
+            instance = new FilmDAO();
+        }
+        return instance;
+    }
 
     public List<Film> doRetrieveAll() {
 
@@ -71,7 +71,7 @@ public class FilmDAO {
         }
     }
 
-    public int doInsert(Film f) throws IOException {
+    public static int doInsert(Film f) throws IOException {
 
         int result;
         try (Connection con = ConPool.getConnection()) {

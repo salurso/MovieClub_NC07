@@ -70,7 +70,7 @@ public class ListaServlet extends HttpServlet {
 //                ds.forward(request, response);
 
             } else if (action.equals("aggiungiFilm")) {
-                FilmDAO fDAO = new FilmDAO();
+                FilmDAO fDAO = FilmDAO.getInstance();
                 ArrayList<Film> films = new ArrayList<Film>();
                 films = (ArrayList<Film>) fDAO.doRetrieveAll();
                 request.setAttribute("films", films);

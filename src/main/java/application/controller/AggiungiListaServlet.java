@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import storage.model.ListaDAO;
-import storage.service.ListaService;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,19 +21,20 @@ public class AggiungiListaServlet extends HttpServlet {
         ListaDAO lDAO = ListaDAO.getInstance();
 
         String emailPersona = request.getParameter("Email_Persona");
-        String nome = request.getParameter("Nome");
-        String descrizione = request.getParameter("Descrizione");
-        boolean privata = "1".equals(request.getParameter("Privata"));
+
+        String Nome = request.getParameter("Nome");
+        String Descrizione = request.getParameter("Descrizione");
+        boolean Privata = "1".equals(request.getParameter("Privata"));
 
         Lista l = new Lista();
-        l.setNome(nome);
-        l.setDescrizione(descrizione);
-        l.setPrivata(privata);
+        l.setNome(Nome);
+        l.setDescrizione(Descrizione);
+        l.setPrivata(Privata);
         l.setEmail_Persona(emailPersona);
 
         String result = "";
         try {
-            int rowsAffected = ListaService.doInsertService(emailPersona, nome, descrizione, privata);
+            int rowsAffected = lDAO.doInsert(l);
             if (rowsAffected > 0) {
                 result = "Lista inserita!";
             } else {
