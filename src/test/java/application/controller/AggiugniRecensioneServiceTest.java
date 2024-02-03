@@ -3,7 +3,6 @@ package application.controller;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
-import storage.service.FilmService;
 import storage.service.ListaService;
 import storage.service.RecensioneService;
 
@@ -68,6 +67,24 @@ public class AggiugniRecensioneServiceTest {
         assertThrows(IllegalArgumentException.class,
                 () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
                 "Formato Descrizione non valido!");
+    }
+
+    @Test
+    public void testSuccesso() throws IOException {
+        // CASO DI SUCCESSO.
+        int valutazione = 3; // CORRETTO
+        String descrizione = faker.lorem().sentence(); // CORRETTO
+        Date dataInserimento = Date.valueOf("2024-01-01");
+        String emailPersona = faker.internet().emailAddress(); // CORRETTO
+        int idFilm = 1; //CORRETTO
+
+        try (MockedStatic<ListaService> mocked = mockStatic(ListaService.class)) {
+            mocked.when(() -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm))
+                    .thenReturn(1);
+
+            int result = RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm);
+            assertEquals(1, result);
+        }
     }
 
 }

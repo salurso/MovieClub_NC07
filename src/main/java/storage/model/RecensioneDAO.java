@@ -43,18 +43,17 @@ public class RecensioneDAO {
 
     // AggiungiRecensione
     // AggiungiRecensione
-    public static void doSave(Recensione recensione) throws IOException {
+    public int doSave(Recensione recensione) throws IOException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
+
             ps.setInt(1, recensione.getValutazione());
             ps.setString(2, recensione.getDescrizione());
             ps.setDate(3, new java.sql.Date(recensione.getDataInserimento().getTime()));
             ps.setString(4, recensione.getEmailPersona());
             ps.setInt(5, recensione.getIdFilm());
 
-            if(ps.executeUpdate() != 1){
-                throw new RuntimeException("Errore nella definizione dell'indirizzo");
-            }
+            return ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);

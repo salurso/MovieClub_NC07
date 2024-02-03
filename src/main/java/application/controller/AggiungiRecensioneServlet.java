@@ -39,8 +39,10 @@ public class AggiungiRecensioneServlet extends HttpServlet {
         // Usa il DAO per salvare la recensione nel database
         RecensioneDAO recensioneDAO = RecensioneDAO.getInstance();
         try {
-            recensioneDAO.doSave(recensione);
-            result = "Recensione inserita con successo"; // Reindirizza a una pagina di successo
+            int rowsAffected = recensioneDAO.doSave(recensione);
+            if (rowsAffected > 0) {
+                result = "Recensione inserita con successo";
+            }
         } catch (IOException e) {
             // Gestione dell'eccezione, ad esempio reindirizzamento a una pagina di errore
             result = "Recensione non inserita ";

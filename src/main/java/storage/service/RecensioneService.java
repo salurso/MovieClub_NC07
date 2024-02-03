@@ -9,7 +9,7 @@ import java.util.regex.Pattern;
 
 public class RecensioneService {
 
-    public static String doSaveService(int valutazione, String descrizione, Date dataInserimento, String emailPersona, int idFilm) throws IOException {
+    public static int doSaveService(int valutazione, String descrizione, Date dataInserimento, String emailPersona, int idFilm) throws IOException {
         validateRecensione(valutazione, descrizione, dataInserimento, emailPersona, idFilm); //validazione generale
 
         Recensione r = new Recensione();
@@ -22,7 +22,7 @@ public class RecensioneService {
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
 
        rDAO.doSave(r);
-       return "Recensione inserita!";
+       return  rDAO.doSave(r);
     }
 
     public static void validateRecensione(int valutazione, String descrizione, Date dataInserimento, String emailPersona, int idFilm){
