@@ -13,7 +13,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
 public class AggiugniRecensioneServiceTest {
-
     Faker faker = new Faker();
 
     @Test
@@ -23,7 +22,7 @@ public class AggiugniRecensioneServiceTest {
         Date dataInserimento = Date.valueOf("2024-01-01");
         String emailPersona = faker.internet().emailAddress(); // CORRETTO
         int idFilm = 1; //CORRETTO
-
+        
         assertThrows(IllegalArgumentException.class,
                 () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
                 "Valutazione non corretta: Deve essere compresa tra 1 e 5!");
@@ -31,7 +30,7 @@ public class AggiugniRecensioneServiceTest {
 
     @Test
     public void valutazioneTroppoPiccolaTest() {
-        int valutazione = 0; // SBAGLIATO, troppo grande
+        int valutazione = 0; // SBAGLIATO
         String descrizione = faker.lorem().sentence(); // CORRETTO
         Date dataInserimento = Date.valueOf("2024-01-01");
         String emailPersona = faker.internet().emailAddress(); // CORRETTO
@@ -78,7 +77,7 @@ public class AggiugniRecensioneServiceTest {
         String emailPersona = faker.internet().emailAddress(); // CORRETTO
         int idFilm = 1; //CORRETTO
 
-        try (MockedStatic<ListaService> mocked = mockStatic(ListaService.class)) {
+        try (MockedStatic<RecensioneService> mocked = mockStatic(RecensioneService.class)) {
             mocked.when(() -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm))
                     .thenReturn(1);
 
