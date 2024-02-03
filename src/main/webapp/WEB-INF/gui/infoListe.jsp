@@ -68,12 +68,12 @@
   <% if(tipoRichiesta == null) { %>
   <h1 align="center">Lista: <%= l.getNome() %> </h1>
   <div class="container">
-    <p class="pcreator" style="color: #ffa31a">Lista di: <%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
+    <p class="pcreator" style="color: #ffa31a"><%= (creatoreLista != null) ? creatoreLista.getEmail() : "N/A" %></p>
   </div>
   <% } else { %>
   <h1 align="center"> Watchlist </h1>
   <div class="container">
-    <p style="color: #ffa31a">di: <%= persona.getNome() %></p>
+    <p class="pcreator" style="color: #ffa31a"><%=persona.getNome().toUpperCase() %></p>
   </div>
   <% } %>
   <table class="table">
@@ -111,7 +111,7 @@
             <form id="watchlistForm_<%= film.getId() %>" class="remove-form"
                   action="WatchlistServlet" method="POST">
               <input type="hidden" name="idFilm" value="<%= film.getId() %>">
-              <button type="button" class="btn btn-outline-danger"
+              <button type="button" class="btn_remove"
                       onclick="removeWatchlist(<%= film.getId() %>)">RIMUOVI
               </button>
             </form>

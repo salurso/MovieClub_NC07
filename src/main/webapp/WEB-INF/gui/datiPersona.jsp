@@ -14,10 +14,10 @@
     <link rel="stylesheet" type="text/css" href="./css/datiPersona.css?v=<%=new Random().nextInt()%>"/>
     <title>Informazioni</title>
 </head>
-<body>
+<body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 <div class="container">
-    <h2 style="text-align: center;">Informazioni di <%=persona.getNome()%></h2>
+    <h2 class="dati_title" style="text-align: center;">Informazioni di <%=persona.getNome()%></h2>
     <div class="form-group">
         <label for="nome">Nome:</label>
         <input type="text" id="nome" name="nome" value="<%=persona.getNome()%>" disabled>

@@ -8,7 +8,7 @@
 <html>
 <head>
     <title>Liste Pubbliche</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<%--    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">--%>
     <link rel="stylesheet" type="text/css" href="./css/listePubbliche.css?v=<%=new Random().nextInt()%>"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -19,7 +19,7 @@
 %>
 
 <h1 align="center" class="title_pubblica"> Liste Pubbliche</h1>
-<div class="row row-cols-1 row-cols-md-4 g-4">
+<div class="row">
     <%
         ListaDAO listaDAO = ListaDAO.getInstance();
         PersonaDAO personaDAO = PersonaDAO.getInstance();
