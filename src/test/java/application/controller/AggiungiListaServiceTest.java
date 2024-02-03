@@ -3,7 +3,10 @@ package application.controller;
 import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+import storage.model.ListaDAO;
 import storage.service.ListaService;
+import org.mockito.MockedStatic;
+import static org.mockito.Mockito.*;
 
 import java.io.IOException;
 
@@ -45,6 +48,24 @@ public class AggiungiListaServiceTest {
         assertThrows(IllegalArgumentException.class,
                 () -> ListaService.doInsertService(email, nome, descrizione, privata),
                 "Formato Descrizione non valido: Non deve superare i 100 caratteri!");
+    }
+
+    @Test
+    public void listaDuplicataTest() throws IOException {
+        String email = "andresalurso88@gmail.com";
+        String nomeLista = "Ciao";
+
+        // Simula che esiste già una lista con lo stesso nome ed email Utente
+        try (MockedStatic<ListaDAO> mockedDAO = mockStatic(ListaDAO.class)) {
+            ListaDAO listaDAOMock = mock(ListaDAO.class);
+            mockedDAO.when(ListaDAO::getInstance).thenReturn(listaDAOMock);
+            when(listaDAOMock.isListaDuplicata(nomeLista, email)).thenReturn(true);
+
+            // Verifica che chiamare il metodo doInsertService lanci un'eccezione
+            assertThrows(IllegalArgumentException.class,
+                    () -> ListaService.doInsertService(email, nomeLista, "Descrizione", true),
+                    "Una lista con lo stesso nome è già associata alla stessa email!");
+        }
     }
 
     @Test
