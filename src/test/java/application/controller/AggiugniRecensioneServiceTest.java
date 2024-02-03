@@ -1,9 +1,7 @@
 package application.controller;
 
-import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
-import storage.service.ListaService;
 import storage.service.RecensioneService;
 
 import java.io.IOException;
@@ -13,69 +11,46 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
 public class AggiugniRecensioneServiceTest {
-    Faker faker = new Faker();
+
+    private static final String VALUTAZIONE_ERROR_MESSAGE = "Valutazione non corretta: Deve essere compresa tra 1 e 5!";
+    private static final String DESCRIZIONE_LENGTH_ERROR_MESSAGE = "Formato Descrizione non valido: Non deve superare i 250 caratteri!";
+    private static final String DESCRIZIONE_FORMAT_ERROR_MESSAGE = "Formato Descrizione non valido!";
 
     @Test
     public void valutazioneTroppoGrandeTest() {
-        int valutazione = 6; // SBAGLIATO, troppo grande
-        String descrizione = faker.lorem().sentence(); // CORRETTO
-        Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = faker.internet().emailAddress(); // CORRETTO
-        int idFilm = 1; //CORRETTO
-        
         assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
-                "Valutazione non corretta: Deve essere compresa tra 1 e 5!");
+                () -> RecensioneService.doSaveService(6, "descrizione", Date.valueOf("2024-01-01"), "email", 1),
+                VALUTAZIONE_ERROR_MESSAGE);
     }
 
     @Test
     public void valutazioneTroppoPiccolaTest() {
-        int valutazione = 0; // SBAGLIATO
-        String descrizione = faker.lorem().sentence(); // CORRETTO
-        Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = faker.internet().emailAddress(); // CORRETTO
-        int idFilm = 1; //CORRETTO
-
         assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
-                "Valutazione non corretta: Deve essere compresa tra 1 e 5!");
+                () -> RecensioneService.doSaveService(0, "descrizione", Date.valueOf("2024-01-01"), "email", 1),
+                VALUTAZIONE_ERROR_MESSAGE);
     }
 
-    //Descrizione formato
     @Test
     public void descrizioneTroppoLungaTest() {
-        int valutazione = 3; // CORRETTO
-        String descrizione = faker.lorem().characters(251); // SBAGLIATO
-        Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = faker.internet().emailAddress(); // CORRETTO
-        int idFilm = 1; //CORRETTO
-
         assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
-                "Formato Descrizione non valido: Non deve superare i 250 caratteri!");
+                () -> RecensioneService.doSaveService(3, "descrizione lunga oltre i 250 caratteri", Date.valueOf("2024-01-01"), "email", 1),
+                DESCRIZIONE_LENGTH_ERROR_MESSAGE);
     }
 
     @Test
     public void formatoDescrizioneNonRispettato() {
-        int valutazione = 3; // CORRETTO
-        String descrizione = "Descrizione con carattere speciale: @"; // SBAGLIATO
-        Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = faker.internet().emailAddress(); // CORRETTO
-        int idFilm = 1; //CORRETTO
-
         assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
-                "Formato Descrizione non valido!");
+                () -> RecensioneService.doSaveService(3, "Descrizione con carattere speciale: @", Date.valueOf("2024-01-01"), "email", 1),
+                DESCRIZIONE_FORMAT_ERROR_MESSAGE);
     }
 
     @Test
     public void testSuccesso() throws IOException {
-        // CASO DI SUCCESSO.
-        int valutazione = 3; // CORRETTO
-        String descrizione = faker.lorem().sentence(); // CORRETTO
+        int valutazione = 3;
+        String descrizione = "descrizione";
         Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = faker.internet().emailAddress(); // CORRETTO
-        int idFilm = 1; //CORRETTO
+        String emailPersona = "email";
+        int idFilm = 1;
 
         try (MockedStatic<RecensioneService> mocked = mockStatic(RecensioneService.class)) {
             mocked.when(() -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm))
@@ -85,5 +60,4 @@ public class AggiugniRecensioneServiceTest {
             assertEquals(1, result);
         }
     }
-
 }
