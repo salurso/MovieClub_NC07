@@ -21,8 +21,8 @@ public class RecensioneService {
 
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
 
-       rDAO.doSave(r);
-       return  rDAO.doSave(r);
+        rDAO.doSave(r);
+        return  rDAO.doSave(r);
     }
 
     public static void validateRecensione(int valutazione, String descrizione, Date dataInserimento, String emailPersona, int idFilm){
@@ -33,27 +33,23 @@ public class RecensioneService {
         //validateIdFilm(idFilm);
     }
 
-    public static void validateValutazione(int valutazione){
-        int n1 = 1;
-        int n2 = 2;
-        int n3 = 3;
-        int n4 = 4;
-        int n5 = 5;
-        if(n1 != valutazione && n2 != valutazione && n3 != valutazione && n4 != valutazione && n5 != valutazione){
-            throw new RuntimeException("Valutazione non corretta");
+    public static void validateValutazione(int valutazione) {
+        if (valutazione < 1 || valutazione > 5) {
+            throw new IllegalArgumentException("Valutazione non corretta: deve essere compresa tra 1 e 5");
         }
     }
 
-    public static void validateDescrizione(String descrizione){
+    public static void validateDescrizione(String descrizione) {
         if (descrizione.length() > 250) {
-            throw new IllegalArgumentException("Formato descrizione non valido: Non deve superare i 250 caratteri!");
+            throw new IllegalArgumentException("Formato descrizione non valido: non deve superare i 250 caratteri");
         }
 
-        String stringRegex = "^[A-Za-z0-9.,’”\\s!?()-]";
+        String stringRegex = "^[\\p{Print}]+$";
         if (!Pattern.matches(stringRegex, descrizione)) {
-            throw new IllegalArgumentException("Formato descrizione non rispettata.");
+            throw new IllegalArgumentException("Formato descrizione non rispettato");
         }
     }
+
 
     public static boolean validateDataInserimento(Date dataInserimento){
         if(dataInserimento!=null)
@@ -61,10 +57,10 @@ public class RecensioneService {
         return false;
     }
 
-    public static void validateEmailPersona(String emailPersona){
+    public static void validateEmailPersona(String emailPersona) {
         String emailRegex = "^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,3}$";
         if (!Pattern.matches(emailRegex, emailPersona)) {
-            throw new IllegalArgumentException("Formato email non corretto!");
+            throw new IllegalArgumentException("Formato email non corretto");
         }
     }
 
