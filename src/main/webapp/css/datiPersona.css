@@ -1,13 +1,13 @@
-body {
+.body {
     font-family: Arial, sans-serif;
     margin: 0;
-    background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)), url("../images/sfondologin.jpeg");
+    background-color: #292929;
 }
 
 .container {
     max-width: 600px;
     padding: 20px;
-    background-color: #E4E0BB;
+    background-color: #fff;
     margin: 3rem auto;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
@@ -15,6 +15,12 @@ body {
 
 .form-group {
     margin-bottom: 20px;
+}
+
+.dati_title{
+    color: #ffa31a;
+    text-transform: uppercase;
+    font-weight: bold;
 }
 
 label {

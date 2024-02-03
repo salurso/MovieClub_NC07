@@ -25,6 +25,7 @@ h1 {
     position: relative;
     width: 100%; /* Make cards full width */
     text-decoration: none;
+    max-width: 18rem;
 }
 
 .grid-container {
@@ -91,105 +92,9 @@ input[type="submit"]:hover {
     text-transform: uppercase;
 }
 
-.body {
-    background-color: #292929;
+@media (min-width: 768px) {
+    .card {
+        max-width: 100%;
+    }
 }
 
-.centered-alert {
-    margin-top: 20px;
-}
-
-h1 {
-    font-weight: bold;
-    color: #ffa31a;
-    padding-bottom: 2rem;
-}
-
-.alert {
-    margin-top: 20px;
-}
-
-.card {
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: 0.3s ease-in-out;
-    position: relative;
-    width: 100%; /* Make cards full width */
-}
-
-.grid-container {
-    display: flex;
-    justify-content: center;
-}
-
-.row {
-    margin-top: 20px;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.alert-info {
-    width: 50%;
-    margin: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    background-color: #292929; /* Imposta lo sfondo nero */
-}
-
-input[type="submit"] {
-    width: 30%;
-    background-color: #1b1b1b;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
-}
-
-input[type="submit"]:hover {
-    background-color: #ffa31a;
-}
-
-.card-title {
-    color: #1b1b1b;
-}
-
-.card-title.private {
-    color: #ffa31a;
-}
-
-.card-links {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    padding: 10px;
-}
-
-.card-link-apri,
-.card-link-gestisci {
-    color: #ffa31a;
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease-in-out;
-}
-
-.card-link-gestisci {
-    color: #292929;
-}
-
-.card-link-apri:hover,
-.card-link-gestisci:hover {
-    color: #1b1b1b;
-    text-decoration: none;
-}
-
-.card-links {
-    background-color: rgba(0, 0, 0, 0.5);
-}
