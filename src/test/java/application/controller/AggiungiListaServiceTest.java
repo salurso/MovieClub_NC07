@@ -71,9 +71,9 @@ public class AggiungiListaServiceTest {
     @Test
     public void testSuccesso() throws IOException {
         // CASO DI SUCCESSO.
-        String email = faker.internet().emailAddress();
-        String nome = faker.name().username();
-        String descrizione = faker.lorem().sentence();
+        String email = faker.internet().emailAddress(); //CORRETTO
+        String nome = faker.name().username(); //CORRETTO
+        String descrizione = faker.lorem().sentence(); //CORRETTO
 
         try (MockedStatic<ListaService> mocked = mockStatic(ListaService.class)) {
             mocked.when(() -> ListaService.doInsertService(email, nome, descrizione, privata))
