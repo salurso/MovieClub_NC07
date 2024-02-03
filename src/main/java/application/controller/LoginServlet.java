@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
             request.getSession().setAttribute("Persona", p);
 
             if(p == null) {
-                request.setAttribute("LoginFail", "Errore parametri");
+                request.setAttribute("LoginFail", "Email o password errati");
                 RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/login.jsp");
                 rs.forward(request, response);
                 return;

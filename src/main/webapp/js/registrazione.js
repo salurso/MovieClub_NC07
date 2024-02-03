@@ -3,22 +3,31 @@ function validaRegistrazione() {
         return false;
     }
 
-    var nomeRGX = /^[a-zA-Z]*$/;
     var nome = document.getElementById('nome').value;
-    if (nomeRGX.test(nome) == false) {
-        alert("Nome non valido!");
+    var nomeRGX = /^[a-zA-Z]*$/;
+    if (nome.length < 3 || nome.length > 30) {
+        alert("Il nome deve avere una lunghezza compresa tra 3 e 30 caratteri.");
+        return false;
+    }
+    if (!nomeRGX.test(nome)) {
+        alert("Il nome deve contenere solo lettere.");
         return false;
     }
 
-    var cognomeRGX = /^[a-zA-Z]*$/;
     var cognome = document.getElementById('cognome').value;
-    if (cognomeRGX.test(cognome) == false) {
-        alert("Cognome non valido!");
+    var cognomeRGX = /^[a-zA-Z]*$/;
+    if (cognome.length < 3 || cognome.length > 30) {
+        alert("Il cognome deve avere una lunghezza compresa tra 3 e 30 caratteri.");
+        return false;
+    }
+    if (!cognomeRGX.test(cognome)) {
+        alert("Il cognome deve contenere solo lettere.");
         return false;
     }
 
     return true;
 }
+
 
 function validaLogin() {
     var email = document.getElementById('email').value;
@@ -41,6 +50,7 @@ function validaLogin() {
 
     return true;
 }
+
 
 
 

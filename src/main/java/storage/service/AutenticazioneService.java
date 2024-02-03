@@ -47,14 +47,26 @@ public class AutenticazioneService {
     }
 
     public static boolean isValidPassword(String password) {
+
+        if (password.length() < 8 || password.length() > 30) {
+            throw new IllegalArgumentException("La lunghezza della password deve essere compresa tra 3 e 8 caratteri.");
+        }
+
         String passwordRegex = "^[A-Za-z0-9$!@?]+$";
-        return Pattern.matches(passwordRegex, password) && password.length() >= 8 && password.length() <= 30;
+        return Pattern.matches(passwordRegex, password);
     }
 
+
     public static boolean isValidString(String input) {
+
+        if (input.length() < 3 || input.length() > 30) {
+            throw new IllegalArgumentException("La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+        }
+
         String stringRegex = "^[a-zA-Z]*$";
         return Pattern.matches(stringRegex, input);
     }
+
 
     public static boolean isValidRegistration(String email, String password, String nome, String cognome) {
         if (!isValidEmail(email))

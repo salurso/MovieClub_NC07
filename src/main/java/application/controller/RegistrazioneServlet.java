@@ -22,7 +22,7 @@ public class RegistrazioneServlet extends HttpServlet {
         try {
             Persona p = AutenticazioneService.doRegistrationService(nome, cognome, email, password);
             if(p == null) {
-                request.setAttribute("LoginFail", "Errore parametri");
+                request.setAttribute("LoginFail", "Email già esistente");
                 RequestDispatcher rs = request.getRequestDispatcher("./WEB-INF/gui/registrazione.jsp");
                 rs.forward(request, response);
                 return;
