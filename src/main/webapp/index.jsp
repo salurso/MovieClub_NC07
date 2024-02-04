@@ -45,15 +45,6 @@
     <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
 
     <div class="centered-alert">
-        <%if(request.getAttribute("LoginSuccess")!=null){%>
-        <div class="alert" id="alert">
-            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-            <%=request.getAttribute("LoginSuccess")%>
-        </div>
-        <%}%>
-    </div>
-
-    <div class="centered-alert">
             <% if(request.getAttribute("result")!=null){ %>
         <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>

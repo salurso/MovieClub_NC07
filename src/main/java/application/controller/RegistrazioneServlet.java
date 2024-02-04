@@ -27,7 +27,7 @@ public class RegistrazioneServlet extends HttpServlet {
                 rs.forward(request, response);
                 return;
             }
-            request.setAttribute("LoginSuccess", "Registrazione effetuata");
+            request.setAttribute("result", "Registrazione effettuata");
             request.getSession().setAttribute("Persona", p);
             RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
             rs.forward(request, response);
