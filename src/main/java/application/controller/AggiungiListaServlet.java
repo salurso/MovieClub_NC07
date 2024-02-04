@@ -9,25 +9,18 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import storage.model.ListaDAO;
+import storage.service.ListaService;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet(name = "AggiungiListaServlet", value = "/AggiungiListaServlet")
 public class AggiungiListaServlet extends HttpServlet {
-//    private static ListaDAO listaDAO;  // Dichiarazione della variabile del DAO
-//
-//    // Metodo setter per il DAO
-//    public static void setListaDAO(ListaDAO dao) {
-//        listaDAO = dao;
-//    }
 
-    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ListaDAO lDAO = ListaDAO.getInstance();
 
         String emailPersona = request.getParameter("Email_Persona");
-
         String Nome = request.getParameter("Nome");
         String Descrizione = request.getParameter("Descrizione");
         boolean Privata = "1".equals(request.getParameter("Privata"));
@@ -40,16 +33,22 @@ public class AggiungiListaServlet extends HttpServlet {
 
         String result = "";
         try {
-            int rowsAffected = lDAO.doInsert(l);
+            // Chiamata al servizio con gestione dell'eccezione
+            int rowsAffected = ListaService.doInsertService(emailPersona, Nome, Descrizione, Privata);
+
             if (rowsAffected > 0) {
                 result = "Lista inserita!";
             } else {
                 result = "Nome Lista già presente per l'utente corrente";
             }
+        } catch (IllegalArgumentException e) {
+            // Eccezione gestita: lista duplicata
+            result = e.getMessage();
         } catch (RuntimeException e) {
             e.printStackTrace();
             result = "Errore durante l'inserimento della lista: " + e.getMessage();
         }
+
         request.setAttribute("result", result);
 
         // Recupera solo le liste create dall'utente corrente
@@ -62,7 +61,6 @@ public class AggiungiListaServlet extends HttpServlet {
         requestDispatcher.forward(request, response);
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Reindirizza alla home page
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("MainServlet?action=homePage");

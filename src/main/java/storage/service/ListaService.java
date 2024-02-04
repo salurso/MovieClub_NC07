@@ -20,11 +20,12 @@ public class ListaService {
         ListaDAO listaDAO = ListaDAO.getInstance();
 
         if (listaDAO.isListaDuplicata(nome, email)) {
-            throw new IllegalArgumentException("Una lista con lo stesso nome è già associata alla stessa email!");
+            throw new IllegalArgumentException("Errore: Lista già esistente per l'utente corrente!");
         }
 
         return listaDAO.doInsert(l);
     }
+
 
     public static void validateLista(String email, String nome, String descrizione) {
         validateEmail(email);
