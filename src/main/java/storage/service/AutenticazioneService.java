@@ -49,7 +49,7 @@ public class AutenticazioneService {
     public static boolean isValidPassword(String password) {
 
         if (password.length() < 8 || password.length() > 30) {
-            throw new IllegalArgumentException("La lunghezza della password deve essere compresa tra 3 e 8 caratteri.");
+            throw new IllegalArgumentException("La lunghezza della password deve essere compresa tra 8 e 30 caratteri.");
         }
 
         String passwordRegex = "^[A-Za-z0-9$!@?]+$";

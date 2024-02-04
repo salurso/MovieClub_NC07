@@ -46,18 +46,25 @@ public class AutenticazioneServiceTest {
                 "Formato email non corretto!");
     }
 
-
     @Test
     public void testInvalidNomeLength() {
-        String nome = faker.name().firstName().substring(0, 2); // Nome troppo corto
+        String nomeTroppoCorto = faker.name().firstName().substring(0, 2); // Nome troppo corto
+        String nomeTroppoLungo = faker.lorem().characters(31); // Nome troppo lungo
         String cognome = faker.name().lastName();
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
 
+        // Test per la lunghezza troppo corta
         assertThrows(IllegalArgumentException.class,
-                () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
-                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+                () -> AutenticazioneService.doRegistrationService(nomeTroppoCorto, cognome, email, password),
+                "La lunghezza del nome deve essere compresa tra 3 e 30 caratteri.");
+
+        // Test per la lunghezza troppo lunga
+        assertThrows(IllegalArgumentException.class,
+                () -> AutenticazioneService.doRegistrationService(nomeTroppoLungo, cognome, email, password),
+                "La lunghezza del nome deve essere compresa tra 3 e 30 caratteri.");
     }
+
 
     @Test
     public void testInvalidNomeFormat() {
@@ -74,13 +81,20 @@ public class AutenticazioneServiceTest {
     @Test
     public void testInvalidCognomeLength() {
         String nome = faker.name().firstName();
-        String cognome = faker.name().lastName().substring(0, 2); // Cognome troppo corto
+        String cognomeTroppoCorto = faker.name().lastName().substring(0, 2); // Cognome troppo corto
+        String cognomeTroppoLungo = faker.lorem().characters(31); // Cognome troppo lungo
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
 
+        // Test per la lunghezza troppo corta
         assertThrows(IllegalArgumentException.class,
-                () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
-                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+                () -> AutenticazioneService.doRegistrationService(nome, cognomeTroppoCorto, email, password),
+                "La lunghezza del cognome deve essere compresa tra 3 e 30 caratteri.");
+
+        // Test per la lunghezza troppo lunga
+        assertThrows(IllegalArgumentException.class,
+                () -> AutenticazioneService.doRegistrationService(nome, cognomeTroppoLungo, email, password),
+                "La lunghezza del cognome deve essere compresa tra 3 e 30 caratteri.");
     }
     @Test
     public void testInvalidCognomeFormat() {
@@ -99,12 +113,20 @@ public class AutenticazioneServiceTest {
         String nome = faker.name().firstName();
         String cognome = faker.name().lastName();
         String email = faker.internet().emailAddress();
-        String password = faker.internet().password().substring(0, 7); // Password troppo corta
+        String passwordTroppoCorta = faker.internet().password().substring(0, 7); // Password troppo corta
+        String passwordTroppoLunga = faker.lorem().characters(31);
 
+        // Test per la lunghezza troppo corta
         assertThrows(IllegalArgumentException.class,
-                () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
-                "La lunghezza della password deve essere compresa tra 3 e 8 caratteri.");
+                () -> AutenticazioneService.doRegistrationService(nome, cognome, email, passwordTroppoCorta),
+                "La lunghezza della password deve essere compresa tra 8 e 30 caratteri.");
+
+        // Test per la lunghezza troppo lunga
+        assertThrows(IllegalArgumentException.class,
+                () -> AutenticazioneService.doRegistrationService(nome, cognome, email, passwordTroppoLunga),
+                "La lunghezza della password deve essere compresa tra 8 e 30 caratteri.");
     }
+
 
     @Test
     public void testInvalidPasswordFormat() {
