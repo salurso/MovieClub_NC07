@@ -23,9 +23,11 @@ public class AggiungiListaServiceTest {
         String nome = faker.lorem().characters(31); //SBAGLIATO
         String descrizione = faker.lorem().sentence(); //CORRETTO
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> ListaService.doInsertService(email, nome, descrizione, privata),
-                "Formato Nome non corretto: Non deve superare i 30 caratteri!");
+                "Formato nome non corretto: Non deve superare i 30 caratteri!");
+
+        assertEquals("Formato nome non corretto: Non deve superare i 30 caratteri!", thrown.getMessage());
     }
 
     @Test
@@ -34,9 +36,11 @@ public class AggiungiListaServiceTest {
         String nome = faker.name().username(); //CORRETTO
         String descrizione = faker.lorem().sentence(); //CORRETTO
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> ListaService.doInsertService(email, nome, descrizione, privata),
-                "Formato Email non corretto!");
+                "Formato email non corretto!");
+
+        assertEquals("Formato email non corretto!", thrown.getMessage());
     }
 
     @Test
@@ -45,9 +49,11 @@ public class AggiungiListaServiceTest {
         String nome = faker.name().username(); //CORRETTO
         String descrizione = faker.lorem().characters(101); //SBAGLIATO
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> ListaService.doInsertService(email, nome, descrizione, privata),
-                "Formato Descrizione non valido: Non deve superare i 100 caratteri!");
+                "Formato descrizione non valido: Non deve superare i 100 caratteri!");
+
+        assertEquals("Formato descrizione non valido: Non deve superare i 100 caratteri!", thrown.getMessage());
     }
 
     @Test
@@ -62,9 +68,11 @@ public class AggiungiListaServiceTest {
             when(listaDAOMock.isListaDuplicata(nomeLista, email)).thenReturn(true);
 
             // Verifica che chiamare il metodo doInsertService lanci un'eccezione
-            assertThrows(IllegalArgumentException.class,
+            IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                     () -> ListaService.doInsertService(email, nomeLista, "Descrizione", true),
-                    "Una lista con lo stesso nome è già associata alla stessa email!");
+                    "Errore: Lista già esistente per l'utente corrente!");
+
+            assertEquals("Errore: Lista già esistente per l'utente corrente!", thrown.getMessage());
         }
     }
 
@@ -83,4 +91,5 @@ public class AggiungiListaServiceTest {
             assertEquals(1, result);
         }
     }
+
 }

@@ -124,7 +124,7 @@ public class AggiungiFilmServletTest {
         String durata = "00-05-05";
         String descrizione = faker.lorem().sentence();
         String genere = "Musical";
-        System.out.println(regista);
+
         assertEquals("Formato durata non corretto!", FilmService.doInsertFilmService(titolo, regista, copertina, trailer, date, durata, descrizione, genere));
     }
 
