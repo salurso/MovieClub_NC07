@@ -35,15 +35,16 @@ public class AutenticazioneServiceTest {
 
     @Test
     public void testEmailNonCorretta() {
-        Faker faker = new Faker();
         String nome = faker.name().firstName();
         String cognome = faker.name().lastName();
         String email = faker.lorem().word();  // Genera una mail non corretta
         String password = faker.internet().password();
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
                 "Formato email non corretto!");
+
+        assertEquals("Formato email non corretto!", thrown.getMessage());
     }
 
     @Test
@@ -55,16 +56,19 @@ public class AutenticazioneServiceTest {
         String password = faker.internet().password();
 
         // Test per la lunghezza troppo corta
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownCorto = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nomeTroppoCorto, cognome, email, password),
-                "La lunghezza del nome deve essere compresa tra 3 e 30 caratteri.");
+                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+
+        assertEquals("La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.", thrownCorto.getMessage());
 
         // Test per la lunghezza troppo lunga
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownLungo = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nomeTroppoLungo, cognome, email, password),
-                "La lunghezza del nome deve essere compresa tra 3 e 30 caratteri.");
-    }
+                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
 
+        assertEquals("La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.", thrownLungo.getMessage());
+    }
 
     @Test
     public void testInvalidNomeFormat() {
@@ -73,9 +77,11 @@ public class AutenticazioneServiceTest {
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
                 "Formato nome non corretto!");
+
+        assertEquals("Formato nome non corretto!", thrown.getMessage());
     }
 
     @Test
@@ -87,15 +93,20 @@ public class AutenticazioneServiceTest {
         String password = faker.internet().password();
 
         // Test per la lunghezza troppo corta
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownCorto = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognomeTroppoCorto, email, password),
-                "La lunghezza del cognome deve essere compresa tra 3 e 30 caratteri.");
+                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+
+        assertEquals("La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.", thrownCorto.getMessage());
 
         // Test per la lunghezza troppo lunga
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownLungo = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognomeTroppoLungo, email, password),
-                "La lunghezza del cognome deve essere compresa tra 3 e 30 caratteri.");
+                "La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.");
+
+        assertEquals("La lunghezza della stringa deve essere compresa tra 3 e 30 caratteri.", thrownLungo.getMessage());
     }
+
     @Test
     public void testInvalidCognomeFormat() {
         String nome = faker.name().firstName();
@@ -103,9 +114,11 @@ public class AutenticazioneServiceTest {
         String email = faker.internet().emailAddress();
         String password = faker.internet().password();
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
                 "Formato cognome non corretto!");
+
+        assertEquals("Formato cognome non corretto!", thrown.getMessage());
     }
 
     @Test
@@ -117,16 +130,19 @@ public class AutenticazioneServiceTest {
         String passwordTroppoLunga = faker.lorem().characters(31);
 
         // Test per la lunghezza troppo corta
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownCorta = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, passwordTroppoCorta),
                 "La lunghezza della password deve essere compresa tra 8 e 30 caratteri.");
 
+        assertEquals("La lunghezza della password deve essere compresa tra 8 e 30 caratteri.", thrownCorta.getMessage());
+
         // Test per la lunghezza troppo lunga
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrownLunga = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, passwordTroppoLunga),
                 "La lunghezza della password deve essere compresa tra 8 e 30 caratteri.");
-    }
 
+        assertEquals("La lunghezza della password deve essere compresa tra 8 e 30 caratteri.", thrownLunga.getMessage());
+    }
 
     @Test
     public void testInvalidPasswordFormat() {
@@ -135,16 +151,15 @@ public class AutenticazioneServiceTest {
         String email = faker.internet().emailAddress();
         String password = faker.internet().password() + "%"; // Password con caratteri non consentiti
 
-        assertThrows(IllegalArgumentException.class,
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
                 () -> AutenticazioneService.doRegistrationService(nome, cognome, email, password),
                 "Formato password non corretto!");
+
+        assertEquals("Formato password non corretto!", thrown.getMessage());
     }
-
-
 
     @Test
     public void testEmailDuplicata() throws SQLException {
-        Faker faker = new Faker();
         String nome = faker.name().firstName();
         String cognome = faker.name().lastName();
         String email = faker.internet().emailAddress();
@@ -158,5 +173,6 @@ public class AutenticazioneServiceTest {
                     "doRegistrationService deve restituire null in caso di email duplicata");
         }
     }
+
 
 }
