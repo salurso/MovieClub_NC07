@@ -31,7 +31,7 @@
     <form action="AggiungiRecensioneServlet" method="POST">
 
         <label for="Valutazione">Valutazione:</label>
-        <input type="text" name="Valutazione" id="Valutazione" maxlength="1">
+        <input type="text" name="Valutazione" id="Valutazione" maxlength="1" placeholder="Inserire un numero da 1 a 5">
 <%--        required min="1" max="5"--%>
         <label for="Descrizione">Descrizione:</label>
         <textarea name="Descrizione" id="Descrizione" placeholder="Commenta qui..."></textarea>
