@@ -9,6 +9,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="./css/film.css?v=<%=new Random().nextInt()%>"/>
+    <link rel="stylesheet" type="text/css" href="./css/admin/alert.css?v=<%=new Random().nextInt()%>"/>
     <title>MovieClub</title>
 
     <script>
@@ -42,6 +43,15 @@
 </head>
 <body class="body">
     <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
+
+    <div class="centered-alert">
+        <%if(request.getAttribute("LoginSuccess")!=null){%>
+        <div class="alert" id="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            <%=request.getAttribute("LoginSuccess")%>
+        </div>
+        <%}%>
+    </div>
 
     <div class="centered-alert">
             <% if(request.getAttribute("result")!=null){ %>
