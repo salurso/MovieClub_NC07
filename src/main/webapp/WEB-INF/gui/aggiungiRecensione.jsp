@@ -40,7 +40,7 @@
         <input type="hidden" name="Email_persona" value="<%=persona.getEmail()%>">
         <input type="hidden" name="ID_Film" value="<%=idFilm%>">
 
-        <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return validateInsert()">
+        <input class="btn_add" type="submit" name="action" value="INVIA RECENSIONE" onclick="return (validateInsert())">
     </form>
 </div>
 
