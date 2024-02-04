@@ -1,56 +1,96 @@
 package application.controller;
 
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
+import storage.service.AutenticazioneService;
 import storage.service.RecensioneService;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mockStatic;
 
 public class AggiugniRecensioneServiceTest {
 
-    private static final String VALUTAZIONE_ERROR_MESSAGE = "Valutazione non corretta: Deve essere compresa tra 1 e 5!";
-    private static final String DESCRIZIONE_LENGTH_ERROR_MESSAGE = "Formato Descrizione non valido: Non deve superare i 250 caratteri!";
-    private static final String DESCRIZIONE_FORMAT_ERROR_MESSAGE = "Formato Descrizione non valido!";
+    private static final String VALUTAZIONE_ERROR_MESSAGE = "La valutazione deve essere compresa tra 1 e 5";
+    private static final String DESCRIZIONE_LENGTH_ERROR_MESSAGE = "La descrizione non deve superare i 250 caratteri";
+    private static final String DESCRIZIONE_FORMAT_ERROR_MESSAGE = "Formato descrizione non valido";
 
-    @Test
-    public void valutazioneTroppoGrandeTest() {
-        assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(6, "descrizione", Date.valueOf("2024-01-01"), "email", 1),
-                VALUTAZIONE_ERROR_MESSAGE);
-    }
+    Faker faker = new Faker();
 
     @Test
     public void valutazioneTroppoPiccolaTest() {
-        assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(0, "descrizione", Date.valueOf("2024-01-01"), "email", 1),
+        int valutazione = faker.number().numberBetween(-5, 0);
+        String descrizione = faker.lorem().sentence(10);
+        Date dataInserimento = new Date(faker.date().future(1, TimeUnit.DAYS).getTime());
+        String emailPersona = faker.internet().emailAddress();
+        int idFilm = faker.number().numberBetween(1, 100);
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
                 VALUTAZIONE_ERROR_MESSAGE);
+
+        assertEquals(VALUTAZIONE_ERROR_MESSAGE, thrown.getMessage());
+    }
+
+    @Test
+    public void valutazioneTroppoGrandeTest() {
+        int valutazione = faker.number().numberBetween(6, 10);
+        String descrizione = faker.lorem().characters(10);
+        Date dataInserimento = new Date(faker.date().future(1, TimeUnit.DAYS).getTime());
+        String emailPersona = faker.internet().emailAddress();
+        int idFilm = faker.number().numberBetween(1, 100);
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
+                VALUTAZIONE_ERROR_MESSAGE);
+
+        assertEquals(VALUTAZIONE_ERROR_MESSAGE, thrown.getMessage());
     }
 
     @Test
     public void descrizioneTroppoLungaTest() {
-        assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(3, "descrizione lunga oltre i 250 caratteri", Date.valueOf("2024-01-01"), "email", 1),
+        int valutazione = faker.number().numberBetween(1, 5);
+        String descrizione = faker.lorem().characters(251);
+        Date dataInserimento = new Date(faker.date().future(1, TimeUnit.DAYS).getTime());
+        String emailPersona = faker.internet().emailAddress();
+        int idFilm = faker.number().numberBetween(1, 100);
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
                 DESCRIZIONE_LENGTH_ERROR_MESSAGE);
+
+        assertEquals(DESCRIZIONE_LENGTH_ERROR_MESSAGE, thrown.getMessage());
     }
+
+
 
     @Test
     public void formatoDescrizioneNonRispettato() {
-        assertThrows(IllegalArgumentException.class,
-                () -> RecensioneService.doSaveService(3, "Descrizione con carattere speciale: @", Date.valueOf("2024-01-01"), "email", 1),
+        int valutazione = faker.number().numberBetween(1, 5);
+        String descrizione = faker.lorem() + "@";
+        Date dataInserimento = new Date(faker.date().future(1, TimeUnit.DAYS).getTime());
+        String emailPersona = faker.internet().emailAddress();
+        int idFilm = faker.number().numberBetween(1, 100);
+
+        IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class,
+                () -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm),
                 DESCRIZIONE_FORMAT_ERROR_MESSAGE);
+
+        assertEquals(DESCRIZIONE_FORMAT_ERROR_MESSAGE, thrown.getMessage());
     }
 
     @Test
     public void testSuccesso() throws IOException {
-        int valutazione = 3;
-        String descrizione = "descrizione";
-        Date dataInserimento = Date.valueOf("2024-01-01");
-        String emailPersona = "email";
-        int idFilm = 1;
+        int valutazione = faker.number().numberBetween(1, 5);
+        String descrizione = faker.lorem().sentence(10);
+        Date dataInserimento = new Date(faker.date().future(1, TimeUnit.DAYS).getTime());
+        String emailPersona = faker.internet().emailAddress();
+        int idFilm = faker.number().numberBetween(1, 100);
 
         try (MockedStatic<RecensioneService> mocked = mockStatic(RecensioneService.class)) {
             mocked.when(() -> RecensioneService.doSaveService(valutazione, descrizione, dataInserimento, emailPersona, idFilm))
@@ -60,4 +100,8 @@ public class AggiugniRecensioneServiceTest {
             assertEquals(1, result);
         }
     }
+
+
+
+
 }
