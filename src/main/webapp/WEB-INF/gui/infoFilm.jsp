@@ -85,7 +85,7 @@
                 for(Recensione recensione : arrayRecensioni){
             %>
             <div class="email-user">
-                <span class="grid-item" style="font-weight: bold; <% if (recensione.getEmailPersona() != null && persona != null && recensione.getEmailPersona().equals(persona.getEmail())) { %> text-transform: uppercase; <% } %>" ><%= recensione.getEmailPersona() %></span>
+                <span class="grid-item" style="font-weight: bold" ><%= recensione.getEmailPersona() %></span>
 
                 <div class="valutazione">
                     <%
