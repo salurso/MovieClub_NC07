@@ -122,4 +122,32 @@ public class FilmDAO {
             throw new RuntimeException(s);
         }
     }
+
+    public List<Film> doRetrieveAllFromYear2022() {
+        try (Connection con = ConPool.getConnection()) {
+            String query = "SELECT ID, Titolo, Regista, Durata, Copertina, Genere FROM Film " +
+                    "WHERE YEAR(data_uscita) = 2022";
+            PreparedStatement ps = con.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            ArrayList<Film> films = new ArrayList<>();
+
+            while (rs.next()) {
+                Film f = new Film();
+                f.setId(rs.getInt(1));
+                f.setTitolo(rs.getString(2));
+                f.setRegista(rs.getString(3));
+                f.setDurata(rs.getTime(4));
+                f.setCopertina(rs.getString(5));
+                f.setGenere(rs.getString(6));
+
+                films.add(f);
+            }
+            return films;
+
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
+        }
+    }
+
+
 }
