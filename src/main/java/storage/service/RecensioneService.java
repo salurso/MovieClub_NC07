@@ -21,7 +21,6 @@ public class RecensioneService {
 
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
 
-        rDAO.doSave(r);
         return  rDAO.doSave(r);
     }
 
@@ -44,17 +43,16 @@ public class RecensioneService {
             throw new IllegalArgumentException("Formato descrizione non valido: non deve superare i 250 caratteri");
         }
 
-        String stringRegex = "^[\\p{Print}]+$";
+        String stringRegex = "^[A-Za-z0-9.,'\"\\s!?()-]+$";
         if (!Pattern.matches(stringRegex, descrizione)) {
             throw new IllegalArgumentException("Formato descrizione non rispettato");
         }
     }
 
 
-    public static boolean validateDataInserimento(Date dataInserimento){
+    public static void validateDataInserimento(Date dataInserimento){
         if(dataInserimento!=null)
-            return true;
-        return false;
+            throw new IllegalArgumentException("Formato data non corretto");
     }
 
     public static void validateEmailPersona(String emailPersona) {

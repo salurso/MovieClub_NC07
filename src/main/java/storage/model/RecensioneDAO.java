@@ -41,8 +41,7 @@ public class RecensioneDAO {
         }
     }
 
-    // AggiungiRecensione
-    // AggiungiRecensione
+
     public int doSave(Recensione recensione) throws IOException {
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");

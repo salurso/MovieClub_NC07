@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import storage.model.RecensioneDAO;
+import storage.service.RecensioneService;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -16,8 +17,7 @@ import java.util.Date;
 
 @WebServlet(name = "/AggiungiRecensioneServlet", value="/AggiungiRecensioneServlet")
 public class AggiungiRecensioneServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String result = "";
 
         // Ottieni i parametri dalla richiesta
@@ -27,27 +27,12 @@ public class AggiungiRecensioneServlet extends HttpServlet {
         String emailPersona = request.getParameter("Email_persona");
         int idFilm = Integer.parseInt(request.getParameter("ID_Film"));
 
-        // Crea un oggetto Recensione con i parametri ricevuti
-        Recensione recensione = new Recensione();
-        recensione.setValutazione(stelle);
-        recensione.setDescrizione(descrizione);
-        recensione.setDataInserimento(new Date());  // Utilizziamo la data corrente
-        //controllo con if
-        recensione.setEmailPersona(emailPersona);
-        recensione.setIdFilm(idFilm);
-
-        // Usa il DAO per salvare la recensione nel database
-        RecensioneDAO recensioneDAO = RecensioneDAO.getInstance();
-        try {
-            int rowsAffected = recensioneDAO.doSave(recensione);
+        int rowsAffected = RecensioneService.doSaveService(stelle, descrizione, new Date(), emailPersona, idFilm);
             if (rowsAffected > 0) {
                 result = "Recensione inserita con successo";
+            } else {
+                result = "Recensione non inserita ";
             }
-        } catch (IOException e) {
-            // Gestione dell'eccezione, ad esempio reindirizzamento a una pagina di errore
-            result = "Recensione non inserita ";
-        }
-
         request.setAttribute("result", result);
 
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("index.jsp");
