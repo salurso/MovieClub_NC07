@@ -44,14 +44,14 @@ public class FilmService {
     }
 
     private static boolean isValidTitolo(String titolo) {
-        if(!titolo.isEmpty() && titolo.length()<=60)
+        if(titolo.length()!=0 && titolo.length()<=60)
             return true;
         return false;
     }
 
     private static boolean isValidRegista(String regista) {
-        String stringRegex = "^[a-zA-Z ]*$";
-        if(Pattern.matches(stringRegex, regista) && regista.length()<=60 && !regista.isEmpty())
+        String stringRegex = "^[a-zA-Z .']*$";
+        if(Pattern.matches(stringRegex, regista) && regista.length()<=60 && regista.length()!=0)
             return true;
         return false;
     }
@@ -89,7 +89,7 @@ public class FilmService {
 
     public static boolean isValidGenere(String genere){
         String[] generi = {"Documentary", "Biography", "Drama", "Music", "Horror", "Sci-Fi", "Crime", "Mystery", "Romance", "Thriller", "Adventure", "Comedy", "Action", "Sport", "Fantasy", "History", "Family", "Animation", "War", "Western", "Musical"};
-        boolean isValid = false;
+        boolean isValid = true;
         if(genere!=null) {
             String[] genereArray = genere.split(",\\s*"); // Divide la stringa genere in elementi separati da virgola e spazio
 
@@ -102,14 +102,15 @@ public class FilmService {
                     }
                 }
                 // Se l'elemento non è stato trovato nell'array generi, imposta la variabile booleana su false e interrompi il ciclo
-                if (!found || genere.length()<=100) {
+                if (!found) {
                     isValid = false;
                     break;
                 }
             }
-        }
+        }else
+            return false;
 
-        if(isValid)
+        if(isValid && genere.length()<=100)
             return true;
         return false;
     }

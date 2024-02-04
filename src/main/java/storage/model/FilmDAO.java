@@ -125,8 +125,7 @@ public class FilmDAO {
 
     public List<Film> doRetrieveAllFromYear2022() {
         try (Connection con = ConPool.getConnection()) {
-            String query = "SELECT ID, Titolo, Regista, Durata, Copertina, Genere FROM Film " +
-                    "WHERE YEAR(data_uscita) = 2022";
+            String query = "SELECT ID, Titolo, Regista, Durata, Copertina, Genere FROM Film WHERE YEAR(DataUscita) = 2019";
             PreparedStatement ps = con.prepareStatement(query);
             ResultSet rs = ps.executeQuery();
             ArrayList<Film> films = new ArrayList<>();

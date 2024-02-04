@@ -1,5 +1,5 @@
 .alert {
-    width:300px;
+    width:fit-content;
     padding: 1rem 1rem;
     margin:20px auto;
     background-color: white !important;

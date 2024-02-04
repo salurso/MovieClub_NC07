@@ -44,11 +44,6 @@ public class ListaService {
         if (input.length() < 1 || input.length() > 30) {
             throw new IllegalArgumentException("Formato nome non corretto: Non deve superare i 30 caratteri!");
         }
-
-        String stringRegex = "^[a-zA-Z]*$";
-        if (!Pattern.matches(stringRegex, input)) {
-            throw new IllegalArgumentException("Il nome deve contenere solo lettere.");
-        }
     }
 
     public static boolean isListaDuplicata(String nome, String email) throws IOException {
@@ -59,11 +54,6 @@ public class ListaService {
     public static void validateDescrizione(String input) {
         if (input.length() > 100) {
             throw new IllegalArgumentException("Formato descrizione non valido: Non deve superare i 100 caratteri!");
-        }
-
-        String stringRegex = "^[a-zA-Z]*$";
-        if (!Pattern.matches(stringRegex, input)) {
-            throw new IllegalArgumentException("La descrizione deve contenere solo lettere.");
         }
     }
 }

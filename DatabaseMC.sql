@@ -61,8 +61,8 @@ FOREIGN KEY (ID_Film) references Film (ID)
 );
 
 INSERT INTO Film (ID, Titolo, Descrizione, DataUscita, Regista, Durata, Genere, Copertina, Trailer)
-VALUES (1, 'Film1', 'Descrizione Film1', '2024-01-25', 'Regista1', '02:30:00', 'Action', 'copertina1.jpg', 'trailer1.mp4'),
-       (2, 'Film2', 'Descrizione Film2', '2024-01-26', 'Regista2', '02:15:00', 'Comedy', 'copertina2.jpg', 'trailer2.mp4');
+VALUES (1, 'Film1', 'Descrizione Film1', '2024-01-25', 'Regista Uno', '02:30:00', 'Action', 'copertina1.jpg', 'trailer1.mp4'),
+       (2, 'Film2', 'Descrizione Film2', '2024-01-26', 'Regista Due', '02:15:00', 'Comedy', 'copertina2.jpg', 'trailer2.mp4');
 
 INSERT INTO Persona (Email, Password, Nome, Cognome, Admin)
 VALUES ('user1@gmail.com', sha1('user1234'), 'UserUno', 'User', 0),

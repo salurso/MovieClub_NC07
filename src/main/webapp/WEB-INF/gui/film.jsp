@@ -163,11 +163,11 @@
                     <input type="hidden" name="idFilm" value="<%= f.getId() %>">
                     <input type="hidden" name="richiesta" value="addWatchlist">
                     <button type="button" class="btn btn-primary position-absolute top-0 end-0"
-                            onclick="addWatchlist(<%= f.getId() %>)">+W
+                            onclick="addWatchlist(<%= f.getId() %>)">+
                     </button>
                 </form>
                 <% } else{ %>
-                <a href="MainServlet?action=login" class="btn btn-primary position-absolute top-0 end-0" id="link-addWatchlist">+W</a>
+                <a href="MainServlet?action=login" class="btn btn-primary position-absolute top-0 end-0" id="link-addWatchlist">+</a>
                 <%}%>
                 <img src="<%=f.getCopertina()%>" class="card-img-top" alt="immagine non disponibile">
                 <div class="card-body">
@@ -196,13 +196,6 @@
                         </select>
                         <%}%>
                     </form>
-
-<%--                    <!-- Aggiungi un recensione -->--%>
-<%--                    <form action="RecensioneServlet?action=aggRecensione" method="POST" id="aggiungiRecensioneForm<%= f.getId() %>">--%>
-<%--                        <input type="hidden" name="idFilm" value="<%= f.getId() %>">--%>
-<%--                        <input type="submit" value="Aggiungi recensione">--%>
-<%--                    </form>--%>
-
                 </div>
             </div>
         </div>

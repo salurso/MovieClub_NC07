@@ -36,8 +36,16 @@
                     <a class="nav-link" href="MainServlet?action=consigliati">Consigliati</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MainServlet?action=contatti">Contatti</a>
+                    <a class="nav-link" href="ListaServlet?action=pubblica">Liste pubbliche</a>
                 </li>
+                <%if(persona != null) {%>
+                <li class="nav-item">
+                    <a class="nav-link" href="MainServlet?action=watchlist">Watchlist</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="ListaServlet?action=lista">Le mie liste</a>
+                </li>
+                <%}%>
             </ul>
             <%if(persona == null) {%>
                 <a class="nav-link" href="MainServlet?action=login"><button type="button" class="btn btn-primary">ACCEDI</button></a>

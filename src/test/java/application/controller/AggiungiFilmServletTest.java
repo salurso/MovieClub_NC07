@@ -18,7 +18,7 @@ public class AggiungiFilmServletTest {
     @Test
     public void doInsertFilmService() throws IOException {
         //CASO DI SUCESSO
-        String titolo = faker.lorem().sentence();
+        String titolo = faker.lorem().characters(60);
         String regista = faker.name().fullName();
         String copertina = "";
         String trailer = "";
@@ -56,7 +56,7 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_registaErrato() throws IOException {
         //REGISTA NON VALIDO
-        String titolo = faker.lorem().sentence();
+        String titolo = faker.lorem().characters(60);
         String regista = "1234";
         String copertina = "";
         String trailer = "";
@@ -71,12 +71,8 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_copertinaErrato() throws IOException {
         //COPERTINA NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().fullName();
         String copertina = faker.lorem().characters(151);;
         String trailer = "";
         Date date = Date.valueOf("2024-01-01");
@@ -90,13 +86,9 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_trailerErrato() throws IOException {
         //TRAILER NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
-        String copertina = "";;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().fullName();
+        String copertina = "";
         String trailer = faker.lorem().characters(101);
         Date date = Date.valueOf("2024-01-01");
         String durata = "00:05:05";
@@ -109,13 +101,9 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_dataErrato() throws IOException {
         //DATA NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
-        String copertina = "";;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().fullName();
+        String copertina = "";
         String trailer = "";
         Date date = null;
         String durata = "00:05:05";
@@ -128,32 +116,24 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_durataErrato() throws IOException {
         //DURATA NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
-        String copertina = "";;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().lastName();
+        String copertina = "";
         String trailer = "";
         Date date = Date.valueOf("2024-01-01");
         String durata = "00-05-05";
         String descrizione = faker.lorem().sentence();
         String genere = "Musical";
-
+        System.out.println(regista);
         assertEquals("Formato durata non corretto!", FilmService.doInsertFilmService(titolo, regista, copertina, trailer, date, durata, descrizione, genere));
     }
 
     @Test
     public void insertFilm_descrizioneErrato() throws IOException {
         //DESCRIZIONE NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
-        String copertina = "";;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().fullName();
+        String copertina = "";
         String trailer = "";
         Date date = Date.valueOf("2024-01-01");
         String durata = "00:05:05";
@@ -169,13 +149,9 @@ public class AggiungiFilmServletTest {
     @Test
     public void insertFilm_genereErrato() throws IOException {
         //GENERE NON VALIDO
-        String titolo = faker.lorem().sentence();
-        String nome = faker.name().lastName();
-        while (nome.length() > 30) {
-            nome = faker.name().lastName();
-        }
-        String regista = nome;
-        String copertina = "";;
+        String titolo = faker.lorem().characters(60);
+        String regista = faker.name().fullName();
+        String copertina = "";
         String trailer = "";
         Date date = Date.valueOf("2024-01-01");
         String durata = "00:05:05";

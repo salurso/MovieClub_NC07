@@ -2,7 +2,7 @@ function validateInsert() {
 
     // validazione regista
     var regista = document.getElementById('regista').value.trim();
-    var registaRegex = /^[A-Za-z\s]+$/;
+    var registaRegex = /^[A-Za-z .'\s]+$/;
     if (!registaRegex.test(regista)) {
         alert('Il campo "Regista" non può contenere numeri o caratteri speciali.');
         return false;
@@ -79,11 +79,11 @@ function validateInsert() {
 }
 
 function confirmDelete(id){
-    if(confirm("Sei sicuro di voler eliminare il film??")){
+    if(confirm("Sei sicuro di voler eliminare il film?")){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function (){
             if(xhr.readyState == 4 && xhr.status == 200){
-                alert(xhr.responseText)
+                alert(xhr.responseText);
                 window.location.href="MainServletAdmin?action=homeAdmin";
             }
         };
