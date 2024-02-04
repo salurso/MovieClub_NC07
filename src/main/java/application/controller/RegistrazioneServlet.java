@@ -43,6 +43,8 @@ public class RegistrazioneServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request, response);
+        Persona p = (Persona) request.getSession().getAttribute("Persona");
+        RequestDispatcher rs = request.getRequestDispatcher(p.isAdmin() ? "./WEB-INF/guiAdmin/homeAdmin.jsp" : "index.jsp");
+        rs.forward(request, response);
     }
 }

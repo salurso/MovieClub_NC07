@@ -67,7 +67,7 @@ VALUES (1, 'Film1', 'Descrizione Film1', '2024-01-25', 'Regista1', '02:30:00', '
 INSERT INTO Persona (Email, Password, Nome, Cognome, Admin)
 VALUES ('user1@gmail.com', sha1('user1234'), 'UserUno', 'User', 0),
        ('user2@gmail.com', sha1('user1234'), 'UserDue', 'User', 0),
-       ('admin@gmail.com', sha1('admin'), 'Admin', 'Admin', 1);
+       ('admin@gmail.com', sha1('admin1234'), 'Admin', 'Admin', 1);
 
 INSERT INTO Recensione (Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film)
 VALUES (5, 'film bellissimo', '2023-01-31', 'user1@gmail.com', 2),
