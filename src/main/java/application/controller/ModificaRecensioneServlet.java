@@ -19,14 +19,16 @@ public class ModificaRecensioneServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
 
-        int valutazione = Integer.parseInt(request.getParameter("Valutazione"));
+        //int valutazione = Integer.parseInt(request.getParameter("Valutazione"));
+        String valutazione = request.getParameter("Valutazione");
+        int stelle = Integer.parseInt(valutazione);
         String descrizione = request.getParameter("Descrizione");
         Date dataInserimento = new Date();
         int idFilm = Integer.parseInt(request.getParameter("ID_Film"));
         String emailPersona = request.getParameter("Email_persona");
 
         Recensione recensione = new Recensione();
-        recensione.setValutazione(valutazione);
+        recensione.setValutazione(stelle);
         recensione.setDescrizione(descrizione);
         recensione.setDataInserimento(dataInserimento);
         recensione.setIdFilm(idFilm);
