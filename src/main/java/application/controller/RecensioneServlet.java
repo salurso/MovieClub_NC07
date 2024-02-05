@@ -1,5 +1,6 @@
 package application.controller;
 
+import application.entity.Persona;
 import application.entity.Recensione;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -69,5 +70,11 @@ public class RecensioneServlet extends HttpServlet {
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write("{\"result\": \"" + result + "\"}");
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/gestioneRecensione.jsp");
+        ds.forward(request, response);
     }
 }

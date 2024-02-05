@@ -31,16 +31,16 @@
                 <h3>Aggiungi Film</h3>
 
                 <label for="titolo"> Titolo: </label>
-                <input type="text" name="titolo" id="titolo" maxlength="60" required>
+                <input type="text" name="titolo" id="titolo" required>
 
                 <label for="regista"> Regista: </label>
-                <input type="text" name="regista" id="regista" maxlength="60" required>
+                <input type="text" name="regista" id="regista" required>
 
                 <label for="image">Link copertina: </label>
-                <input type="text" id="image" name="copertina" maxlength="150">
+                <input type="text" id="image" name="copertina">
 
                 <label for="trailer">Link trailer: </label>
-                <input type="text" id="trailer" name="trailer" maxlength="100">
+                <input type="text" id="trailer" name="trailer">
 
                 <label>Generi: </label>
                 <div id="filtri-genre">
@@ -74,7 +74,7 @@
                 <input type="text" name="durata" id="durata" placeholder="00:00:00">
 
                 <label for="descrizione">Descrizione: </label>
-                <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="220" required></textarea>
+                <textarea name="descrizione" id="descrizione" style="height:200px" required></textarea>
 
                 <input class="btn_add" type="submit" name="action" value="AGGIUNGI FILM" onclick="return(validateInsert())">
 <%--                onclick="return(validateInsert())"--%>

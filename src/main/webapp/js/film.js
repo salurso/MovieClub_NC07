@@ -67,6 +67,12 @@ function validateInsert() {
         return false;
     }
 
+    var titolo = document.getElementById('titolo').value;
+    if(titolo.length>60){
+        alert('Lunghezza titolo non rispetatta.');
+        return false;
+    }
+
     // Verifica se titolo e regista sono compilati
     var titolo = document.getElementById('titolo').value.trim();
     var descrizione = document.getElementById('titolo').value.trim();

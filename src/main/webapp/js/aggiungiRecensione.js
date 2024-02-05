@@ -7,9 +7,18 @@ function validateInsert() {
         alert("La stringa Descrizione non rispetta il formato richiesto.");
         return false;
     }
+    if(descrizione.length>250){
+        alert("La stringa Descrizione non può superare i 250 caratteri.");
+        return false;
+    }
 
     var valore = document.getElementById('Valutazione').value;
 
+    // Verifica se il campo Valutazione è vuoto
+    if (valore.trim() === "") {
+        alert("Inserisci un valore per la Valutazione.");
+        return false;
+    }
     // Verifica se il valore non è un numero compreso tra 1 e 5
     if (valore < 1 || valore > 5 || isNaN(valore)) {
         // Mostra l'alert

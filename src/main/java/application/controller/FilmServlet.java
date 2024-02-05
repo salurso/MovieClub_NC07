@@ -31,6 +31,7 @@ public class FilmServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        RequestDispatcher ds = request.getRequestDispatcher("./WEB-INF/gui/infoFilm.jsp");
+        ds.forward(request, response);
     }
 }
