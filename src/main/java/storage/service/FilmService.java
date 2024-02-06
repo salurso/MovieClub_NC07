@@ -44,7 +44,8 @@ public class FilmService {
     }
 
     private static boolean isValidTitolo(String titolo) {
-        if(titolo.length()!=0 && titolo.length()<=60)
+        String titoloRegex = "^[A-Za-z0-9.:,'\"\\s!?()-]+$";
+        if(titolo.length()!=0 && titolo.length()<=60 && Pattern.matches(titoloRegex, titolo))
             return true;
         return false;
     }
@@ -82,7 +83,8 @@ public class FilmService {
     }
 
     public static boolean isValidDescrizione(String descrizione){
-        if(descrizione!=null && descrizione.length()<=220)
+        String descrizioneRegex = "^[^<>&]*$";
+        if(descrizione!=null && descrizione.length()<=220 && Pattern.matches(descrizioneRegex, descrizione))
             return true;
         return false;
     }

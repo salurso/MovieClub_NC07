@@ -29,12 +29,14 @@
 <body>
     <%@ include file="/WEB-INF/navbar/navbarAdmin.jsp" %>
 
-    <%if(request.getAttribute("result")!=null){%>
-    <div class="alert" id="alert">
-        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
-        <%=request.getAttribute("result")%>
+    <div class="centered-alert">
+        <% if(request.getAttribute("result")!=null){ %>
+        <div class="alert alert-dismissible fade show" role="alert">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            <%=request.getAttribute("result")%>
+        </div>
+        <%}%>
     </div>
-    <%}%>
 
     <div class="container">
         <button class="item" id="add_film" value=" " onclick="location.href='MainServletAdmin?action=aggiungi_film'">

@@ -11,14 +11,14 @@ function validateInsert() {
     // valizazione copertina
     var copertina = document.getElementById('image').value.trim();
     if (copertina.length > 150) {
-        alert('Il campo "Link copertina" non può superare i 150 caratteri.');
+        alert('Lunghezza Copertina non rispettata.');
         return false;
     }
 
     // valizazione trailer
     var trailer = document.getElementById('trailer').value.trim();
     if (trailer.length > 100) {
-        alert('Il campo "Link trailer" non può superare i 100 caratteri.');
+        alert('Lunghezza Trailer non rispettata.');
         return false;
     }
 
@@ -26,7 +26,6 @@ function validateInsert() {
     var data = document.getElementById('data');
     if (data.value === '') {
         alert('Il campo Data è obbligatorio. Compilalo prima di inviare il modulo.');
-        data.focus();
         return false;
     }
 
@@ -35,7 +34,6 @@ function validateInsert() {
     var durataRegex = /^([0-9]{2}):([0-9]{2}):([0-9]{2})$/;
     if (durata !== '' && !durataRegex.test(durata)) {
         alert('Il formato della durata deve essere 00:00:00');
-        durata.focus();
         return false;
     }
     var durataEmpity = document.getElementById('durata');
@@ -45,10 +43,9 @@ function validateInsert() {
     }
 
     // validazione descrizione
-    var descrizione = document.getElementById('descrizione');
-    if (descrizione.value.length > 220) {
-        alert('La descrizione non può superare i 220 caratteri.');
-        descrizione.focus();
+    var descrizione = document.getElementById('descrizione').value;
+    if (descrizione.length > 220 || descrizione.length<1) {
+        alert('Lunghezza descrizione non rispettata.');
         return false;
     }
 
@@ -68,18 +65,35 @@ function validateInsert() {
     }
 
     var titolo = document.getElementById('titolo').value;
-    if(titolo.length>60){
-        alert('Lunghezza titolo non rispetatta.');
+    if(titolo.length>60 || titolo.length<1){
+        alert('Lunghezza titolo non rispettata.');
         return false;
     }
 
-    // Verifica se titolo e regista sono compilati
-    var titolo = document.getElementById('titolo').value.trim();
-    var descrizione = document.getElementById('titolo').value.trim();
-    if (titolo === '' || regista === '' || descrizione === '') {
-        alert('Compila tutti i campi obbligatori.');
+    var regista = document.getElementById('regista').value;
+    if(regista.length>60 || regista.length<1){
+        alert('Lunghezza regista non rispettata.');
         return false;
     }
+
+
+    const inputDate = document.getElementById('data');
+    const dataInserita = new Date(inputDate.value);
+    const dataAttuale = new Date();
+
+    // Verifica se la data inserita è nel futuro
+    if (dataInserita > dataAttuale) {
+        alert("Data non disponibile.");
+        inputDate.value = '';
+        return false;
+    }
+
+    // // Verifica se titolo e regista sono compilati
+    // var descrizione = document.getElementById('titolo').value.trim();
+    // if (regista === '' || descrizione === '') {
+    //     alert('Compila tutti i campi obbligatori.');
+    //     return false;
+    // }
 
     return true;
 }
