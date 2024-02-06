@@ -170,4 +170,41 @@ public class PersonaDAO {
             throw new RuntimeException(s);
         }
     }
+
+    public static String getFormattedGenres(int idPersona) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT DISTINCT f.Genere FROM Film f JOIN watchlist w ON f.ID = w.ID_Film WHERE w.ID_Persona = ?");
+            ps.setInt(1, idPersona);
+            ResultSet rs = ps.executeQuery();
+
+            StringBuilder formattedGenres = new StringBuilder();
+            while (rs.next()) {
+                formattedGenres.append(rs.getString("Genere")).append(",");
+            }
+
+            return formattedGenres.toString();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static int getAverageReleaseYear(int idPersona) {
+        try (Connection connection = ConPool.getConnection()) {
+            PreparedStatement ps = connection.prepareStatement(
+                    "SELECT AVG(YEAR(f.DataUscita)) AS AvgYear FROM Film f JOIN watchlist w ON f.ID = w.ID_Film WHERE w.ID_Persona = ?");
+            ps.setInt(1, idPersona);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("AvgYear");
+            }
+
+            return 0; // O un valore di default se la watchlist è vuota
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
 }
