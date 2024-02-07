@@ -114,7 +114,7 @@ public class FilmDAO {
 
     public int doDelete(int id) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM film WHERE ID = ?");
+            PreparedStatement ps = con.prepareStatement("DELETE FROM Film WHERE ID = ?");
             ps.setInt(1, id);
 
             return ps.executeUpdate();

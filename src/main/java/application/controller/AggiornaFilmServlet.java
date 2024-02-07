@@ -73,7 +73,7 @@ public class AggiornaFilmServlet extends HttpServlet {
 //                throw new RuntimeException(e);
                 request.setAttribute("result", "Errore eliminazione!");
 
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/gestisciFilm.jsp");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
                 requestDispatcher.forward(request, response);
             }
 

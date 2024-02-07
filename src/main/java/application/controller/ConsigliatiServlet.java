@@ -24,20 +24,19 @@ import java.util.stream.Collectors;
 public class ConsigliatiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Ottieni i dati dell'utente
         Persona p = (Persona) request.getSession().getAttribute("Persona");
         String generi = PersonaDAO.getInstance().getFormattedGenres(p.getId());
         int annoMedio = PersonaDAO.getInstance().getAverageReleaseYear(p.getId());
 
         // Costruisci i dati da inviare come JSON
-        String jsonInput = "{\"Generi\": \"" + generi + "\", \"AnnoMedio\": " + annoMedio + "}";
+        String jsonInput = "{\"Genere\": \"" + generi + "\", \"MediaAnno\": " + annoMedio + "}";
 
         // Configura l'URL del servizio di raccomandazione
-        URL url = new URL("http://localhost:5000/raccomandazioni");
+        URL url = new URL("http://localhost:5000/");
 
         // Apri una connessione HTTP
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
+        conn.setRequestMethod("POST");
         conn.setRequestProperty("Content-Type", "application/json");
         conn.setDoOutput(true);
 
@@ -50,23 +49,21 @@ public class ConsigliatiServlet extends HttpServlet {
         // Leggi la risposta dal server
         try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             String responseJson = br.lines().collect(Collectors.joining(System.lineSeparator()));
+            response.getWriter().println(responseJson);
 
-//            // Converti la risposta JSON in un oggetto Java (gestisci come preferisci)
-//            JSONObject jsonResponse = new JSONObject(responseJson);
-//
 //            // Ottieni la lista di id film raccomandati
-//            JSONArray raccomandazioniArray = jsonResponse.getJSONArray("raccomandazioni");
             List<Integer> raccomandazioni = new ArrayList<>();
-            String[] ids = responseJson.replaceAll("\\[|\\]|\\s", "").split(",");
+            String[] ids = responseJson.substring(1, responseJson.length()-1).split(",");
             for (String id : ids) {
                 raccomandazioni.add(Integer.parseInt(id));
             }
 
-            // Passa i dati alla JSP
-            request.setAttribute("raccomandazioni", raccomandazioni);
-            RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
-            dispatcher.forward(request, response);
 
+
+            // Passa i dati alla JSP
+//            request.setAttribute("raccomandazioni", raccomandazioni);
+//            RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
+//            dispatcher.forward(request, response);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

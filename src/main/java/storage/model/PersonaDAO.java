@@ -179,9 +179,13 @@ public class PersonaDAO {
             ResultSet rs = ps.executeQuery();
 
             StringBuilder formattedGenres = new StringBuilder();
+            formattedGenres.append("[");
             while (rs.next()) {
-                formattedGenres.append(rs.getString("Genere")).append(",");
+                formattedGenres.append(rs.getString("Genere"));
+                if(!rs.isLast())
+                    formattedGenres.append(", ");
             }
+            formattedGenres.append("]");
 
             return formattedGenres.toString();
         } catch (SQLException e) {
