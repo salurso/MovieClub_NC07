@@ -1,5 +1,7 @@
 package application.controller;
 
+import application.entity.Film;
+import application.entity.Lista;
 import application.entity.Persona;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -7,6 +9,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import storage.model.FilmDAO;
+import storage.model.ListaDAO;
 import storage.model.PersonaDAO;
 
 import java.io.BufferedReader;
@@ -53,17 +57,31 @@ public class ConsigliatiServlet extends HttpServlet {
 
 //            // Ottieni la lista di id film raccomandati
             List<Integer> raccomandazioni = new ArrayList<>();
+             responseJson = responseJson.replace("\"", "");
+
             String[] ids = responseJson.substring(1, responseJson.length()-1).split(",");
             for (String id : ids) {
                 raccomandazioni.add(Integer.parseInt(id));
+                response.getWriter().println(id);
             }
 
+            FilmDAO fDAO = FilmDAO.getInstance();
 
+            ArrayList<Film> films = new ArrayList<Film>();
+            for(int id : raccomandazioni){
+                films.add(fDAO.doRetrieveById(id));
+            }
 
-            // Passa i dati alla JSP
-//            request.setAttribute("raccomandazioni", raccomandazioni);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher("result.jsp");
-//            dispatcher.forward(request, response);
+            request.setAttribute("films", films);
+            ListaDAO lDAO = ListaDAO.getInstance();
+            if(p!=null) {
+                ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
+                request.setAttribute("userLists", lists);
+            }
+
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
+            ds.forward(request, response);
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
