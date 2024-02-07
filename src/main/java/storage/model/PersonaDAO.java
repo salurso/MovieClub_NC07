@@ -212,7 +212,7 @@ public class PersonaDAO {
         }
     }
 
-    public ArrayList<Film> filterWatchlist(ArrayList<Film> filmList, int idPersona) {
+    public static ArrayList<Film> filterWatchlist(ArrayList<Film> filmList, int idPersona) {
         try (Connection con = ConPool.getConnection()) {
 
             ArrayList<Film> watchlist = getWatchlistFilms(idPersona);

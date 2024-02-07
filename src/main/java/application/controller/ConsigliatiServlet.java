@@ -68,11 +68,14 @@ public class ConsigliatiServlet extends HttpServlet {
             FilmDAO fDAO = FilmDAO.getInstance();
 
             ArrayList<Film> films = new ArrayList<Film>();
-            for(int id : raccomandazioni){
-                films.add(fDAO.doRetrieveById(id));
+            for (int id : raccomandazioni) {
+                Film film = fDAO.doRetrieveById(id);
+                if (film != null) {
+                    films.add(film);
+                }
             }
 
-            request.setAttribute("films", films);
+            request.setAttribute("films", PersonaDAO.filterWatchlist(films, p.getId()));
             ListaDAO lDAO = ListaDAO.getInstance();
             if(p!=null) {
                 ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
