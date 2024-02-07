@@ -33,7 +33,7 @@
                     <a class="nav-link" aria-current="page" href="MainServlet?action=film">Film</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="MainServlet?action=consigliati">Consigliati</a>
+                    <a class="nav-link" href="ConsigliatiServlet">Consigliati</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="ListaServlet?action=pubblica">Liste pubbliche</a>
