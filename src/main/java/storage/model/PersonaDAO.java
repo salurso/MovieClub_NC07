@@ -6,7 +6,9 @@ import application.entity.Persona;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class PersonaDAO {
 
@@ -207,6 +209,19 @@ public class PersonaDAO {
             return 0; // O un valore di default se la watchlist è vuota
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<Film> filterWatchlist(ArrayList<Film> filmList, int idPersona) {
+        try (Connection con = ConPool.getConnection()) {
+
+            ArrayList<Film> watchlist = getWatchlistFilms(idPersona);
+
+            filmList.removeAll(watchlist);
+
+            return filmList;
+        } catch (SQLException s) {
+            throw new RuntimeException(s);
         }
     }
 
