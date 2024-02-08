@@ -115,10 +115,22 @@ public class FilmDAO {
 
     public int doDelete(int id) {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Film WHERE ID = ?");
-            ps.setInt(1, id);
+            PreparedStatement psWatchlist = con.prepareStatement("DELETE FROM watchlist WHERE ID_Film = ?");
+            psWatchlist.setInt(1, id);
+            psWatchlist.executeUpdate();
 
-            return ps.executeUpdate();
+            PreparedStatement psInclude = con.prepareStatement("DELETE FROM Include WHERE ID_Film = ?");
+            psInclude.setInt(1, id);
+            psInclude.executeUpdate();
+
+            PreparedStatement psRecensione = con.prepareStatement("DELETE FROM Recensione WHERE ID_Film = ?");
+            psRecensione.setInt(1, id);
+            psRecensione.executeUpdate();
+
+            PreparedStatement psFilm = con.prepareStatement("DELETE FROM Film WHERE ID = ?");
+            psFilm.setInt(1, id);
+
+            return psFilm.executeUpdate();
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }

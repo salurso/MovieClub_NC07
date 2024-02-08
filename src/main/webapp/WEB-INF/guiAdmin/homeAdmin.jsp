@@ -7,31 +7,21 @@
 --%>
 <%@ page import="java.util.Random" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
 <html>
 <head>
+    <title>MovieClub</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <link rel="stylesheet" type="text/css" href="./css/admin/homeAdmin.css?v=<%=new Random().nextInt()%>"/>
     <link rel="stylesheet" type="text/css" href="./css/admin/alert.css?v=<%=new Random().nextInt()%>"/>
-    <title>MovieClub</title>
-
-    <script>
-        $(document).ready(function(){
-            if ( window.history.replaceState ) { // lo stato precedente (con requisiti) viene resettato
-                window.history.replaceState( null, null, window.location.href );
-            }
-        });
-    </script>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 </head>
 <body>
     <%@ include file="/WEB-INF/navbar/navbarAdmin.jsp" %>
 
     <div class="centered-alert">
-        <% if(request.getAttribute("result")!=null){ %>
-        <div class="alert alert-dismissible fade show" role="alert">
+        <%if(request.getAttribute("result")!=null){%>
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             <%=request.getAttribute("result")%>
         </div>
@@ -49,7 +39,6 @@
             <span class="item-text"></span>
         </button>
     </div>
-
 </body>
 </html>
 

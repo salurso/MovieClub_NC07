@@ -85,6 +85,10 @@ public class MainServlet extends HttpServlet {
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/areaPersonale.jsp");
             ds.forward(request, response);
         }
+        if(action.equals("watchlistEmpty")){
+            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/consigliatiVuoti.jsp");
+            ds.forward(request, response);
+        }
     }
 
     @Override

@@ -32,11 +32,18 @@
                 <li class="nav-item">
                     <a class="nav-link" aria-current="page" href="MainServlet?action=film">Film</a>
                 </li>
-                <%if(persona!=null){%>
-                <li class="nav-item">
-                    <a class="nav-link" href="ConsigliatiServlet">Consigliati</a>
-                </li>
-                <%}%>
+                <%if(persona!=null){
+                    if(persona.getWatchlist().isEmpty()){
+                %>
+                    <li class="nav-item">
+                        <a class="nav-link" href="MainServlet?action=watchlistEmpty">Consigliati</a>
+                    </li>
+                    <%}else{%>
+                    <li class="nav-item">
+                        <a class="nav-link" href="ConsigliatiServlet">Consigliati</a>
+                    </li>
+                <%  }
+                }%>
                 <li class="nav-item">
                     <a class="nav-link" href="ListaServlet?action=pubblica">Liste pubbliche</a>
                 </li>

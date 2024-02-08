@@ -53,16 +53,16 @@ public class ConsigliatiServlet extends HttpServlet {
         // Leggi la risposta dal server
         try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             String responseJson = br.lines().collect(Collectors.joining(System.lineSeparator()));
-            response.getWriter().println(responseJson);
+//            response.getWriter().println(responseJson);
 
-//            // Ottieni la lista di id film raccomandati
+            // Ottieni la lista di id film raccomandati
             List<Integer> raccomandazioni = new ArrayList<>();
-             responseJson = responseJson.replace("\"", "");
+            responseJson = responseJson.replace("\"", "");
 
             String[] ids = responseJson.substring(1, responseJson.length()-1).split(",");
             for (String id : ids) {
                 raccomandazioni.add(Integer.parseInt(id));
-                response.getWriter().println(id);
+//                response.getWriter().println(id);
             }
 
             FilmDAO fDAO = FilmDAO.getInstance();
@@ -70,9 +70,7 @@ public class ConsigliatiServlet extends HttpServlet {
             ArrayList<Film> films = new ArrayList<Film>();
             for (int id : raccomandazioni) {
                 Film film = fDAO.doRetrieveById(id);
-                if (film != null) {
-                    films.add(film);
-                }
+                films.add(film);
             }
 
             request.setAttribute("films", PersonaDAO.filterWatchlist(films, p.getId()));

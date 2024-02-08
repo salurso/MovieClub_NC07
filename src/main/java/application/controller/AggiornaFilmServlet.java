@@ -41,46 +41,36 @@ public class AggiornaFilmServlet extends HttpServlet {
             if (generiSelezionati != null && generiSelezionati.length > 0) {
                 // Concatena i valori in una stringa separata da virgole
                 String generiConcatenati = String.join(", ", generiSelezionati);
-
                 f.setGenere(generiConcatenati);
             }
 
-            String result = "";
             try{
                 fDAO.doUpdate(f);
-                result = "Film aggiornato!";
+                request.setAttribute("result", "Film aggiornato!");
+                RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
+                ds.forward(request, response);
             }catch (Exception e){
 //                e.printStackTrace(); // Visualizza i dettagli dell'errore nella console
 //                throw new RuntimeException(e);
-                result = "Errore aggiornamento!";
-                request.setAttribute("result", result);
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/gestisiFilm.jsp");
+                request.setAttribute("result", "Errore aggiornamento!");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
                 requestDispatcher.forward(request, response);
             }
-
-            request.setAttribute("result", result);
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
-            ds.forward(request, response);
         }
         if(action.equals("ELIMINA")){
-            String result = "";
 
             try{
                 fDAO.doDelete(f.getId());
-                result = "Film eliminato!";
+                request.setAttribute("result", "Film eliminato!");
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
+                requestDispatcher.forward(request, response);
             }catch (Exception e){
 //                e.printStackTrace(); // Visualizza i dettagli dell'errore nella console
 //                throw new RuntimeException(e);
                 request.setAttribute("result", "Errore eliminazione!");
-
                 RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
                 requestDispatcher.forward(request, response);
             }
-
-            request.setAttribute("result", result);
-            RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/guiAdmin/homeAdmin.jsp");
-            ds.forward(request, response);
-
         }
     }
 

@@ -76,10 +76,10 @@
         <textarea name="descrizione" id="descrizione" style="height:200px" maxlength="220" required><%=f.getDescrizione()%></textarea>
 
         <div class="btnadd">
-            <input class="btn_update" type="submit" name="action" value="AGGIORNA" onclick="return(validateInsert())">
-            <input class="btn_delete" type="submit" name="action" value="ELIMINA" onclick="return(confirmDelete(<%=f.getId()%>))">
+            <input class="btn_update" type="submit" name="action" value="AGGIORNA" onclick="return(validateInsert())"/>
         </div>
     </form>
+    <input class="btn_delete" type="submit" name="action" value="ELIMINA" onclick="return(confermaEliminazione(<%=f.getId()%>))"/>
 
 </div>
 </body>

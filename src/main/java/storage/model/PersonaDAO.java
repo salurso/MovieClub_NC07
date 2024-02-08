@@ -216,14 +216,32 @@ public class PersonaDAO {
         try (Connection con = ConPool.getConnection()) {
 
             ArrayList<Film> watchlist = getWatchlistFilms(idPersona);
+            ArrayList<Film> filteredList = new ArrayList<>(filmList); // Creazione di una nuova lista per evitare ConcurrentModificationException
 
-            filmList.removeAll(watchlist);
+            for (int i = 0; i < filteredList.size(); i++) {
+                Film f = filteredList.get(i);
+                if (f.getTitolo() != null) {
+                    for (int j = 0; j < watchlist.size(); j++) {
+                        Film fWatch = watchlist.get(j);
+                        if (f.getId() == fWatch.getId()) {
+                            filteredList.remove(i);
+                            i--; // Decremento l'indice per gestire la rimozione dell'elemento corrente
+                            break; // Esci dal ciclo for interno, poiché il film è stato trovato nella watchlist
+                        }
+                    }
+                } else {
+                    filteredList.remove(i);
+                    i--; // Decremento l'indice per gestire la rimozione dell'elemento corrente
+                }
+            }
 
-            return filmList;
+            return filteredList;
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }
     }
+
+
 
 
 }

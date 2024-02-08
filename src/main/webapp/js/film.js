@@ -88,17 +88,10 @@ function validateInsert() {
         return false;
     }
 
-    // // Verifica se titolo e regista sono compilati
-    // var descrizione = document.getElementById('titolo').value.trim();
-    // if (regista === '' || descrizione === '') {
-    //     alert('Compila tutti i campi obbligatori.');
-    //     return false;
-    // }
-
     return true;
 }
 
-function confirmDelete(id){
+function confermaEliminazione(id){
     if(confirm("Sei sicuro di voler eliminare il film?")){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function (){
@@ -111,7 +104,6 @@ function confirmDelete(id){
         xhr.send();
     }else{
         alert("eliminazione annullata");
-
     }
 }
 
