@@ -91,17 +91,29 @@ function validateInsert() {
     return true;
 }
 
+function sendPostRequest(url, data) {
+    var form = document.createElement('form');
+    form.method = 'POST';
+    form.action = url;
+    // Aggiungi i dati come campi input nascosti al modulo
+    for (var key in data) {
+        if (data.hasOwnProperty(key)) {
+            var input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = key;
+            input.value = data[key];
+            form.appendChild(input);
+        }
+    }
+    // Aggiungi il modulo alla pagina e invialo
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function confermaEliminazione(id){
     if(confirm("Sei sicuro di voler eliminare il film?")){
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function (){
-            if(xhr.readyState == 4 && xhr.status == 200){
-                alert(xhr.responseText);
-                window.location.href="MainServletAdmin?action=homeAdmin";
-            }
-        };
-        xhr.open("POST", "AggiornaFilmServlet?action=ELIMINA&id=" + id, true);
-        xhr.send();
+        var data = { action: 'ELIMINA', id: id };
+        sendPostRequest('AggiornaFilmServlet', data);
     }else{
         alert("eliminazione annullata");
     }
