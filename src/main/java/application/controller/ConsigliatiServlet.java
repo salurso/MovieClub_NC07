@@ -9,6 +9,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import storage.model.DatasetSampleDAO;
 import storage.model.FilmDAO;
 import storage.model.ListaDAO;
 import storage.model.PersonaDAO;
@@ -21,6 +22,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,8 +31,8 @@ public class ConsigliatiServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Persona p = (Persona) request.getSession().getAttribute("Persona");
-        String generi = PersonaDAO.getInstance().getFormattedGenres(p.getId());
-        int annoMedio = PersonaDAO.getInstance().getAverageReleaseYear(p.getId());
+        String generi = DatasetSampleDAO.getFormattedGenres(p.getId());
+        int annoMedio = DatasetSampleDAO.getAverageReleaseYear(p.getId());
 
         // Costruisci i dati da inviare come JSON
         String jsonInput = "{\"Genere\": \"" + generi + "\", \"MediaAnno\": " + annoMedio + "}";
@@ -73,7 +75,7 @@ public class ConsigliatiServlet extends HttpServlet {
                 films.add(film);
             }
 
-            request.setAttribute("films", PersonaDAO.filterWatchlist(films, p.getId()));
+            request.setAttribute("films", DatasetSampleDAO.filterWatchlist(films, p.getId()));
             ListaDAO lDAO = ListaDAO.getInstance();
             if(p!=null) {
                 ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
