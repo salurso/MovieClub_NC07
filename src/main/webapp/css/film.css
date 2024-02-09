@@ -15,6 +15,7 @@
 
 #container-film{
     margin: 50px;
+    margin-top: 20px;
 }
 
 .row-cols-1>* {
@@ -65,4 +66,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/*pulsanti valutazione consigliati*/
+.thumb-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.thumb-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 10px;
+}
+
+h3{
+    color: #ffa31a;
 }

@@ -17,6 +17,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./css/film.css?v=<%=new Random().nextInt()%>"/>
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
     <script>
         //funzione per ricercare i film dal titolo
         function searchFilms() {
@@ -102,8 +104,6 @@
             });
         });
     </script>
-
-
 </head>
 <body class="body">
 <%@ include file="/WEB-INF/navbar/navbar.jsp" %>
@@ -151,6 +151,15 @@
         </div>
     </div>
 
+    <%if(request.getAttribute("valutazione")!=null){%>
+    <div class="thumb-container">
+        <h3>Film consigliati</h3>
+        <form action="ValutazioneServlet" method="POST"> <!-- Imposta l'azione della form sulla servlet desiderata -->
+            <button class="thumb-button" type="submit" name="value" value="Positiva"><i class="fas fa-thumbs-up" style="color: green;"></i></button>
+            <button class="thumb-button" type="submit" name="value" value="Negativa"><i class="fas fa-thumbs-down" style="color: red;"></i></button>
+        </form>
+    </div>
+    <%}%>
 
     <div class="row row-cols-1 row-cols-md-4 g-4" id="container-film">
         <%

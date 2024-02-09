@@ -73,11 +73,10 @@ public class ConsigliatiServlet extends HttpServlet {
             }
 
             request.setAttribute("films", DatasetSampleDAO.filterWatchlist(films, p.getId()));
+            request.setAttribute("valutazione", "true");
             ListaDAO lDAO = ListaDAO.getInstance();
-            if(p!=null) {
-                ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
-                request.setAttribute("userLists", lists);
-            }
+            ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());
+            request.setAttribute("userLists", lists);
 
             RequestDispatcher ds = request.getRequestDispatcher("/WEB-INF/gui/film.jsp");
             ds.forward(request, response);
