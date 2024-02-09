@@ -21,7 +21,7 @@ public class DatasetSampleDAO {
             while (rs.next()) {
                 formattedGenres.append(rs.getString("Genere"));
                 if(!rs.isLast())
-                    formattedGenres.append(", ");
+                    formattedGenres.append(",");
             }
             formattedGenres.append("]");
 
@@ -70,11 +70,9 @@ public class DatasetSampleDAO {
                     i--; // Decremento l'indice per gestire la rimozione dell'elemento corrente
                 }
             }
-
             return filteredList;
         } catch (SQLException s) {
             throw new RuntimeException(s);
         }
     }
-
 }

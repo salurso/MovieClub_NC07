@@ -12,7 +12,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import storage.model.DatasetSampleDAO;
 import storage.model.FilmDAO;
 import storage.model.ListaDAO;
-import storage.model.PersonaDAO;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -32,6 +31,7 @@ public class ConsigliatiServlet extends HttpServlet {
         Persona p = (Persona) request.getSession().getAttribute("Persona");
         String generi = DatasetSampleDAO.getFormattedGenres(p.getId());
         int annoMedio = DatasetSampleDAO.getAverageReleaseYear(p.getId());
+        generi = generi.replaceAll("\\s", "");
 
         // Costruisci i dati da inviare come JSON
         String jsonInput = "{\"Genere\": \"" + generi + "\", \"MediaAnno\": " + annoMedio + "}";
@@ -54,7 +54,6 @@ public class ConsigliatiServlet extends HttpServlet {
         // Leggi la risposta dal server
         try (BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream(), StandardCharsets.UTF_8))) {
             String responseJson = br.lines().collect(Collectors.joining(System.lineSeparator()));
-//            response.getWriter().println(responseJson);
 
             // Ottieni la lista di id film raccomandati
             List<Integer> raccomandazioni = new ArrayList<>();
@@ -63,7 +62,6 @@ public class ConsigliatiServlet extends HttpServlet {
             String[] ids = responseJson.substring(1, responseJson.length()-1).split(",");
             for (String id : ids) {
                 raccomandazioni.add(Integer.parseInt(id));
-//                response.getWriter().println(id);
             }
 
             FilmDAO fDAO = FilmDAO.getInstance();
@@ -87,7 +85,6 @@ public class ConsigliatiServlet extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            // Chiudi la connessione
             conn.disconnect();
         }
     }
