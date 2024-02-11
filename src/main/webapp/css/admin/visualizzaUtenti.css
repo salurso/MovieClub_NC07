@@ -27,16 +27,8 @@ body{
 .home_ord h3{
     font-size: 3rem;
     text-transform: uppercase;
-    color: #EF6D16;
+    color: #ffa31a;
 }
-
-/*.main-title{*/
-/*    margin-top: 10px;*/
-/*    color: white;*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*}*/
 
 .tabular--wrapper{
     display: flex; /*allinea gli elementi uno di fianco all'altro*/
@@ -87,9 +79,6 @@ td{
 }
 
 @media only screen and (max-width: 420px) {
-    /*.main-title{*/
-    /*    font-size: 1.2rem;*/
-    /*}*/
     .tabular--wrapper{
         padding: 1px;
     }

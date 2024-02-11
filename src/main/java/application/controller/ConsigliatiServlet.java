@@ -73,6 +73,7 @@ public class ConsigliatiServlet extends HttpServlet {
             }
 
             request.setAttribute("films", DatasetSampleDAO.filterWatchlist(films, p.getId()));
+            request.setAttribute("arrayFilm", raccomandazioni);
             request.setAttribute("valutazione", "true");
             ListaDAO lDAO = ListaDAO.getInstance();
             ArrayList<Lista> lists = lDAO.doRetrieveByEmail(p.getEmail());

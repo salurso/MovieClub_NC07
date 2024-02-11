@@ -1,7 +1,8 @@
 <%@ page import="application.entity.Film" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.Random" %>
-<%@ page import="application.entity.Lista" %><%--
+<%@ page import="application.entity.Lista" %>
+<%@ page import="java.util.List" %><%--
   Created by IntelliJ IDEA.
   User: Costantino
   Date: 15/01/2024
@@ -155,8 +156,9 @@
     <div class="thumb-container">
         <h3>Film consigliati</h3>
         <form action="ValutazioneServlet" method="POST"> <!-- Imposta l'azione della form sulla servlet desiderata -->
-            <button class="thumb-button" type="submit" name="value" value="Positiva"><i class="fas fa-thumbs-up" style="color: green;"></i></button>
-            <button class="thumb-button" type="submit" name="value" value="Negativa"><i class="fas fa-thumbs-down" style="color: red;"></i></button>
+            <input type="hidden" value="<%=(List<Integer>) request.getAttribute("arrayFilm")%>" name="arrayFilm"/>
+            <button class="thumb-button" type="submit" name="value" value="Positiva"><i class="fas fa-thumbs-up" style="color: green; font-size: 30px;"></i></button>
+            <button class="thumb-button" type="submit" name="value" value="Negativa"><i class="fas fa-thumbs-down" style="color: red; font-size: 30px;"></i></button>
         </form>
     </div>
     <%}%>
