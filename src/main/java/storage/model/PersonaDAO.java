@@ -25,20 +25,38 @@ public class PersonaDAO {
         return instance;
     }
 
-    public static void doRegistration(Persona p) throws SQLException {
+    public static Persona doRegistration(Persona p) throws SQLException {
         try (Connection con = ConPool.getConnection()) {
-            PreparedStatement ps = con.prepareStatement("INSERT INTO Persona (email, password, nome, cognome, Admin) VALUES (?,?,?,?,?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            ps.setString(1, p.getEmail());
-            ps.setString(2, p.getPassword());
-            ps.setString(3, p.getNome());
-            ps.setString(4, p.getCognome());
-            ps.setBoolean(5, p.isAdmin());
+            String query = "INSERT INTO Persona (email, password, nome, cognome, Admin) VALUES (?,?,?,?,?)";
 
-            if (ps.executeUpdate() != 1)
-                throw new RuntimeException("Errore nel definire l'utente");
+            try (PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS)) {
+                ps.setString(1, p.getEmail());
+                ps.setString(2, p.getPassword());
+                ps.setString(3, p.getNome());
+                ps.setString(4, p.getCognome());
+                ps.setBoolean(5, p.isAdmin());
+
+                int affectedRows = ps.executeUpdate();
+
+                if (affectedRows == 0) {
+                    return null;
+                }
+
+                try (ResultSet generatedKeys = ps.getGeneratedKeys()) {
+                    if (generatedKeys.next()) {
+                        int generatedId = generatedKeys.getInt(1);
+
+                        p.setId(generatedId);
+
+                        return p;
+                    } else {
+                        return null;
+                    }
+                }
+            }
         }
     }
+
 
     public static boolean checkEmailDuplicate(String email) {
         try (Connection con = ConPool.getConnection()) {

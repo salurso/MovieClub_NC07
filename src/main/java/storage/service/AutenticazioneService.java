@@ -20,8 +20,8 @@ public class AutenticazioneService {
         }
 
         Persona p = new Persona(nome, cognome, email, password);
-        PersonaDAO.doRegistration(p);
-        return p;
+
+        return PersonaDAO.doRegistration(p);
     }
 
     public static Persona doLoginService(String email, String password) throws SQLException {
