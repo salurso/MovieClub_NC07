@@ -23,7 +23,7 @@ public class RecensioneDAO {
     }
 
     //VisualizzaRecensione
-    public List<Recensione> doRetrieveAll(){
+    public List<Recensione> doRetrieveAll(){ //RESTITUISCE TUTTE LE RECENSIONI
 
         try(Connection con = ConPool.getConnection()){
 
@@ -32,8 +32,6 @@ public class RecensioneDAO {
             ArrayList<Recensione> recensioni = new ArrayList<>();
 
             while(rs.next()){
-                //Recensione r = parseRecensione(rs);
-                //recensioni.add(r);
             }
             return recensioni;
         }catch(SQLException s){
@@ -42,7 +40,7 @@ public class RecensioneDAO {
     }
 
 
-    public int doSave(Recensione recensione) throws IOException {
+    public int doSave(Recensione recensione) throws IOException { //INSERISCE UNA NUOVA RECENSIONE ALL'INTERNO DEL DB
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("INSERT INTO Recensione(Valutazione, Descrizione, DataInserimento, Email_Persona, ID_Film) VALUES (?, ?, ?, ?, ?)");
 
@@ -60,8 +58,8 @@ public class RecensioneDAO {
 
     }
 
-    //ModificaRecensione
-    public int doUpdate(Recensione r){
+
+    public int doUpdate(Recensione r){  //MODIFICA LA RECENSIONE
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("UPDATE Recensione SET Valutazione = ?, Descrizione = ?, DataInserimento = ? WHERE Email_Persona = ? AND ID_Film = ?");
             ps.setInt(1, r.getValutazione());
@@ -77,8 +75,8 @@ public class RecensioneDAO {
     }
 
 
-    //EliminaRecensione
-    public int removeRecensione(String emailPersona, int idFilm){
+
+    public int removeRecensione(String emailPersona, int idFilm){ //ELIMINA UNA RECENSIONE
         try(Connection con = ConPool.getConnection()){
 
             //Cancella la recensione dal database
@@ -87,23 +85,13 @@ public class RecensioneDAO {
             pt.setInt(2, idFilm);
             return pt.executeUpdate();
 
-            /*cancelliamo il collegamento Recensione - Utente
-            PreparedStatement ps = con.prepareStatement("DELETE FROM Recensione WHERE Email_Persona = ?");
-            ps.setString(1, r.getEmailPersona());
-            ps.executeUpdate();
-
-            //cancelliamo il collegamento Recensione - Film
-            PreparedStatement pr = con.prepareStatement("DELETE FROM Recensione WHERE ID_Film = ?");
-            pr.setString(1, r.getEmailPersona());
-            pr.executeUpdate();*/
-
         }catch(SQLException e){
             throw new RuntimeException("Errore durante la rimozione della Recensione", e);
         }
     }
 
-    //Cerca la Recensione effettuata dall'Utente (Email_Persona) su quel determinato film(ID_Film)
-    public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film) {
+
+    public static Recensione doRetrievebyEmailID(String Email_Persona, int ID_Film) {  //Cerca la Recensione effettuata dall'Utente (Email_Persona) su quel determinato film(ID_Film)
         Recensione r = null;
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE Email_Persona = ? AND ID_Film = ?");
@@ -147,7 +135,7 @@ public class RecensioneDAO {
         return r;
     }
 
-    public ArrayList<Recensione> doRetrieveByIDFilm(int ID_Film){
+    public ArrayList<Recensione> doRetrieveByIDFilm(int ID_Film){ //RESTITUISCE TUTTE LE RECENSIONE DI UN DETERMINATO FILM
         try(Connection con = ConPool.getConnection()){
             PreparedStatement ps = con.prepareStatement("SELECT * FROM Recensione WHERE ID_Film = ?");
             ps.setInt(1, ID_Film);

@@ -15,11 +15,12 @@ import java.util.ArrayList;
 public class FilmServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        int id = Integer.parseInt(request.getParameter("id"));
+        //Ottieni l'id del film dalla richiesta
         int id = Integer.parseInt(request.getParameter("id"));
 
         FilmDAO fDAO = FilmDAO.getInstance();
         Film f = fDAO.doRetrieveById(id);
+
         RecensioneDAO rDAO = RecensioneDAO.getInstance();
         ArrayList<Recensione> recensioni = rDAO.doRetrieveByIDFilm(id);
         request.setAttribute("film", f);

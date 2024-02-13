@@ -13,18 +13,22 @@ public class WatchlistServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Ottenimento dei parametri dalla richiesta
         int idFilm = Integer.parseInt(request.getParameter("idFilm"));
         String tipoRichiesta = request.getParameter("richiesta");
         Persona p = (Persona) request.getSession().getAttribute("Persona");
 
+        // Chiamata al servizio per gestire la watchlist
         AutenticazioneService.watchlistService(tipoRichiesta, p.getId(), idFilm);
 
+        // Impostazione della risposta come JSON
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Reindirizzamento al metodo doPost
         doPost(request, response);
     }
 }

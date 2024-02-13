@@ -23,7 +23,7 @@ public class ListaDAO {
         return instance;
     }
 
-    public static ArrayList<Lista> doRetrieveAll(){
+    public static ArrayList<Lista> doRetrieveAll(){ //restituisce tutti i valori di lista
         try (Connection connection = ConPool.getConnection()){
             PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata FROM Lista");
             ResultSet rs = ps.executeQuery();
@@ -43,7 +43,7 @@ public class ListaDAO {
         }
     }
 
-    public Lista doRetrieveById(int id) {
+    public Lista doRetrieveById(int id) { //restituisce tutti i valori di una specifica lista (in base all'id)
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata, Email_Persona FROM Lista WHERE ID = ?");
             ps.setInt(1, id);
@@ -63,7 +63,7 @@ public class ListaDAO {
     }
 
 
-    public ArrayList<Lista> doRetrieveByEmail(String email) {
+    public ArrayList<Lista> doRetrieveByEmail(String email) { //restituisce tutte le liste di un'utente specifico (dall'email)
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT ID, Nome, Descrizione, Privata FROM Lista WHERE Email_Persona = ?");
             ps.setString(1, email);
@@ -86,7 +86,7 @@ public class ListaDAO {
 
 
 
-    public ArrayList<Film> getFilmsInList(int idLista) {
+    public ArrayList<Film> getFilmsInList(int idLista) { //inserisce un film all'interno della lista
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT f.* FROM Film f JOIN Include i ON f.id = i.ID_Film WHERE i.ID_Lista = ?");
             ps.setInt(1, idLista);
@@ -122,7 +122,7 @@ public class ListaDAO {
         }
     }
 
-    public boolean isListaDuplicata(String nome, String email) throws IOException {
+    public boolean isListaDuplicata(String nome, String email) throws IOException { //verifica se la lista è già presente per quell'utente.
         try (Connection con = ConPool.getConnection();
              PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?")) {
 
@@ -138,7 +138,7 @@ public class ListaDAO {
         }
     }
 
-    public int doInsert(Lista l) throws IOException {
+    public int doInsert(Lista l) throws IOException { //inserisce una nuova lista
         try (Connection con = ConPool.getConnection();
              PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)")) {
 
@@ -153,36 +153,8 @@ public class ListaDAO {
         }
     }
 
-//    public int doInsert(Lista l) throws IOException {
-//
-//        try (Connection con = ConPool.getConnection()) {
-//            // Verifica se esiste già una lista con lo stesso nome associata alla stessa email
-//            PreparedStatement psCheck = con.prepareStatement("SELECT COUNT(*) FROM Lista WHERE Nome = ? AND Email_Persona = ?");
-//            psCheck.setString(1, l.getNome());
-//            psCheck.setString(2, l.getEmail_Persona());
-//            ResultSet rsCheck = psCheck.executeQuery();
-//            rsCheck.next();
-//            int count = rsCheck.getInt(1);
-//
-//            if (count > 0) {
-//                // Una lista con lo stesso nome è già associata alla stessa email, quindi non possiamo inserirla
-//                return 0;
-//            }
-//            // Procedi con l'inserimento della nuova lista
-//            PreparedStatement psInsert = con.prepareStatement("INSERT INTO Lista (Nome, Privata, Descrizione, Email_Persona) VALUES (?,?,?,?)");
-//            psInsert.setString(1, l.getNome());
-//            psInsert.setBoolean(2, l.isPrivata());
-//            psInsert.setString(3, l.getDescrizione());
-//            psInsert.setString(4, l.getEmail_Persona());
-//
-//            int rowsAffected = psInsert.executeUpdate();
-//            return rowsAffected;
-//        } catch (SQLException s) {
-//            throw new RuntimeException(s);
-//        }
-//    }
 
-    public int doDeleteList(int id) {
+    public int doDeleteList(int id) { //elimina una lista
         try (Connection connection = ConPool.getConnection()) {
             connection.setAutoCommit(false);
 
@@ -251,7 +223,7 @@ public class ListaDAO {
         }
     }
 
-    public ArrayList<Lista> getPublicLists() {
+    public ArrayList<Lista> getPublicLists() { //RESTITUISCE TUTTE LE LISTE PUBBLICHE
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT l.ID, l.Nome, l.Descrizione, l.Privata, l.Email_Persona FROM Lista l JOIN Persona p ON l.Email_Persona = p.Email WHERE l.Privata = false");
             ResultSet rs = ps.executeQuery();

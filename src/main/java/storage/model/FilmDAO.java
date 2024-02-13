@@ -23,7 +23,7 @@ public class FilmDAO {
         return instance;
     }
 
-    public List<Film> doRetrieveAll() {
+    public List<Film> doRetrieveAll() { //restituisce tutti i valori di film
 
         try (Connection con = ConPool.getConnection()) {
 
@@ -49,7 +49,7 @@ public class FilmDAO {
         }
     }
 
-    public Film doRetrieveById(int id) {
+    public Film doRetrieveById(int id) { //restituisce tutti i valori di uno specifico film (in base all'id)
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("select ID, Titolo, Regista, Durata, Copertina, Trailer, Genere, Descrizione, DataUscita from film where id = ?");
             ps.setInt(1, id);
@@ -72,7 +72,7 @@ public class FilmDAO {
         }
     }
 
-    public static int doInsert(Film f) throws IOException {
+    public static int doInsert(Film f) throws IOException { //inserisce un nuovo film all'interno della tabella
 
         int result;
         try (Connection con = ConPool.getConnection()) {
@@ -93,7 +93,7 @@ public class FilmDAO {
         }
     }
 
-    public int doUpdate(Film f) {
+    public int doUpdate(Film f) { //aggiorna la tabella film del database
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement ps = con.prepareStatement("UPDATE film SET Titolo = ?, Regista = ?, Genere = ?, Copertina = ?, Trailer = ?, DataUscita = ?, Durata = ?, Descrizione = ? WHERE ID = ?");
             ps.setString(1, f.getTitolo());
@@ -113,7 +113,7 @@ public class FilmDAO {
         }
     }
 
-    public int doDelete(int id) {
+    public int doDelete(int id) { //elimina un film dalla watchlist
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement psWatchlist = con.prepareStatement("DELETE FROM watchlist WHERE ID_Film = ?");
             psWatchlist.setInt(1, id);
@@ -136,7 +136,7 @@ public class FilmDAO {
         }
     }
 
-    public List<Film> doRetrieveAllFromYear2022() {
+    public List<Film> doRetrieveAllFromYear2022() { //restituisce tutti i film con data di uscita 2022
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT ID, Titolo, Regista, Durata, Copertina, Genere FROM Film WHERE YEAR(DataUscita) = 2019";
             PreparedStatement ps = con.prepareStatement(query);

@@ -55,10 +55,9 @@ public class RecensioneServlet extends HttpServlet {
                     result = "Errore durante l'eliminazione della recensione.";
                 }
 
-                // Ora puoi effettuare eventuali operazioni aggiuntive o reindirizzare l'utente
                 request.setAttribute("result", result);
 
-                // Per esempio, reindirizza l'utente alla pagina del film dopo l'eliminazione
+                // reindirizza l'utente all'homepage dopo l'eliminazione
                 RequestDispatcher ds = request.getRequestDispatcher("index.jsp");
                 ds.forward(request, response);
 

@@ -25,7 +25,7 @@ public class PersonaDAO {
         return instance;
     }
 
-    public static Persona doRegistration(Persona p) throws SQLException {
+    public static Persona doRegistration(Persona p) throws SQLException { //EFFETTUA LA REGISTRAZIONE
         try (Connection con = ConPool.getConnection()) {
             String query = "INSERT INTO Persona (email, password, nome, cognome, Admin) VALUES (?,?,?,?,?)";
 
@@ -58,7 +58,7 @@ public class PersonaDAO {
     }
 
 
-    public static boolean checkEmailDuplicate(String email) {
+    public static boolean checkEmailDuplicate(String email) { //VERIFICA SE L'EMAIL ESISTE GIA'
         try (Connection con = ConPool.getConnection()) {
             PreparedStatement stmt = con.prepareStatement("SELECT COUNT(*) FROM Persona WHERE email = ?");
             stmt.setString(1, email);
@@ -72,7 +72,7 @@ public class PersonaDAO {
         }
         return false;
     }
-    public static Persona doLogin(String email, String password) throws SQLException {
+    public static Persona doLogin(String email, String password) throws SQLException { //EFFETTUA IL LOGIN
         try (Connection con = ConPool.getConnection()) {
             String query = "SELECT * FROM Persona WHERE email = ? AND password = SHA1(?)";
             try (PreparedStatement ps = con.prepareStatement(query)) {
@@ -102,7 +102,7 @@ public class PersonaDAO {
         return p;
     }
 
-    public Persona doRetrieveByEmail(String email) {
+    public Persona doRetrieveByEmail(String email) { //RESTITUISCE TUTTI I VALORI DI UNA PERSONA DALL'EMAIL
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT * FROM Persona WHERE email = ?");
             ps.setString(1, email);
@@ -122,7 +122,7 @@ public class PersonaDAO {
         }
     }
 
-    public static ArrayList<Film> getWatchlistFilms(int idPersona) {
+    public static ArrayList<Film> getWatchlistFilms(int idPersona) { //RESTITUISCE I FILM NELLA WATCHLIST
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("SELECT f.* FROM Film f JOIN watchlist w ON f.ID = w.ID_Film WHERE w.ID_Persona = ?");
             ps.setInt(1, idPersona);
@@ -146,7 +146,7 @@ public class PersonaDAO {
         }
     }
 
-    public static void addToWatchlist(int idPersona, int idFilm) {
+    public static void addToWatchlist(int idPersona, int idFilm) { //AGGIUNGE I FILM ALLA WATCHLIST
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO watchlist (ID_Persona, ID_Film) VALUES (?, ?)");
             ps.setInt(1, idPersona);
@@ -157,7 +157,7 @@ public class PersonaDAO {
         }
     }
 
-    public static void removeFromWatchlist(int idPersona, int idFilm) {
+    public static void removeFromWatchlist(int idPersona, int idFilm) { //ELIMINA FILM DALLA WATCHLIST
         try (Connection connection = ConPool.getConnection()) {
             PreparedStatement ps = connection.prepareStatement("DELETE FROM watchlist WHERE ID_Persona = ? AND ID_Film = ?");
             ps.setInt(1, idPersona);
@@ -168,7 +168,7 @@ public class PersonaDAO {
         }
     }
 
-    public ArrayList<Persona> doRetrieveAll(){
+    public ArrayList<Persona> doRetrieveAll(){ //RESTITUISCE TUTTI GLI UTENTI
         try (Connection con = ConPool.getConnection()) {
 
             PreparedStatement ps = con.prepareStatement("select Email, Nome, Cognome, Admin from persona");
