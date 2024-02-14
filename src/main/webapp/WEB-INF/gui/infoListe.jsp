@@ -82,7 +82,7 @@
       <th scope="col">Titolo</th>
       <th scope="col">Regista</th>
       <th scope="col">Durata</th>
-      <th scope="col">Copertina</th>
+<%--      <th scope="col">Copertina</th>--%>
       <th scope="col">Genere</th>
       <th scope="col">Azioni</th>
     </tr>
@@ -93,7 +93,7 @@
       <td><%=film.getTitolo()%></td>
       <td><%=film.getRegista()%></td>
       <td><%=film.getDurata()%></td>
-      <td><%=film.getCopertina()%></td>
+<%--      <td><%=film.getCopertina()%></td>--%>
       <td><%=film.getGenere()%></td>
       <td>
 
