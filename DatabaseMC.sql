@@ -62,6 +62,4 @@ FOREIGN KEY (ID_Film) references Film (ID)
 
 INSERT INTO Persona (Email, Password, Nome, Cognome, Admin)
 VALUES ('prova1@gmail.com', sha1('user1234'), 'Mario', 'Rossi', 0),
-       ('prova2@gmail.com', sha1('user1234'), 'Luca', 'Bianchi', 0),
-       ('prova3@gmail.com', sha1('user1234'), 'Giovanna', 'Verdi', 0),
        ('admin@gmail.com', sha1('admin1234'), 'Admin', 'Admin', 1);
