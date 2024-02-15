@@ -1,5 +1,5 @@
 # MOVIECLUB 
-Progetto realizzato per il corso di Ingegneria del software dell'Università di Salerno.
+Progetto realizzato per il corso di Ingegneria del software dell'Università di Salerno (2023/2024).
 
 # Documentazione
 Tutti la documentazione relativa ai prodotti è disponibile nella cartella DOCUMENTI.
