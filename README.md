@@ -1,8 +1,10 @@
 # MOVIECLUB 
-# Documentazioni
-Tutti la documentazioni relativa ai prodotti è disponibile nelle relative cartelle.
+Progetto realizzato per il corso di Ingegneria del software dell'Università di Salerno.
+
+# Documentazione
+Tutti la documentazione relativa ai prodotti è disponibile nella cartella DOCUMENTI.
 - [Documenti] (https://github.com/salurso/MovieClub_NC07/tree/master/DOCUMENTI)
-- [Manuali] 
+- [Manuali] (https://github.com/salurso/MovieClub_NC07/tree/master/DOCUMENTI/5.%20MANUALI)
 
 # Autori
 - Andrea Salurso
